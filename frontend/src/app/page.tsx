@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, Clock, MapPin, ShieldCheck, Smartphone, Wifi } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, Clock, MapPin, ShieldCheck, Smartphone } from "lucide-react";
 import { CourtCard } from "@/components/CourtCard";
 import { Logo } from "@/components/ui/misc";
 import { courts } from "@/lib/data";
@@ -61,57 +61,68 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* NEW SECTION: Cara Booking */}
+      {/* Cara Booking — editorial numbered timeline */}
       <section className="mx-auto max-w-7xl px-4 py-16">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-[38px] font-normal leading-[1.15] tracking-[-0.02em]">Cara Booking</h2>
-          <p className="mt-6 text-base leading-relaxed text-muted">Tiga langkah mudah untuk memulai permainan Anda.</p>
+        <div className="mx-auto max-w-xl text-center">
+          <span className="inline-block rounded-full bg-primary px-4 py-1.5 text-[11px] uppercase tracking-[0.12em]">Tiga langkah</span>
+          <h2 className="mt-6 text-[38px] font-normal leading-[1.15] tracking-[-0.02em]">Dari pemilihan hingga servis pertama — dalam hitungan detik.</h2>
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {[{ step: "01", title: "Pilih Lapangan", icon: MapPin, desc: "Jelajahi lapangan terbaik dengan foto, lokasi, dan harga per jam." },
-            { step: "02", title: "Pilih Slot", icon: Clock, desc: "Lihat ketersediaan waktu secara real-time dan pilih sesi yang cocok." },
-            { step: "03", title: "Konfirmasi & Bayar", icon: ShieldCheck, desc: "Konfirmasi booking dan bayar via transfer atau gateway." }].map((s) => (
-            <div key={s.step} className="rounded-2xl bg-surface p-8">
-              <span className="text-[56px] font-normal leading-none tracking-[-0.04em] text-primary">{s.step}</span>
-              <s.icon className="mt-6 h-6 w-6" />
-              <h3 className="mt-4 text-[26px] font-normal tracking-[-0.02em]">{s.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-muted">{s.desc}</p>
+        <div className="mt-14 grid gap-12 md:grid-cols-3">
+          {[{ num: "01", title: "Jelajahi & Pilih", desc: "Scan grid lapangan aktif. Harga per jam, foto lapangan, lokasi — semua di satu halaman. Filter berdasarkan nama atau lokasi." },
+            { num: "02", title: "Tandai Slot", desc: "Grid waktu real-time. Klik slot kosong, sistem langsung menghitung total. Tidak perlu login untuk melihat ketersediaan." },
+            { num: "03", title: "Konfirmasi & Main", desc: "Pilih metode bayar — transfer BCA atau gateway. Admin verifikasi manual, kamu dapat notifikasi otomatis." }].map((s) => (
+            <div key={s.num} className="relative pl-14">
+              <span className="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full border text-[13px]">{s.num}</span>
+              <span className="absolute left-[17px] top-10 bottom-0 w-px bg-foreground/20 md:hidden" />
+              <h3 className="text-lg">{s.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{s.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* NEW SECTION: Fasilitas */}
-      <section className="bg-muted-surface">
-        <div className="mx-auto max-w-7xl px-4 py-16">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-[38px] font-normal leading-[1.15] tracking-[-0.02em]">Fasilitas Kami</h2>
-            <p className="mt-6 text-base leading-relaxed text-muted">Lapangan standar turnamen dengan fasilitas lengkap.</p>
+      {/* Fasilitas — spec-sheet 2-col */}
+      <section className="border-y bg-surface">
+        <div className="mx-auto grid max-w-7xl md:grid-cols-2">
+          <div className="border-b md:border-b-0 md:border-r p-10">
+            <span className="text-[13px] uppercase tracking-[0.12em] text-muted">Lapangan</span>
+            <h2 className="mt-4 text-[32px] font-normal leading-[1.15] tracking-[-0.02em]">Standar turnamen, sensasi premium.</h2>
+            <p className="mt-5 text-sm leading-relaxed text-muted">Setiap lapangan dirancang dengan material pro-grade. Pencahayaan LED 500 lux, surface 3-layer cushion, dan dinding panoramic glass.</p>
+            <div className="mt-8 grid gap-3 text-sm">
+              {["Pro-Grade Turf — 3-layer cushion", "LED Lighting — 500 lux coverage", "Panoramic Glass Walls", "Locker & Shower Room"].map((f) => (
+                <div key={f} className="flex items-center gap-3"><Check className="h-4 w-4 text-primary" /><span>{f}</span></div>
+              ))}
+            </div>
           </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[{ icon: MapPin, label: "Pro-Grade Turf" }, { icon: Wifi, label: "LED Lighting" }, { icon: CalendarDays, label: "Locker Room" }, { icon: Wifi, label: "Free WiFi" }].map((f) => (
-              <div key={f.label} className="rounded-2xl bg-surface p-6 text-center">
-                <f.icon className="mx-auto h-6 w-6" />
-                <p className="mt-4 text-base">{f.label}</p>
-              </div>
-            ))}
+          <div className="p-10">
+            <span className="text-[13px] uppercase tracking-[0.12em] text-muted">Layanan</span>
+            <h2 className="mt-4 text-[32px] font-normal leading-[1.15] tracking-[-0.02em]">Booking dalam genggaman.</h2>
+            <p className="mt-5 text-sm leading-relaxed text-muted">Sistem booking real-time tanpa login untuk melihat jadwal. Admin verifikasi dalam 1x24 jam.</p>
+            <div className="mt-8 grid gap-3 text-sm">
+              {["Real-time Slot Availability", "Admin Verification < 24 Jam", "Payment History & Receipts", "Auto Notification via Telegram"].map((f) => (
+                <div key={f} className="flex items-center gap-3"><Check className="h-4 w-4 text-primary" /><span>{f}</span></div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* NEW SECTION: Testimoni */}
+      {/* Testimoni — industrial pull-quotes */}
       <section className="mx-auto max-w-7xl px-4 py-16">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-[38px] font-normal leading-[1.15] tracking-[-0.02em]">Kata Mereka</h2>
-          <p className="mt-6 text-base leading-relaxed text-muted">Yang dikatakan pemain tentang CourtFlow.</p>
+        <div className="mb-12">
+          <span className="inline-block rounded-full bg-primary px-4 py-1.5 text-[11px] uppercase tracking-[0.12em]">Testimoni</span>
+          <h2 className="mt-6 max-w-xl text-[38px] font-normal leading-[1.15] tracking-[-0.02em]">Yang pemain katakan tentang CourtFlow.</h2>
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {[{ name: "Andi Pratama", text: "Gampang banget booking lapangan. Slot jelas, harga transparan. Nggak perlu ribet." },
-            { name: "Bunga Lestari", text: "Aplikasi keren buat komunitas padel. Admin fast response, pembayaran aman." },
-            { name: "Citra Dewi", text: "Desainnya simple dan premium. Suka banget sama fitur jadwal real-time." }].map((t) => (
-            <div key={t.name} className="rounded-2xl bg-surface p-8">
-              <p className="text-base leading-relaxed text-muted">&ldquo;{t.text}&rdquo;</p>
-              <p className="mt-6 text-[13px] uppercase tracking-[0.08em]">— {t.name}</p>
+        <div className="grid gap-0 md:grid-cols-3 border-t">
+          {[{ name: "Andi Pratama", role: "Pengguna Aktif", text: "\"Gampang banget booking lapangan. Slot jelas, harga transparan. Nggak perlu ribet.\"" },
+            { name: "Bunga Lestari", role: "Komunitas Padel", text: "\"Aplikasi keren buat komunitas padel. Admin fast response, pembayaran aman.\"" },
+            { name: "Citra Dewi", role: "Pemain Reguler", text: "\"Desainnya simple dan premium. Suka banget sama fitur jadwal real-time.\"" }].map((t, i) => (
+            <div key={t.name} className={`p-10 ${i < 2 ? "border-b md:border-b-0 md:border-r" : ""}`}>
+              <p className="text-base leading-relaxed text-foreground">{t.text}</p>
+              <div className="mt-8 flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-foreground grid place-items-center text-white text-[13px] uppercase">{t.name[0]}</div>
+                <div><p className="text-[13px] uppercase tracking-[0.08em]">{t.name}</p><p className="text-[11px] uppercase tracking-[0.08em] text-muted">{t.role}</p></div>
+              </div>
             </div>
           ))}
         </div>
