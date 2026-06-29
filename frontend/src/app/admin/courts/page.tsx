@@ -40,18 +40,18 @@ export default function AdminCourtsPage() {
   return (
     <div>
       <PageHeader title="Court Management" subtitle={`${courts.length} courts · ${courts.filter((c) => c.status === "active").length} active`} action={<Button onClick={openNew}><Plus className="h-4 w-4" /> New court</Button>} />
-      <div className="sky-card overflow-hidden rounded-[24px]">
+      <div className="twotwo-card overflow-hidden rounded-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="court-lines bg-primary-soft text-left text-xs font-extrabold uppercase tracking-wide text-muted"><tr><th className="px-4 py-3">Court</th><th className="px-4 py-3">Location</th><th className="px-4 py-3">Price/hr</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">Actions</th></tr></thead>
+            <thead className="court-lines bg-muted-surface text-left text-xs font-normal uppercase tracking-[0.08em] text-muted"><tr><th className="px-4 py-3">Court</th><th className="px-4 py-3">Location</th><th className="px-4 py-3">Price/hr</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">Actions</th></tr></thead>
             <tbody className="divide-y divide-border">
               {courts.map((c) => (
-                <tr key={c.id} className="hover:bg-primary-soft/50">
-                  <td className="px-4 py-3"><div className="flex items-center gap-3"><span className="relative h-11 w-11 overflow-hidden rounded-2xl"><Image src={c.imageUrl} alt="" fill sizes="44px" className="object-cover" /></span><span className="font-extrabold text-foreground">{c.name}</span></div></td>
+                <tr key={c.id} className="hover:bg-muted-surface/50">
+                  <td className="px-4 py-3"><div className="flex items-center gap-3"><span className="relative h-11 w-11 overflow-hidden rounded-2xl"><Image src={c.imageUrl} alt="" fill sizes="44px" className="object-cover" /></span><span className="font-normal text-foreground">{c.name}</span></div></td>
                   <td className="px-4 py-3 font-medium text-muted">{c.location || "—"}</td>
-                  <td className="px-4 py-3 font-extrabold tabular-nums text-foreground">{formatIDR(c.pricePerHour)}</td>
-                  <td className="px-4 py-3"><span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-extrabold ${c.status === "active" ? "bg-accent text-foreground" : "bg-status-expired-soft text-status-expired"}`}>{c.status}</span></td>
-                  <td className="px-4 py-3"><div className="flex items-center justify-end gap-1"><button onClick={() => openEdit(c)} aria-label="Edit" className="cursor-pointer rounded-full p-2 text-muted hover:bg-primary-soft hover:text-foreground"><Pencil className="h-4 w-4" /></button><button onClick={() => toggleStatus(c.id)} aria-label="Toggle status" className="cursor-pointer rounded-full p-2 text-muted hover:bg-accent hover:text-foreground"><Power className="h-4 w-4" /></button></div></td>
+                  <td className="px-4 py-3 font-normal tabular-nums text-foreground">{formatIDR(c.pricePerHour)}</td>
+                  <td className="px-4 py-3"><span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-normal ${c.status === "active" ? "bg-primary text-foreground" : "bg-status-expired-soft text-status-expired"}`}>{c.status}</span></td>
+                  <td className="px-4 py-3"><div className="flex items-center justify-end gap-1"><button onClick={() => openEdit(c)} aria-label="Edit" className="cursor-pointer rounded-full p-2 text-muted hover:bg-muted-surface hover:text-foreground"><Pencil className="h-4 w-4" /></button><button onClick={() => toggleStatus(c.id)} aria-label="Toggle status" className="cursor-pointer rounded-full p-2 text-muted hover:bg-primary hover:text-foreground"><Power className="h-4 w-4" /></button></div></td>
                 </tr>
               ))}
             </tbody>

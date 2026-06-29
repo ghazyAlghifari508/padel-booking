@@ -20,32 +20,32 @@
     "hash": "2e19cc6636cafa82b04f350d05119452"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\page.tsx": {
-    "mtime": 1782746465.9251976,
-    "hash": "0ad5c3b40b2451d4dd81f7e77c7b7d3f"
+    "mtime": 1782749486.2683601,
+    "hash": "b327259bc86da5cbd8c43f631a100c08"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\layout.tsx": {
-    "mtime": 1782745737.92817,
-    "hash": "b975def17b04a9dac459e00b3f675fec"
+    "mtime": 1782749493.1465206,
+    "hash": "2df3eebe3110b03c9fee6778f0834f2f"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\booking\\confirm\\page.tsx": {
-    "mtime": 1782745996.502035,
-    "hash": "005947df31d2588f28b235faa8744228"
+    "mtime": 1782753132.603181,
+    "hash": "2863ac1aa1326935fe36b0a7dac898f7"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\booking\\[id]\\payment\\page.tsx": {
-    "mtime": 1782746103.83999,
-    "hash": "c9dcb7a1a2afa65c5f2bc478549046e4"
+    "mtime": 1782751336.6707294,
+    "hash": "65ec3efbab97a001a9469e4a43dbfad0"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\courts\\page.tsx": {
-    "mtime": 1782745911.7568035,
-    "hash": "d4f840cf1b9479f32fc7bbbdc97e80cf"
+    "mtime": 1782749490.2478852,
+    "hash": "7547937cb843cbd554f96186be15276e"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\courts\\[id]\\page.tsx": {
-    "mtime": 1782746455.038299,
-    "hash": "799d5bc41cf425b3a8ead50f43f8b573"
+    "mtime": 1782749607.7991326,
+    "hash": "23420a1b29bb718bf34d03916bf8d777"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\my-bookings\\page.tsx": {
-    "mtime": 1782746105.3470855,
-    "hash": "16a9ca946f61bfc1095204d419eda073"
+    "mtime": 1782749611.0101295,
+    "hash": "a4435623666a1d5ac08a752d6cf673e0"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\admin\\layout.tsx": {
     "mtime": 1782745739.421661,
@@ -80,68 +80,68 @@
     "hash": "612647b04630c0bb240d1b1d5530d46f"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\login\\page.tsx": {
-    "mtime": 1782745908.7412927,
-    "hash": "76329d7b2d1cb7b851698776dfacf381"
+    "mtime": 1782749543.9576275,
+    "hash": "50d3c801a2ef423274c3185359eee77b"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\register\\page.tsx": {
-    "mtime": 1782745910.2036464,
-    "hash": "bca67493be47d265dbe899fc53d5cca0"
+    "mtime": 1782749550.5022137,
+    "hash": "579490cb90a533ae7fe32bda57804f49"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\AdminSidebar.tsx": {
-    "mtime": 1782747759.4424887,
-    "hash": "c701d53ededb470079efcb210c25a375"
+    "mtime": 1782751544.28307,
+    "hash": "af6ea6ef50e3bfa32571de021668eab7"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\BookingCard.tsx": {
-    "mtime": 1782745815.3093562,
-    "hash": "eab1d9ece34ee2eba85e8eba89b245da"
+    "mtime": 1782749433.6300473,
+    "hash": "2db3a1e7ea7ba6bd23db7fb22601a4ee"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\CourtCard.tsx": {
-    "mtime": 1782745813.796523,
-    "hash": "544e4c227f1b4f2730db88ca8a20a0ae"
+    "mtime": 1782749431.8707728,
+    "hash": "024b8b3a78c68bd8041034dfdb5243dc"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\Guard.tsx": {
     "mtime": 1782745654.552269,
     "hash": "1178c0d87f5bd075c5725975bfddc959"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\Navbar.tsx": {
-    "mtime": 1782747752.650528,
-    "hash": "81f30da20eb854976bdc95ad0acdaf49"
+    "mtime": 1782749429.937648,
+    "hash": "64541bc27d38131c8aeb7a53f687bacb"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\RoleSwitcher.tsx": {
     "mtime": 1782745736.4552379,
     "hash": "48412ba178254070096587747e461214"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\admin\\PageHeader.tsx": {
-    "mtime": 1782745656.0488942,
-    "hash": "2290a6ba13b5538fbeb09c419fcc46a0"
+    "mtime": 1782751486.12349,
+    "hash": "474df1e0456b4865eca8497aec03d05c"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\Button.tsx": {
-    "mtime": 1782745593.7976723,
-    "hash": "1f04860bfba182711d5cfcc3899b5f80"
+    "mtime": 1782749020.523323,
+    "hash": "271e3e706f72a4d66ea99173935d43ca"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\Card.tsx": {
-    "mtime": 1782745595.4134607,
-    "hash": "7a49a335ccd8ea28a71e9f631989d609"
+    "mtime": 1782749378.1498547,
+    "hash": "717bd29943e76ee149bf1fe6c14e16f7"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\EmptyState.tsx": {
-    "mtime": 1782745651.5666447,
-    "hash": "c5e154ce86fdb6e89fec73b22569001b"
+    "mtime": 1782749385.4842737,
+    "hash": "9a814f01b63ba5320b7adf6dfa88b5a6"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\Input.tsx": {
-    "mtime": 1782745597.1988032,
-    "hash": "6daece9cf9f40df69199efe0228280b7"
+    "mtime": 1782749376.352545,
+    "hash": "096aa2252ad5a260040c13c557edf820"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\misc.tsx": {
-    "mtime": 1782745653.0719287,
-    "hash": "f4dc11233fddc83b9ea923f838e9a6db"
+    "mtime": 1782749381.8218303,
+    "hash": "83f1bb6581487cd91035ee4829f12d95"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\Modal.tsx": {
-    "mtime": 1782745650.0818462,
-    "hash": "1bbab9abbc1061c86048495788e64ee8"
+    "mtime": 1782749383.8358972,
+    "hash": "bbff365b9cbea25a823881b4a383a288"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\StatusBadge.tsx": {
-    "mtime": 1782745598.9450445,
-    "hash": "9f45120ca21a15e19dc920431f951db3"
+    "mtime": 1782749379.9269662,
+    "hash": "a417f3de8e55275dff6fd8b9d1d0f9dc"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\auth.tsx": {
     "mtime": 1782742203.3633864,
@@ -174,22 +174,6 @@
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\types.ts": {
     "mtime": 1782741079.8536599,
     "hash": "c9565fa827c27921c709d2828bab8e7d"
-  },
-  "C:\\Coding\\Web Development\\Next\\padel-booking\\acceptance-criteria.md": {
-    "mtime": 1782737609.5735717,
-    "hash": "8e92617e4eb765c2f9944ed8aa29f07b"
-  },
-  "C:\\Coding\\Web Development\\Next\\padel-booking\\AGENTS.md": {
-    "mtime": 1782739608.2713857,
-    "hash": "c7e51c97c70c1277ff2b43518cf77118"
-  },
-  "C:\\Coding\\Web Development\\Next\\padel-booking\\DESIGN.md": {
-    "mtime": 1782743855.7625024,
-    "hash": "c95ca41a80124dac9de84ff859bdb441"
-  },
-  "C:\\Coding\\Web Development\\Next\\padel-booking\\prd.md": {
-    "mtime": 1782737561.9121766,
-    "hash": "580eedc4e371c9f21e059f6cd0d50331"
   },
   "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\AGENTS.md": {
     "mtime": 1782740649.1736863,

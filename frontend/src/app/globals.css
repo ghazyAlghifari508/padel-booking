@@ -1,52 +1,45 @@
 @import "tailwindcss";
 
-/* Sky Rally tokens — bright padel booking UI from DESIGN.md. */
+/* TWOTWO sport-SaaS tokens — monochrome concrete + voltage lime. */
 :root {
-  --color-sky: #38bdf8;
-  --color-deep-sky: #0ea5e9;
-  --color-highlighter: #efff3a;
-  --color-sun: #fde047;
-  --color-court: #14b8a6;
-  --color-navy: #0f172a;
-  --color-slate: #475569;
-  --color-muted: #94a3b8;
-  --color-line: #d7e3ea;
-  --color-foam: #f0f9ff;
-  --color-chalk: #fafeff;
-  --color-white: #ffffff;
-  --color-danger: #ef4444;
+  --color-voltage-lime: #e3fc03;
+  --color-obsidian: #000000;
+  --color-graphite: #323232;
+  --color-carbon: #1a1a1a;
+  --color-paper-white: #ffffff;
+  --color-concrete: #e6e6e6;
 
-  --background: var(--color-chalk);
-  --surface: var(--color-white);
-  --foreground: var(--color-navy);
-  --muted: var(--color-slate);
-  --muted-surface: var(--color-foam);
-  --border: var(--color-line);
+  --background: var(--color-paper-white);
+  --surface: var(--color-paper-white);
+  --foreground: var(--color-obsidian);
+  --muted: var(--color-graphite);
+  --muted-surface: var(--color-concrete);
+  --border: var(--color-obsidian);
 
-  --primary: var(--color-sky);
-  --primary-hover: var(--color-deep-sky);
-  --primary-soft: var(--color-foam);
-  --on-primary: var(--color-navy);
+  --primary: var(--color-voltage-lime);
+  --primary-hover: #d5ed00;
+  --primary-soft: var(--color-concrete);
+  --on-primary: var(--color-obsidian);
 
-  --accent: var(--color-highlighter);
-  --accent-soft: #fbffc7;
+  --accent: var(--color-voltage-lime);
+  --accent-soft: var(--color-voltage-lime);
 
-  --ring: var(--color-deep-sky);
+  --ring: var(--color-obsidian);
 
-  --status-pending: #a16207;
-  --status-pending-soft: var(--color-sun);
-  --status-confirmed: #0f766e;
-  --status-confirmed-soft: #ccfbf1;
-  --status-cancelled: #b91c1c;
-  --status-cancelled-soft: #fee2e2;
-  --status-expired: var(--color-slate);
-  --status-expired-soft: #e2e8f0;
-  --status-completed: #0369a1;
-  --status-completed-soft: #dff6ff;
-  --status-paid: #0f766e;
-  --status-paid-soft: #ccfbf1;
-  --status-failed: #b91c1c;
-  --status-failed-soft: #fee2e2;
+  --status-pending: var(--color-obsidian);
+  --status-pending-soft: var(--color-voltage-lime);
+  --status-confirmed: var(--color-obsidian);
+  --status-confirmed-soft: var(--color-voltage-lime);
+  --status-cancelled: var(--color-obsidian);
+  --status-cancelled-soft: var(--color-concrete);
+  --status-expired: var(--color-graphite);
+  --status-expired-soft: var(--color-concrete);
+  --status-completed: var(--color-obsidian);
+  --status-completed-soft: var(--color-voltage-lime);
+  --status-paid: var(--color-obsidian);
+  --status-paid-soft: var(--color-voltage-lime);
+  --status-failed: var(--color-obsidian);
+  --status-failed-soft: var(--color-concrete);
 }
 
 @theme inline {
@@ -80,21 +73,19 @@
   --color-status-failed-soft: var(--status-failed-soft);
 
   --font-sans: var(--font-jakarta);
-  --radius-card: 1.5rem;
+  --radius-card: 1rem;
 }
 
 * {
   border-color: var(--border);
 }
 
-html {
+html,
+body {
   background: var(--background);
 }
 
 body {
-  background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 34rem),
-    linear-gradient(180deg, var(--color-foam), var(--background) 18rem);
   color: var(--foreground);
   font-family: var(--font-jakarta), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -103,7 +94,7 @@ body {
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px rgba(239, 255, 58, 0.65);
+  box-shadow: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -116,14 +107,8 @@ body {
 }
 
 @keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-up {
@@ -132,25 +117,24 @@ body {
 
 .court-lines {
   background-image:
-    linear-gradient(rgba(14, 165, 233, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 165, 233, 0.12) 1px, transparent 1px),
-    radial-gradient(circle at 20% 20%, rgba(239, 255, 58, 0.55), transparent 12rem);
-  background-size: 44px 44px, 44px 44px, auto;
+    linear-gradient(var(--color-concrete) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-concrete) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-.sky-card {
-  border: 1px solid var(--color-line);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 12px 30px rgba(14, 165, 233, 0.1);
+.twotwo-card {
+  border: 1px solid var(--color-obsidian);
+  background: var(--color-paper-white);
+  box-shadow: none;
 }
 
 .slot-available {
-  border-color: var(--color-line);
-  background: linear-gradient(90deg, var(--color-highlighter) 0 6px, var(--color-white) 6px);
+  border-color: var(--color-obsidian);
+  background: linear-gradient(90deg, var(--color-voltage-lime) 0 8px, var(--color-paper-white) 8px);
 }
 
 .slot-selected {
-  border-color: var(--color-deep-sky);
-  background: var(--color-sky);
-  color: var(--color-white);
+  border-color: var(--color-obsidian);
+  background: var(--color-voltage-lime);
+  color: var(--color-obsidian);
 }

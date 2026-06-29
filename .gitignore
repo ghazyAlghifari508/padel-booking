@@ -9,3 +9,4 @@ coverage/
 *.pem
 .vercel/
 .claude/settings.local.json
+/graphify-out/

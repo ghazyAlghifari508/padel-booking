@@ -1,95 +1,102 @@
 "use client";
+
+import Link from "next/link";
 import { Suspense, use, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Check, Clock, Copy, Loader2, PartyPopper } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Check, Copy, Loader2 } from "lucide-react";
 import { Guard } from "@/components/Guard";
+import { Button } from "@/components/ui/Button";
 import { courts } from "@/lib/data";
-import { durationHours, formatIDR } from "@/lib/format";
+import { durationHours, formatDate, formatIDR } from "@/lib/format";
+
+type PayState = "idle" | "processing" | "done";
 
 function PaymentInner({ bookingId }: { bookingId: string }) {
   const sp = useSearchParams();
   const router = useRouter();
   const court = courts.find((c) => c.id === Number(sp.get("court")));
+  const date = sp.get("date") ?? "";
   const start = sp.get("start") ?? "";
   const end = sp.get("end") ?? "";
-  const provider = (sp.get("provider") as "manual" | "midtrans") ?? "manual";
-  const total = court ? durationHours(start, end) * court.pricePerHour : 0;
-  const [state, setState] = useState<"idle" | "processing" | "done">("idle");
+  const provider = sp.get("provider") === "midtrans" ? "midtrans" : "manual";
+  const total = court && start && end ? durationHours(start, end) * court.pricePerHour : 0;
+  const [state, setState] = useState<PayState>("idle");
   const [copied, setCopied] = useState(false);
 
   const pay = () => {
     setState("processing");
-    setTimeout(() => setState("done"), 1400);
+    setTimeout(() => setState("done"), 900);
   };
 
-  const copy = () => {
-    navigator.clipboard?.writeText("8801234567890");
+  const copy = async () => {
+    await navigator.clipboard?.writeText("8801234567890");
     setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    setTimeout(() => setCopied(false), 1200);
   };
+
+  if (!court || !date || !start || !end) {
+    return <div className="mx-auto max-w-lg rounded-2xl border border-border p-8 text-center"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Payment unavailable</p><h1 className="mt-3 text-[38px] leading-tight tracking-[-0.03em]">Booking data missing.</h1><Link href="/courts" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em]">Start again</Link></div>;
+  }
 
   if (state === "done") {
     return (
-      <div className="court-lines mx-auto max-w-md rounded-[28px] border border-border bg-surface p-8 text-center shadow-[0_12px_30px_rgba(14,165,233,0.1)]">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-status-confirmed animate-fade-up">
-          <PartyPopper className="h-8 w-8 text-white" />
-        </div>
-        <h1 className="mt-5 text-2xl font-extrabold text-foreground">{provider === "midtrans" ? "Payment received!" : "Payment submitted!"}</h1>
-        <p className="mt-2 text-sm font-medium text-muted">
-          {provider === "midtrans" ? "Your booking is confirmed. Go play." : "Your booking waits for admin verification. You’ll be notified once confirmed."}
-        </p>
-        <div className="mt-6 flex flex-col gap-2">
-          <Button onClick={() => router.push("/my-bookings")} size="lg">View my bookings</Button>
-          <Button onClick={() => router.push("/courts")} variant="ghost">Book another court</Button>
-        </div>
-      </div>
+      <section className="mx-auto max-w-3xl rounded-2xl border border-border p-8 text-center">
+        <div className="mx-auto grid h-20 w-20 place-items-center rounded-full border border-border bg-primary"><Check className="h-9 w-9" /></div>
+        <p className="mt-8 text-[13px] uppercase tracking-[0.16em] text-muted">Booking #{bookingId}</p>
+        <h1 className="mt-3 text-[56px] font-normal leading-[1.05] tracking-[-0.04em]">{provider === "midtrans" ? "Paid. Court locked." : "Receipt queued for admin."}</h1>
+        <p className="mx-auto mt-5 max-w-md text-base text-muted">{provider === "midtrans" ? "Your reservation is confirmed." : "Manual transfer stays pending until staff verification."}</p>
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row"><Button onClick={() => router.push("/my-bookings")}>View bookings</Button><Button variant="outline" onClick={() => router.push("/courts")}>Book another</Button></div>
+      </section>
     );
   }
 
   return (
-    <div className="mx-auto max-w-md">
-      <span className="inline-flex rounded-full bg-accent px-3 py-1 text-xs font-extrabold text-foreground">Payment step</span>
-      <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground">Payment</h1>
-      <p className="mt-1 text-sm font-medium text-muted">Booking #{bookingId} · {court?.name}</p>
-
-      <div className="mt-6 rounded-[28px] border border-border bg-surface p-5 shadow-[0_12px_30px_rgba(14,165,233,0.08)]">
-        <div className="rounded-[22px] bg-accent p-4">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-bold text-foreground">Amount due</span>
-            <span className="text-2xl font-extrabold tabular-nums text-foreground">{formatIDR(total)}</span>
-          </div>
-          <div className="mt-1 flex items-center gap-1.5 text-xs font-bold text-foreground/80">
-            <Clock className="h-3.5 w-3.5" /> Complete within 60 minutes or booking expires.
+    <div>
+      <section className="grid gap-8 lg:grid-cols-[1fr_420px]">
+        <div className="border-y border-border py-8">
+          <p className="text-[13px] uppercase tracking-[0.16em] text-muted">Payment console</p>
+          <h1 className="mt-4 max-w-3xl text-[56px] font-normal leading-[1.05] tracking-[-0.04em] md:text-[72px]">One receipt. One slot. Sixty minutes.</h1>
+          <div className="mt-8 grid gap-3 md:grid-cols-3">
+            <Tile label="Booking" value={`#${bookingId}`} />
+            <Tile label="Court" value={court.name} />
+            <Tile label="Schedule" value={`${formatDate(date)} · ${start}–${end}`} />
           </div>
         </div>
 
-        {provider === "manual" ? (
-          <div className="mt-5 rounded-[20px] border border-dashed border-primary/35 bg-primary-soft p-4">
-            <p className="text-xs font-extrabold text-muted">Transfer to (BCA):</p>
-            <div className="mt-1 flex items-center justify-between gap-3">
-              <span className="font-mono text-lg font-extrabold text-foreground">8801234567890</span>
-              <button onClick={copy} className="flex cursor-pointer items-center gap-1 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-bold hover:bg-primary-soft">
-                {copied ? <><Check className="h-3.5 w-3.5 text-status-confirmed" /> Copied</> : <><Copy className="h-3.5 w-3.5" /> Copy</>}
-              </button>
-            </div>
-            <p className="mt-2 text-xs font-medium text-muted">a/n CourtFlow Indonesia. Demo: click below after transfer.</p>
+        <aside className="rounded-2xl border border-border p-5 lg:sticky lg:top-8 lg:self-start">
+          <div className="rounded-2xl border border-border bg-primary p-5">
+            <p className="text-[13px] uppercase tracking-[0.12em]">Amount due</p>
+            <p className="mt-3 text-[38px] leading-none tracking-[-0.04em]">{formatIDR(total)}</p>
+            <p className="mt-3 text-sm">Expires in 60 minutes.</p>
           </div>
-        ) : (
-          <div className="mt-5 rounded-[20px] border border-dashed border-primary/35 bg-primary-soft p-4 text-center">
-            <p className="text-sm font-medium text-muted">You’ll be redirected to Midtrans Snap sandbox.</p>
-          </div>
-        )}
 
-        <Button onClick={pay} disabled={state === "processing"} size="lg" className="mt-5 w-full">
-          {state === "processing" ? <><Loader2 className="h-4 w-4 animate-spin" /> Processing…</> : provider === "midtrans" ? "Pay with Midtrans" : "I've paid — submit"}
-        </Button>
-      </div>
+          {provider === "manual" ? (
+            <div className="mt-5 rounded-2xl border border-border p-5">
+              <p className="text-[13px] uppercase tracking-[0.12em] text-muted">BCA transfer</p>
+              <div className="mt-4 flex items-center justify-between gap-3 border-y border-border py-4">
+                <span className="font-mono text-xl tracking-[-0.02em]">8801234567890</span>
+                <button type="button" onClick={copy} className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-[13px] uppercase tracking-[0.08em] hover:bg-muted-surface">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}{copied ? "Copied" : "Copy"}</button>
+              </div>
+              <p className="mt-3 text-sm text-muted">a/n CourtFlow Indonesia. Demo flow: submit after transfer.</p>
+            </div>
+          ) : (
+            <div className="mt-5 rounded-2xl border border-border p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Gateway</p><p className="mt-3 text-base">Midtrans sandbox redirect simulated in-app.</p></div>
+          )}
+
+          <Button onClick={pay} disabled={state === "processing"} size="lg" className="mt-5 w-full">
+            {state === "processing" ? <><Loader2 className="h-4 w-4 animate-spin" /> Processing</> : provider === "midtrans" ? "Pay with gateway" : "Submit receipt"}
+          </Button>
+        </aside>
+      </section>
     </div>
   );
 }
 
+function Tile({ label, value }: { label: string; value: string }) {
+  return <div className="rounded-2xl border border-border p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">{label}</p><p className="mt-3 text-[22px] leading-tight tracking-[-0.03em]">{value}</p></div>;
+}
+
 export default function PaymentPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  return <Guard><Suspense fallback={<div className="flex justify-center py-20"><Loader2 className="h-6 w-6 animate-spin text-primary-hover" /></div>}><PaymentInner bookingId={id} /></Suspense></Guard>;
+  return <Guard><Suspense fallback={<div className="grid py-20 place-items-center"><Loader2 className="h-6 w-6 animate-spin" /></div>}><PaymentInner bookingId={id} /></Suspense></Guard>;
 }

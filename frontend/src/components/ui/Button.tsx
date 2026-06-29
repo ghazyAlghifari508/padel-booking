@@ -4,35 +4,26 @@ type Variant = "primary" | "secondary" | "highlight" | "ghost" | "danger" | "out
 type Size = "sm" | "md" | "lg";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-primary text-on-primary hover:bg-primary-hover shadow-[0_12px_24px_rgba(14,165,233,0.24)]",
+  primary: "bg-primary text-on-primary hover:bg-primary-hover",
   secondary: "bg-foreground text-white hover:bg-foreground/90",
-  highlight: "bg-accent text-foreground hover:bg-status-pending-soft",
-  ghost: "text-foreground hover:bg-primary-soft",
-  danger: "bg-status-cancelled text-white hover:bg-status-cancelled/90",
-  outline: "border border-border bg-surface text-foreground hover:bg-primary-soft",
+  highlight: "bg-primary text-foreground hover:bg-primary-hover",
+  ghost: "text-foreground hover:bg-muted-surface",
+  danger: "bg-foreground text-white hover:bg-foreground/90",
+  outline: "border border-border bg-surface text-foreground hover:bg-muted-surface",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "min-h-10 px-3.5 text-sm gap-1.5",
-  md: "min-h-11 px-5 text-sm gap-2",
-  lg: "min-h-12 px-7 text-base gap-2",
+  sm: "min-h-10 px-4 text-[13px] gap-1.5",
+  md: "min-h-11 px-6 text-sm gap-2",
+  lg: "min-h-12 px-8 text-base gap-2",
 };
 
-export function Button({
-  variant = "primary",
-  size = "md",
-  className,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: Variant;
-  size?: Size;
-}) {
+export function Button({ variant = "primary", size = "md", className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; size?: Size }) {
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center rounded-full font-bold transition-all duration-200",
+        "inline-flex items-center justify-center rounded-full font-normal uppercase tracking-[0.04em] transition-colors duration-200",
         "cursor-pointer disabled:pointer-events-none disabled:opacity-50",
-        "hover:-translate-y-0.5 active:translate-y-0",
         variants[variant],
         sizes[size],
         className,

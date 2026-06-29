@@ -45,7 +45,7 @@
       "source_file": "src\\app\\layout.tsx",
       "source_location": "L1",
       "id": "src_app_layout_tsx",
-      "community": 2,
+      "community": 3,
       "norm_label": "layout.tsx"
     },
     {
@@ -54,7 +54,7 @@
       "source_file": "src\\app\\page.tsx",
       "source_location": "L1",
       "id": "src_app_page_tsx",
-      "community": 0,
+      "community": 4,
       "norm_label": "page.tsx"
     },
     {
@@ -63,7 +63,7 @@
       "source_file": "src\\app\\(app)\\layout.tsx",
       "source_location": "L1",
       "id": "src_app_app_layout_tsx",
-      "community": 2,
+      "community": 3,
       "norm_label": "layout.tsx"
     },
     {
@@ -72,7 +72,7 @@
       "source_file": "src\\app\\(app)\\layout.tsx",
       "source_location": "L4",
       "id": "app_layout_applayout",
-      "community": 2,
+      "community": 3,
       "norm_label": "applayout()"
     },
     {
@@ -81,17 +81,26 @@
       "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
       "source_location": "L1",
       "id": "src_app_app_booking_confirm_page_tsx",
-      "community": 2,
+      "community": 1,
       "norm_label": "page.tsx"
     },
     {
-      "label": "confirm()",
+      "label": "ConfirmInner()",
       "file_type": "code",
       "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
-      "source_location": "L34",
-      "id": "confirm_page_confirm",
-      "community": 2,
-      "norm_label": "confirm()"
+      "source_location": "L20",
+      "id": "confirm_page_confirminner",
+      "community": 1,
+      "norm_label": "confirminner()"
+    },
+    {
+      "label": "Spec()",
+      "file_type": "code",
+      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
+      "source_location": "L100",
+      "id": "confirm_page_spec",
+      "community": 1,
+      "norm_label": "spec()"
     },
     {
       "label": "page.tsx",
@@ -99,25 +108,25 @@
       "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
       "source_location": "L1",
       "id": "src_app_app_booking_id_payment_page_tsx",
-      "community": 0,
+      "community": 1,
       "norm_label": "page.tsx"
     },
     {
       "label": "pay()",
       "file_type": "code",
       "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
-      "source_location": "L21",
+      "source_location": "L26",
       "id": "payment_page_pay",
-      "community": 0,
+      "community": 1,
       "norm_label": "pay()"
     },
     {
       "label": "copy()",
       "file_type": "code",
       "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
-      "source_location": "L26",
+      "source_location": "L31",
       "id": "payment_page_copy",
-      "community": 0,
+      "community": 1,
       "norm_label": "copy()"
     },
     {
@@ -126,8 +135,17 @@
       "source_file": "src\\app\\(app)\\courts\\page.tsx",
       "source_location": "L1",
       "id": "src_app_app_courts_page_tsx",
-      "community": 5,
+      "community": 0,
       "norm_label": "page.tsx"
+    },
+    {
+      "label": "CourtsPage()",
+      "file_type": "code",
+      "source_file": "src\\app\\(app)\\courts\\page.tsx",
+      "source_location": "L9",
+      "id": "courts_page_courtspage",
+      "community": 0,
+      "norm_label": "courtspage()"
     },
     {
       "label": "page.tsx",
@@ -135,25 +153,25 @@
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
       "source_location": "L1",
       "id": "src_app_app_courts_id_page_tsx",
-      "community": 0,
+      "community": 1,
       "norm_label": "page.tsx"
     },
     {
       "label": "toggleSlot()",
       "file_type": "code",
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
-      "source_location": "L36",
+      "source_location": "L25",
       "id": "id_page_toggleslot",
-      "community": 0,
+      "community": 1,
       "norm_label": "toggleslot()"
     },
     {
       "label": "proceed()",
       "file_type": "code",
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
-      "source_location": "L47",
+      "source_location": "L34",
       "id": "id_page_proceed",
-      "community": 0,
+      "community": 1,
       "norm_label": "proceed()"
     },
     {
@@ -162,17 +180,17 @@
       "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
       "source_location": "L1",
       "id": "src_app_app_my_bookings_page_tsx",
-      "community": 5,
+      "community": 3,
       "norm_label": "page.tsx"
     },
     {
-      "label": "doCancel()",
+      "label": "MyBookingsInner()",
       "file_type": "code",
       "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
-      "source_location": "L33",
-      "id": "my_bookings_page_docancel",
-      "community": 5,
-      "norm_label": "docancel()"
+      "source_location": "L15",
+      "id": "my_bookings_page_mybookingsinner",
+      "community": 3,
+      "norm_label": "mybookingsinner()"
     },
     {
       "label": "layout.tsx",
@@ -180,7 +198,7 @@
       "source_file": "src\\app\\admin\\layout.tsx",
       "source_location": "L1",
       "id": "src_app_admin_layout_tsx",
-      "community": 2,
+      "community": 3,
       "norm_label": "layout.tsx"
     },
     {
@@ -189,7 +207,7 @@
       "source_file": "src\\app\\admin\\layout.tsx",
       "source_location": "L4",
       "id": "admin_layout_adminlayout",
-      "community": 2,
+      "community": 3,
       "norm_label": "adminlayout()"
     },
     {
@@ -198,7 +216,7 @@
       "source_file": "src\\app\\admin\\page.tsx",
       "source_location": "L1",
       "id": "src_app_admin_page_tsx",
-      "community": 1,
+      "community": 2,
       "norm_label": "page.tsx"
     },
     {
@@ -207,7 +225,7 @@
       "source_file": "src\\app\\admin\\bookings\\page.tsx",
       "source_location": "L1",
       "id": "src_app_admin_bookings_page_tsx",
-      "community": 1,
+      "community": 2,
       "norm_label": "page.tsx"
     },
     {
@@ -216,7 +234,7 @@
       "source_file": "src\\app\\admin\\bookings\\page.tsx",
       "source_location": "L13",
       "id": "bookings_page_adminbookingspage",
-      "community": 1,
+      "community": 2,
       "norm_label": "adminbookingspage()"
     },
     {
@@ -225,7 +243,7 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L1",
       "id": "src_app_admin_courts_page_tsx",
-      "community": 4,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -234,7 +252,7 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L20",
       "id": "courts_page_opennew",
-      "community": 4,
+      "community": 0,
       "norm_label": "opennew()"
     },
     {
@@ -243,7 +261,7 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L21",
       "id": "courts_page_openedit",
-      "community": 4,
+      "community": 0,
       "norm_label": "openedit()"
     },
     {
@@ -252,7 +270,7 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L23",
       "id": "courts_page_save",
-      "community": 4,
+      "community": 0,
       "norm_label": "save()"
     },
     {
@@ -261,7 +279,7 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L38",
       "id": "courts_page_togglestatus",
-      "community": 4,
+      "community": 0,
       "norm_label": "togglestatus()"
     },
     {
@@ -270,7 +288,7 @@
       "source_file": "src\\app\\admin\\logs\\page.tsx",
       "source_location": "L1",
       "id": "src_app_admin_logs_page_tsx",
-      "community": 5,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -279,7 +297,7 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L1",
       "id": "src_app_admin_payments_page_tsx",
-      "community": 0,
+      "community": 5,
       "norm_label": "page.tsx"
     },
     {
@@ -288,7 +306,7 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L13",
       "id": "payments_page_markpaid",
-      "community": 0,
+      "community": 5,
       "norm_label": "markpaid()"
     },
     {
@@ -297,7 +315,7 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L14",
       "id": "payments_page_bookingof",
-      "community": 0,
+      "community": 5,
       "norm_label": "bookingof()"
     },
     {
@@ -306,7 +324,7 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L31",
       "id": "payments_page_formatidr",
-      "community": 0,
+      "community": 5,
       "norm_label": "formatidr()"
     },
     {
@@ -315,7 +333,7 @@
       "source_file": "src\\app\\admin\\reports\\page.tsx",
       "source_location": "L1",
       "id": "src_app_admin_reports_page_tsx",
-      "community": 1,
+      "community": 2,
       "norm_label": "page.tsx"
     },
     {
@@ -324,7 +342,7 @@
       "source_file": "src\\app\\admin\\schedule\\page.tsx",
       "source_location": "L1",
       "id": "src_app_admin_schedule_page_tsx",
-      "community": 1,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -333,7 +351,7 @@
       "source_file": "src\\app\\admin\\schedule\\page.tsx",
       "source_location": "L22",
       "id": "schedule_page_addblock",
-      "community": 1,
+      "community": 0,
       "norm_label": "addblock()"
     },
     {
@@ -342,7 +360,7 @@
       "source_file": "src\\app\\login\\page.tsx",
       "source_location": "L1",
       "id": "src_app_login_page_tsx",
-      "community": 4,
+      "community": 0,
       "norm_label": "page.tsx"
     },
     {
@@ -351,7 +369,7 @@
       "source_file": "src\\app\\login\\page.tsx",
       "source_location": "L19",
       "id": "login_page_submit",
-      "community": 4,
+      "community": 0,
       "norm_label": "submit()"
     },
     {
@@ -360,25 +378,25 @@
       "source_file": "src\\app\\register\\page.tsx",
       "source_location": "L1",
       "id": "src_app_register_page_tsx",
-      "community": 4,
+      "community": 5,
       "norm_label": "page.tsx"
     },
     {
       "label": "set()",
       "file_type": "code",
       "source_file": "src\\app\\register\\page.tsx",
-      "source_location": "L16",
+      "source_location": "L15",
       "id": "register_page_set",
-      "community": 4,
+      "community": 5,
       "norm_label": "set()"
     },
     {
       "label": "submit()",
       "file_type": "code",
       "source_file": "src\\app\\register\\page.tsx",
-      "source_location": "L19",
+      "source_location": "L17",
       "id": "register_page_submit",
-      "community": 4,
+      "community": 5,
       "norm_label": "submit()"
     },
     {
@@ -387,7 +405,7 @@
       "source_file": "src\\components\\AdminSidebar.tsx",
       "source_location": "L1",
       "id": "src_components_adminsidebar_tsx",
-      "community": 3,
+      "community": 4,
       "norm_label": "adminsidebar.tsx"
     },
     {
@@ -396,7 +414,7 @@
       "source_file": "src\\components\\BookingCard.tsx",
       "source_location": "L1",
       "id": "src_components_bookingcard_tsx",
-      "community": 1,
+      "community": 2,
       "norm_label": "bookingcard.tsx"
     },
     {
@@ -405,7 +423,7 @@
       "source_file": "src\\components\\BookingCard.tsx",
       "source_location": "L6",
       "id": "components_bookingcard_bookingcard",
-      "community": 5,
+      "community": 3,
       "norm_label": "bookingcard()"
     },
     {
@@ -414,7 +432,7 @@
       "source_file": "src\\components\\CourtCard.tsx",
       "source_location": "L1",
       "id": "src_components_courtcard_tsx",
-      "community": 0,
+      "community": 4,
       "norm_label": "courtcard.tsx"
     },
     {
@@ -423,7 +441,7 @@
       "source_file": "src\\components\\CourtCard.tsx",
       "source_location": "L7",
       "id": "components_courtcard_courtcard",
-      "community": 0,
+      "community": 4,
       "norm_label": "courtcard()"
     },
     {
@@ -432,7 +450,7 @@
       "source_file": "src\\components\\Guard.tsx",
       "source_location": "L1",
       "id": "src_components_guard_tsx",
-      "community": 2,
+      "community": 3,
       "norm_label": "guard.tsx"
     },
     {
@@ -441,7 +459,7 @@
       "source_file": "src\\components\\Guard.tsx",
       "source_location": "L7",
       "id": "components_guard_guard",
-      "community": 2,
+      "community": 3,
       "norm_label": "guard()"
     },
     {
@@ -450,8 +468,17 @@
       "source_file": "src\\components\\Navbar.tsx",
       "source_location": "L1",
       "id": "src_components_navbar_tsx",
-      "community": 3,
+      "community": 4,
       "norm_label": "navbar.tsx"
+    },
+    {
+      "label": "logoutNow()",
+      "file_type": "code",
+      "source_file": "src\\components\\Navbar.tsx",
+      "source_location": "L21",
+      "id": "components_navbar_logoutnow",
+      "community": 4,
+      "norm_label": "logoutnow()"
     },
     {
       "label": "RoleSwitcher.tsx",
@@ -459,7 +486,7 @@
       "source_file": "src\\components\\RoleSwitcher.tsx",
       "source_location": "L1",
       "id": "src_components_roleswitcher_tsx",
-      "community": 2,
+      "community": 3,
       "norm_label": "roleswitcher.tsx"
     },
     {
@@ -468,7 +495,7 @@
       "source_file": "src\\components\\RoleSwitcher.tsx",
       "source_location": "L6",
       "id": "components_roleswitcher_roleswitcher",
-      "community": 2,
+      "community": 3,
       "norm_label": "roleswitcher()"
     },
     {
@@ -477,7 +504,7 @@
       "source_file": "src\\components\\admin\\PageHeader.tsx",
       "source_location": "L1",
       "id": "src_components_admin_pageheader_tsx",
-      "community": 1,
+      "community": 2,
       "norm_label": "pageheader.tsx"
     },
     {
@@ -486,7 +513,7 @@
       "source_file": "src\\components\\admin\\PageHeader.tsx",
       "source_location": "L1",
       "id": "admin_pageheader_pageheader",
-      "community": 1,
+      "community": 2,
       "norm_label": "pageheader()"
     },
     {
@@ -495,7 +522,7 @@
       "source_file": "src\\components\\ui\\Button.tsx",
       "source_location": "L1",
       "id": "src_components_ui_button_tsx",
-      "community": 4,
+      "community": 5,
       "norm_label": "button.tsx"
     },
     {
@@ -504,7 +531,7 @@
       "source_file": "src\\components\\ui\\Button.tsx",
       "source_location": "L21",
       "id": "ui_button_button",
-      "community": 4,
+      "community": 5,
       "norm_label": "button()"
     },
     {
@@ -513,7 +540,7 @@
       "source_file": "src\\components\\ui\\Card.tsx",
       "source_location": "L1",
       "id": "src_components_ui_card_tsx",
-      "community": 3,
+      "community": 4,
       "norm_label": "card.tsx"
     },
     {
@@ -522,7 +549,7 @@
       "source_file": "src\\components\\ui\\Card.tsx",
       "source_location": "L3",
       "id": "ui_card_card",
-      "community": 3,
+      "community": 4,
       "norm_label": "card()"
     },
     {
@@ -531,7 +558,7 @@
       "source_file": "src\\components\\ui\\EmptyState.tsx",
       "source_location": "L1",
       "id": "src_components_ui_emptystate_tsx",
-      "community": 5,
+      "community": 0,
       "norm_label": "emptystate.tsx"
     },
     {
@@ -540,7 +567,7 @@
       "source_file": "src\\components\\ui\\EmptyState.tsx",
       "source_location": "L4",
       "id": "ui_emptystate_emptystate",
-      "community": 5,
+      "community": 0,
       "norm_label": "emptystate()"
     },
     {
@@ -549,17 +576,35 @@
       "source_file": "src\\components\\ui\\Input.tsx",
       "source_location": "L1",
       "id": "src_components_ui_input_tsx",
-      "community": 3,
+      "community": 0,
       "norm_label": "input.tsx"
     },
     {
-      "label": "cn()",
+      "label": "Field()",
       "file_type": "code",
       "source_file": "src\\components\\ui\\Input.tsx",
-      "source_location": "L52",
-      "id": "ui_input_cn",
-      "community": 3,
-      "norm_label": "cn()"
+      "source_location": "L3",
+      "id": "ui_input_field",
+      "community": 0,
+      "norm_label": "field()"
+    },
+    {
+      "label": "Input()",
+      "file_type": "code",
+      "source_file": "src\\components\\ui\\Input.tsx",
+      "source_location": "L16",
+      "id": "ui_input_input",
+      "community": 0,
+      "norm_label": "input()"
+    },
+    {
+      "label": "Select()",
+      "file_type": "code",
+      "source_file": "src\\components\\ui\\Input.tsx",
+      "source_location": "L20",
+      "id": "ui_input_select",
+      "community": 0,
+      "norm_label": "select()"
     },
     {
       "label": "misc.tsx",
@@ -567,7 +612,7 @@
       "source_file": "src\\components\\ui\\misc.tsx",
       "source_location": "L1",
       "id": "src_components_ui_misc_tsx",
-      "community": 3,
+      "community": 4,
       "norm_label": "misc.tsx"
     },
     {
@@ -576,7 +621,7 @@
       "source_file": "src\\components\\ui\\misc.tsx",
       "source_location": "L3",
       "id": "ui_misc_skeleton",
-      "community": 3,
+      "community": 4,
       "norm_label": "skeleton()"
     },
     {
@@ -585,8 +630,17 @@
       "source_file": "src\\components\\ui\\misc.tsx",
       "source_location": "L7",
       "id": "ui_misc_logo",
-      "community": 3,
+      "community": 4,
       "norm_label": "logo()"
+    },
+    {
+      "label": "Stat()",
+      "file_type": "code",
+      "source_file": "src\\components\\ui\\misc.tsx",
+      "source_location": "L21",
+      "id": "ui_misc_stat",
+      "community": 2,
+      "norm_label": "stat()"
     },
     {
       "label": "Modal.tsx",
@@ -594,7 +648,7 @@
       "source_file": "src\\components\\ui\\Modal.tsx",
       "source_location": "L1",
       "id": "src_components_ui_modal_tsx",
-      "community": 3,
+      "community": 0,
       "norm_label": "modal.tsx"
     },
     {
@@ -603,7 +657,7 @@
       "source_file": "src\\components\\ui\\Modal.tsx",
       "source_location": "L6",
       "id": "ui_modal_modal",
-      "community": 1,
+      "community": 0,
       "norm_label": "modal()"
     },
     {
@@ -612,16 +666,16 @@
       "source_file": "src\\components\\ui\\StatusBadge.tsx",
       "source_location": "L1",
       "id": "src_components_ui_statusbadge_tsx",
-      "community": 3,
+      "community": 2,
       "norm_label": "statusbadge.tsx"
     },
     {
       "label": "StatusBadge()",
       "file_type": "code",
       "source_file": "src\\components\\ui\\StatusBadge.tsx",
-      "source_location": "L17",
+      "source_location": "L16",
       "id": "ui_statusbadge_statusbadge",
-      "community": 1,
+      "community": 2,
       "norm_label": "statusbadge()"
     },
     {
@@ -630,7 +684,7 @@
       "source_file": "src\\lib\\auth.tsx",
       "source_location": "L1",
       "id": "src_lib_auth_tsx",
-      "community": 2,
+      "community": 3,
       "norm_label": "auth.tsx"
     },
     {
@@ -639,7 +693,7 @@
       "source_file": "src\\lib\\auth.tsx",
       "source_location": "L19",
       "id": "lib_auth_authprovider",
-      "community": 2,
+      "community": 3,
       "norm_label": "authprovider()"
     },
     {
@@ -648,7 +702,7 @@
       "source_file": "src\\lib\\auth.tsx",
       "source_location": "L80",
       "id": "lib_auth_useauth",
-      "community": 2,
+      "community": 3,
       "norm_label": "useauth()"
     },
     {
@@ -657,7 +711,7 @@
       "source_file": "src\\lib\\availability.ts",
       "source_location": "L1",
       "id": "src_lib_availability_ts",
-      "community": 0,
+      "community": 1,
       "norm_label": "availability.ts"
     },
     {
@@ -666,7 +720,7 @@
       "source_file": "src\\lib\\availability.ts",
       "source_location": "L8",
       "id": "lib_availability_buildslots",
-      "community": 0,
+      "community": 1,
       "norm_label": "buildslots()"
     },
     {
@@ -675,7 +729,7 @@
       "source_file": "src\\lib\\availability.ts",
       "source_location": "L46",
       "id": "lib_availability_hasconflict",
-      "community": 0,
+      "community": 1,
       "norm_label": "hasconflict()"
     },
     {
@@ -684,7 +738,7 @@
       "source_file": "src\\lib\\cn.ts",
       "source_location": "L1",
       "id": "src_lib_cn_ts",
-      "community": 3,
+      "community": 4,
       "norm_label": "cn.ts"
     },
     {
@@ -693,7 +747,7 @@
       "source_file": "src\\lib\\cn.ts",
       "source_location": "L3",
       "id": "lib_cn_cn",
-      "community": 3,
+      "community": 4,
       "norm_label": "cn()"
     },
     {
@@ -729,7 +783,7 @@
       "source_file": "src\\lib\\format.test.ts",
       "source_location": "L1",
       "id": "src_lib_format_test_ts",
-      "community": 0,
+      "community": 1,
       "norm_label": "format.test.ts"
     },
     {
@@ -738,7 +792,7 @@
       "source_file": "src\\lib\\format.test.ts",
       "source_location": "L4",
       "id": "lib_format_test_assert",
-      "community": 0,
+      "community": 1,
       "norm_label": "assert()"
     },
     {
@@ -747,7 +801,7 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L1",
       "id": "src_lib_format_ts",
-      "community": 0,
+      "community": 1,
       "norm_label": "format.ts"
     },
     {
@@ -756,7 +810,7 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L3",
       "id": "lib_format_formatidr",
-      "community": 0,
+      "community": 1,
       "norm_label": "formatidr()"
     },
     {
@@ -765,7 +819,7 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L11",
       "id": "lib_format_formatdate",
-      "community": 1,
+      "community": 2,
       "norm_label": "formatdate()"
     },
     {
@@ -774,7 +828,7 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L23",
       "id": "lib_format_formatdatetime",
-      "community": 0,
+      "community": 1,
       "norm_label": "formatdatetime()"
     },
     {
@@ -783,7 +837,7 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L34",
       "id": "lib_format_durationhours",
-      "community": 0,
+      "community": 1,
       "norm_label": "durationhours()"
     },
     {
@@ -792,7 +846,7 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L41",
       "id": "lib_format_overlaps",
-      "community": 0,
+      "community": 1,
       "norm_label": "overlaps()"
     },
     {
@@ -801,7 +855,7 @@
       "source_file": "src\\lib\\reports.ts",
       "source_location": "L1",
       "id": "src_lib_reports_ts",
-      "community": 1,
+      "community": 2,
       "norm_label": "reports.ts"
     },
     {
@@ -810,7 +864,7 @@
       "source_file": "src\\lib\\reports.ts",
       "source_location": "L4",
       "id": "lib_reports_revenue",
-      "community": 1,
+      "community": 2,
       "norm_label": "revenue()"
     },
     {
@@ -819,7 +873,7 @@
       "source_file": "src\\lib\\reports.ts",
       "source_location": "L11",
       "id": "lib_reports_countbystatus",
-      "community": 1,
+      "community": 2,
       "norm_label": "countbystatus()"
     },
     {
@@ -828,7 +882,7 @@
       "source_file": "src\\lib\\reports.ts",
       "source_location": "L22",
       "id": "lib_reports_courtusage",
-      "community": 1,
+      "community": 2,
       "norm_label": "courtusage()"
     },
     {
@@ -837,7 +891,7 @@
       "source_file": "src\\lib\\reports.ts",
       "source_location": "L31",
       "id": "lib_reports_bydate",
-      "community": 1,
+      "community": 2,
       "norm_label": "bydate()"
     },
     {
@@ -858,20 +912,9 @@
       "source_file": "src\\app\\layout.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_layout_tsx",
-      "target": "lib_auth_authprovider"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src\\app\\page.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_page_tsx",
-      "target": "ui_misc_logo"
+      "target": "lib_auth_authprovider",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -880,9 +923,9 @@
       "source_file": "src\\app\\page.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_page_tsx",
-      "target": "ui_button_button"
+      "target": "components_courtcard_courtcard",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -891,20 +934,9 @@
       "source_file": "src\\app\\page.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_page_tsx",
-      "target": "components_courtcard_courtcard"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src\\app\\page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_page_tsx",
-      "target": "lib_format_formatidr"
+      "target": "ui_misc_logo",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -913,9 +945,9 @@
       "source_file": "src\\app\\(app)\\layout.tsx",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_layout_tsx",
-      "target": "components_roleswitcher_roleswitcher"
+      "target": "components_roleswitcher_roleswitcher",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -923,20 +955,9 @@
       "source_file": "src\\app\\(app)\\layout.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_layout_tsx",
-      "target": "app_layout_applayout"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_app_booking_confirm_page_tsx",
-      "target": "components_guard_guard"
+      "target": "app_layout_applayout",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -945,9 +966,9 @@
       "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_booking_confirm_page_tsx",
-      "target": "ui_button_button"
+      "target": "components_guard_guard",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -956,9 +977,9 @@
       "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_booking_confirm_page_tsx",
-      "target": "lib_availability_hasconflict"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -967,74 +988,117 @@
       "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_booking_confirm_page_tsx",
+      "target": "lib_availability_hasconflict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_app_app_booking_confirm_page_tsx",
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_app_app_booking_confirm_page_tsx",
+      "target": "lib_format_durationhours",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_app_app_booking_confirm_page_tsx",
+      "target": "lib_format_formatdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_app_app_booking_confirm_page_tsx",
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_app_app_booking_confirm_page_tsx",
+      "target": "confirm_page_confirminner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "src_app_app_booking_confirm_page_tsx",
+      "target": "confirm_page_spec",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "confirm_page_confirminner",
       "target": "lib_auth_useauth"
     },
     {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
       "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
-      "source_location": "L12",
+      "source_location": "L36",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_app_booking_confirm_page_tsx",
+      "source": "confirm_page_confirminner",
       "target": "lib_format_durationhours"
     },
     {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
       "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
-      "source_location": "L12",
+      "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_app_booking_confirm_page_tsx",
-      "target": "lib_format_formatdate"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_app_booking_confirm_page_tsx",
-      "target": "lib_format_formatidr"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src\\app\\(app)\\booking\\confirm\\page.tsx",
-      "source_location": "L34",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_app_booking_confirm_page_tsx",
-      "target": "confirm_page_confirm"
+      "source": "confirm_page_confirminner",
+      "target": "lib_availability_hasconflict"
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
-      "source_location": "L5",
+      "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_booking_id_payment_page_tsx",
-      "target": "ui_button_button"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_app_booking_id_payment_page_tsx",
-      "target": "components_guard_guard"
+      "target": "components_guard_guard",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1043,30 +1107,42 @@
       "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_booking_id_payment_page_tsx",
-      "target": "lib_format_durationhours"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
-      "source_location": "L8",
+      "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_booking_id_payment_page_tsx",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_durationhours",
+      "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports",
+      "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
-      "source_location": "L21",
+      "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_booking_id_payment_page_tsx",
-      "target": "payment_page_pay"
+      "target": "lib_format_formatdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_app_app_booking_id_payment_page_tsx",
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1074,9 +1150,30 @@
       "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_booking_id_payment_page_tsx",
-      "target": "payment_page_copy"
+      "target": "payment_page_pay",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\booking\\[id]\\payment\\page.tsx",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_app_app_booking_id_payment_page_tsx",
+      "target": "payment_page_copy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\courts\\page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_app_app_courts_page_tsx",
+      "target": "components_courtcard_courtcard",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1085,20 +1182,30 @@
       "source_file": "src\\app\\(app)\\courts\\page.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_page_tsx",
-      "target": "components_courtcard_courtcard"
+      "target": "ui_emptystate_emptystate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src\\app\\(app)\\courts\\page.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_page_tsx",
-      "target": "ui_emptystate_emptystate"
+      "target": "ui_input_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\(app)\\courts\\page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_app_app_courts_page_tsx",
+      "target": "courts_page_courtspage",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1107,9 +1214,9 @@
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_id_page_tsx",
-      "target": "ui_button_button"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1118,9 +1225,9 @@
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_id_page_tsx",
-      "target": "lib_auth_useauth"
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1129,9 +1236,9 @@
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_id_page_tsx",
-      "target": "lib_availability_buildslots"
+      "target": "lib_availability_buildslots",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1140,9 +1247,9 @@
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_id_page_tsx",
-      "target": "lib_format_durationhours"
+      "target": "lib_format_durationhours",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1151,9 +1258,9 @@
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_id_page_tsx",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1162,29 +1269,29 @@
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_id_page_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
-      "source_location": "L36",
+      "source_location": "L25",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_id_page_tsx",
-      "target": "id_page_toggleslot"
+      "target": "id_page_toggleslot",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src\\app\\(app)\\courts\\[id]\\page.tsx",
-      "source_location": "L47",
+      "source_location": "L34",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_courts_id_page_tsx",
-      "target": "id_page_proceed"
+      "target": "id_page_proceed",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1193,9 +1300,9 @@
       "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_my_bookings_page_tsx",
-      "target": "components_bookingcard_bookingcard"
+      "target": "components_bookingcard_bookingcard",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1204,9 +1311,9 @@
       "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_my_bookings_page_tsx",
-      "target": "components_guard_guard"
+      "target": "components_guard_guard",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1215,9 +1322,9 @@
       "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_my_bookings_page_tsx",
-      "target": "ui_button_button"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1226,9 +1333,9 @@
       "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_my_bookings_page_tsx",
-      "target": "ui_emptystate_emptystate"
+      "target": "ui_emptystate_emptystate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1237,9 +1344,9 @@
       "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_my_bookings_page_tsx",
-      "target": "ui_modal_modal"
+      "target": "ui_modal_modal",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1248,30 +1355,30 @@
       "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_my_bookings_page_tsx",
-      "target": "lib_auth_useauth"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_app_my_bookings_page_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
-      "source_location": "L33",
+      "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_app_my_bookings_page_tsx",
-      "target": "my_bookings_page_docancel"
+      "target": "my_bookings_page_mybookingsinner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\app\\(app)\\my-bookings\\page.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "my_bookings_page_mybookingsinner",
+      "target": "lib_auth_useauth"
     },
     {
       "relation": "imports",
@@ -1280,9 +1387,9 @@
       "source_file": "src\\app\\admin\\layout.tsx",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_layout_tsx",
-      "target": "components_guard_guard"
+      "target": "components_guard_guard",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1290,9 +1397,9 @@
       "source_file": "src\\app\\admin\\layout.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_layout_tsx",
-      "target": "admin_layout_adminlayout"
+      "target": "admin_layout_adminlayout",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1301,9 +1408,20 @@
       "source_file": "src\\app\\admin\\page.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "admin_pageheader_pageheader"
+      "target": "admin_pageheader_pageheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_app_admin_page_tsx",
+      "target": "ui_misc_stat",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1312,9 +1430,9 @@
       "source_file": "src\\app\\admin\\page.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "ui_statusbadge_statusbadge"
+      "target": "ui_statusbadge_statusbadge",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1323,9 +1441,9 @@
       "source_file": "src\\app\\admin\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "lib_format_formatdate"
+      "target": "lib_format_formatdate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1334,9 +1452,9 @@
       "source_file": "src\\app\\admin\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1345,9 +1463,9 @@
       "source_file": "src\\app\\admin\\page.tsx",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "lib_reports_countbystatus"
+      "target": "lib_reports_countbystatus",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1356,9 +1474,9 @@
       "source_file": "src\\app\\admin\\page.tsx",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_page_tsx",
-      "target": "lib_reports_revenue"
+      "target": "lib_reports_revenue",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1367,9 +1485,9 @@
       "source_file": "src\\app\\admin\\bookings\\page.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_bookings_page_tsx",
-      "target": "admin_pageheader_pageheader"
+      "target": "admin_pageheader_pageheader",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1378,9 +1496,31 @@
       "source_file": "src\\app\\admin\\bookings\\page.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_bookings_page_tsx",
-      "target": "ui_button_button"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\bookings\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_admin_bookings_page_tsx",
+      "target": "ui_input_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\bookings\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_admin_bookings_page_tsx",
+      "target": "ui_input_select",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1389,9 +1529,9 @@
       "source_file": "src\\app\\admin\\bookings\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_bookings_page_tsx",
-      "target": "ui_modal_modal"
+      "target": "ui_modal_modal",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1400,9 +1540,9 @@
       "source_file": "src\\app\\admin\\bookings\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_bookings_page_tsx",
-      "target": "ui_statusbadge_statusbadge"
+      "target": "ui_statusbadge_statusbadge",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1411,9 +1551,9 @@
       "source_file": "src\\app\\admin\\bookings\\page.tsx",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_bookings_page_tsx",
-      "target": "lib_format_formatdate"
+      "target": "lib_format_formatdate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1422,9 +1562,9 @@
       "source_file": "src\\app\\admin\\bookings\\page.tsx",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_bookings_page_tsx",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1432,9 +1572,9 @@
       "source_file": "src\\app\\admin\\bookings\\page.tsx",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_bookings_page_tsx",
-      "target": "bookings_page_adminbookingspage"
+      "target": "bookings_page_adminbookingspage",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1443,9 +1583,9 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_courts_page_tsx",
-      "target": "admin_pageheader_pageheader"
+      "target": "admin_pageheader_pageheader",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1454,9 +1594,42 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_courts_page_tsx",
-      "target": "ui_button_button"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\courts\\page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_app_admin_courts_page_tsx",
+      "target": "ui_input_field",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\courts\\page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_app_admin_courts_page_tsx",
+      "target": "ui_input_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\courts\\page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_app_admin_courts_page_tsx",
+      "target": "ui_input_select",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1465,9 +1638,9 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_courts_page_tsx",
-      "target": "ui_modal_modal"
+      "target": "ui_modal_modal",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1476,9 +1649,9 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_courts_page_tsx",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1486,9 +1659,9 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_courts_page_tsx",
-      "target": "courts_page_opennew"
+      "target": "courts_page_opennew",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1496,9 +1669,9 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_courts_page_tsx",
-      "target": "courts_page_openedit"
+      "target": "courts_page_openedit",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1506,9 +1679,9 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L23",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_courts_page_tsx",
-      "target": "courts_page_save"
+      "target": "courts_page_save",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1516,9 +1689,9 @@
       "source_file": "src\\app\\admin\\courts\\page.tsx",
       "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_courts_page_tsx",
-      "target": "courts_page_togglestatus"
+      "target": "courts_page_togglestatus",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1527,9 +1700,9 @@
       "source_file": "src\\app\\admin\\logs\\page.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_logs_page_tsx",
-      "target": "admin_pageheader_pageheader"
+      "target": "admin_pageheader_pageheader",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1538,9 +1711,20 @@
       "source_file": "src\\app\\admin\\logs\\page.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_logs_page_tsx",
-      "target": "ui_emptystate_emptystate"
+      "target": "ui_emptystate_emptystate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\logs\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_admin_logs_page_tsx",
+      "target": "ui_input_select",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1549,9 +1733,9 @@
       "source_file": "src\\app\\admin\\logs\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_logs_page_tsx",
-      "target": "lib_format_formatdatetime"
+      "target": "lib_format_formatdatetime",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1560,9 +1744,9 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_payments_page_tsx",
-      "target": "admin_pageheader_pageheader"
+      "target": "admin_pageheader_pageheader",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1571,9 +1755,9 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_payments_page_tsx",
-      "target": "ui_button_button"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1582,9 +1766,9 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_payments_page_tsx",
-      "target": "ui_statusbadge_statusbadge"
+      "target": "ui_statusbadge_statusbadge",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1593,9 +1777,9 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_payments_page_tsx",
-      "target": "lib_format_formatdatetime"
+      "target": "lib_format_formatdatetime",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1604,9 +1788,9 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_payments_page_tsx",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1614,9 +1798,9 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_payments_page_tsx",
-      "target": "payments_page_markpaid"
+      "target": "payments_page_markpaid",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1624,9 +1808,9 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_payments_page_tsx",
-      "target": "payments_page_bookingof"
+      "target": "payments_page_bookingof",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1634,9 +1818,9 @@
       "source_file": "src\\app\\admin\\payments\\page.tsx",
       "source_location": "L31",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_payments_page_tsx",
-      "target": "payments_page_formatidr"
+      "target": "payments_page_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1645,9 +1829,20 @@
       "source_file": "src\\app\\admin\\reports\\page.tsx",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_reports_page_tsx",
-      "target": "admin_pageheader_pageheader"
+      "target": "admin_pageheader_pageheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\reports\\page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_app_admin_reports_page_tsx",
+      "target": "ui_misc_stat",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1656,9 +1851,9 @@
       "source_file": "src\\app\\admin\\reports\\page.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_reports_page_tsx",
-      "target": "lib_format_formatdate"
+      "target": "lib_format_formatdate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1667,9 +1862,9 @@
       "source_file": "src\\app\\admin\\reports\\page.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_reports_page_tsx",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1678,9 +1873,9 @@
       "source_file": "src\\app\\admin\\reports\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_reports_page_tsx",
-      "target": "lib_reports_bydate"
+      "target": "lib_reports_bydate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1689,9 +1884,9 @@
       "source_file": "src\\app\\admin\\reports\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_reports_page_tsx",
-      "target": "lib_reports_countbystatus"
+      "target": "lib_reports_countbystatus",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1700,9 +1895,9 @@
       "source_file": "src\\app\\admin\\reports\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_reports_page_tsx",
-      "target": "lib_reports_courtusage"
+      "target": "lib_reports_courtusage",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1711,9 +1906,9 @@
       "source_file": "src\\app\\admin\\reports\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_reports_page_tsx",
-      "target": "lib_reports_revenue"
+      "target": "lib_reports_revenue",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1722,9 +1917,9 @@
       "source_file": "src\\app\\admin\\schedule\\page.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_schedule_page_tsx",
-      "target": "admin_pageheader_pageheader"
+      "target": "admin_pageheader_pageheader",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1733,9 +1928,42 @@
       "source_file": "src\\app\\admin\\schedule\\page.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_schedule_page_tsx",
-      "target": "ui_button_button"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\schedule\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_admin_schedule_page_tsx",
+      "target": "ui_input_field",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\schedule\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_admin_schedule_page_tsx",
+      "target": "ui_input_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\admin\\schedule\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_admin_schedule_page_tsx",
+      "target": "ui_input_select",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1744,9 +1972,9 @@
       "source_file": "src\\app\\admin\\schedule\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_schedule_page_tsx",
-      "target": "ui_modal_modal"
+      "target": "ui_modal_modal",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1755,9 +1983,9 @@
       "source_file": "src\\app\\admin\\schedule\\page.tsx",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_schedule_page_tsx",
-      "target": "lib_format_formatdate"
+      "target": "lib_format_formatdate",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1765,20 +1993,9 @@
       "source_file": "src\\app\\admin\\schedule\\page.tsx",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_admin_schedule_page_tsx",
-      "target": "schedule_page_addblock"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src\\app\\login\\page.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "src_app_login_page_tsx",
-      "target": "lib_auth_useauth"
+      "target": "schedule_page_addblock",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1787,9 +2004,9 @@
       "source_file": "src\\app\\login\\page.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_login_page_tsx",
-      "target": "ui_misc_logo"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1798,9 +2015,42 @@
       "source_file": "src\\app\\login\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_login_page_tsx",
-      "target": "ui_button_button"
+      "target": "ui_input_field",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_app_login_page_tsx",
+      "target": "ui_input_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_app_login_page_tsx",
+      "target": "ui_misc_logo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_app_login_page_tsx",
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1808,9 +2058,9 @@
       "source_file": "src\\app\\login\\page.tsx",
       "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_login_page_tsx",
-      "target": "login_page_submit"
+      "target": "login_page_submit",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1819,9 +2069,9 @@
       "source_file": "src\\app\\register\\page.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_register_page_tsx",
-      "target": "lib_auth_useauth"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1830,9 +2080,20 @@
       "source_file": "src\\app\\register\\page.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_register_page_tsx",
-      "target": "ui_misc_logo"
+      "target": "ui_input_field",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\register\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_app_register_page_tsx",
+      "target": "ui_input_input",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1841,29 +2102,40 @@
       "source_file": "src\\app\\register\\page.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_register_page_tsx",
-      "target": "ui_button_button"
+      "target": "ui_misc_logo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\register\\page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_app_register_page_tsx",
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src\\app\\register\\page.tsx",
-      "source_location": "L16",
+      "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_register_page_tsx",
-      "target": "register_page_set"
+      "target": "register_page_set",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src\\app\\register\\page.tsx",
-      "source_location": "L19",
+      "source_location": "L17",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_app_register_page_tsx",
-      "target": "register_page_submit"
+      "target": "register_page_submit",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1872,9 +2144,9 @@
       "source_file": "src\\components\\AdminSidebar.tsx",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_adminsidebar_tsx",
-      "target": "lib_auth_useauth"
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1883,9 +2155,9 @@
       "source_file": "src\\components\\AdminSidebar.tsx",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_adminsidebar_tsx",
-      "target": "ui_misc_logo"
+      "target": "ui_misc_logo",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1894,9 +2166,9 @@
       "source_file": "src\\components\\AdminSidebar.tsx",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_adminsidebar_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1905,9 +2177,9 @@
       "source_file": "src\\components\\BookingCard.tsx",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_bookingcard_tsx",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatdate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1916,9 +2188,9 @@
       "source_file": "src\\components\\BookingCard.tsx",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_bookingcard_tsx",
-      "target": "lib_format_formatdate"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1927,9 +2199,9 @@
       "source_file": "src\\components\\BookingCard.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_bookingcard_tsx",
-      "target": "ui_statusbadge_statusbadge"
+      "target": "ui_statusbadge_statusbadge",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1937,9 +2209,9 @@
       "source_file": "src\\components\\BookingCard.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_bookingcard_tsx",
-      "target": "components_bookingcard_bookingcard"
+      "target": "components_bookingcard_bookingcard",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1948,9 +2220,9 @@
       "source_file": "src\\components\\CourtCard.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_courtcard_tsx",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1958,9 +2230,9 @@
       "source_file": "src\\components\\CourtCard.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_courtcard_tsx",
-      "target": "components_courtcard_courtcard"
+      "target": "components_courtcard_courtcard",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -1969,9 +2241,9 @@
       "source_file": "src\\components\\Guard.tsx",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_guard_tsx",
-      "target": "lib_auth_useauth"
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1979,9 +2251,9 @@
       "source_file": "src\\components\\Guard.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_guard_tsx",
-      "target": "components_guard_guard"
+      "target": "components_guard_guard",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2001,9 +2273,9 @@
       "source_file": "src\\components\\Navbar.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_navbar_tsx",
-      "target": "lib_auth_useauth"
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2012,9 +2284,9 @@
       "source_file": "src\\components\\Navbar.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_navbar_tsx",
-      "target": "ui_misc_logo"
+      "target": "ui_misc_logo",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2023,20 +2295,19 @@
       "source_file": "src\\components\\Navbar.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_navbar_tsx",
-      "target": "ui_button_button"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
-      "relation": "imports",
-      "context": "import",
+      "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src\\components\\Navbar.tsx",
-      "source_location": "L9",
+      "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_navbar_tsx",
-      "target": "lib_cn_cn"
+      "target": "components_navbar_logoutnow",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2045,9 +2316,9 @@
       "source_file": "src\\components\\RoleSwitcher.tsx",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_roleswitcher_tsx",
-      "target": "lib_auth_useauth"
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2055,9 +2326,9 @@
       "source_file": "src\\components\\RoleSwitcher.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_roleswitcher_tsx",
-      "target": "components_roleswitcher_roleswitcher"
+      "target": "components_roleswitcher_roleswitcher",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2076,9 +2347,9 @@
       "source_file": "src\\components\\admin\\PageHeader.tsx",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_admin_pageheader_tsx",
-      "target": "admin_pageheader_pageheader"
+      "target": "admin_pageheader_pageheader",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2087,9 +2358,9 @@
       "source_file": "src\\components\\ui\\Button.tsx",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_button_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2097,9 +2368,9 @@
       "source_file": "src\\components\\ui\\Button.tsx",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_button_tsx",
-      "target": "ui_button_button"
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2108,9 +2379,9 @@
       "source_file": "src\\components\\ui\\Card.tsx",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_card_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2118,9 +2389,9 @@
       "source_file": "src\\components\\ui\\Card.tsx",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_card_tsx",
-      "target": "ui_card_card"
+      "target": "ui_card_card",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2129,9 +2400,9 @@
       "source_file": "src\\components\\ui\\EmptyState.tsx",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_emptystate_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2139,9 +2410,9 @@
       "source_file": "src\\components\\ui\\EmptyState.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_emptystate_tsx",
-      "target": "ui_emptystate_emptystate"
+      "target": "ui_emptystate_emptystate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2150,19 +2421,39 @@
       "source_file": "src\\components\\ui\\Input.tsx",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_input_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src\\components\\ui\\Input.tsx",
-      "source_location": "L52",
+      "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_input_tsx",
-      "target": "ui_input_cn"
+      "target": "ui_input_field",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\ui\\Input.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_components_ui_input_tsx",
+      "target": "ui_input_input",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\ui\\Input.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_components_ui_input_tsx",
+      "target": "ui_input_select",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2171,9 +2462,9 @@
       "source_file": "src\\components\\ui\\misc.tsx",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_misc_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2181,9 +2472,9 @@
       "source_file": "src\\components\\ui\\misc.tsx",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_misc_tsx",
-      "target": "ui_misc_skeleton"
+      "target": "ui_misc_skeleton",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2191,9 +2482,19 @@
       "source_file": "src\\components\\ui\\misc.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_misc_tsx",
-      "target": "ui_misc_logo"
+      "target": "ui_misc_logo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\ui\\misc.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_components_ui_misc_tsx",
+      "target": "ui_misc_stat",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2202,9 +2503,9 @@
       "source_file": "src\\components\\ui\\Modal.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_modal_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2212,9 +2513,9 @@
       "source_file": "src\\components\\ui\\Modal.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_modal_tsx",
-      "target": "ui_modal_modal"
+      "target": "ui_modal_modal",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2223,19 +2524,19 @@
       "source_file": "src\\components\\ui\\StatusBadge.tsx",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_statusbadge_tsx",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src\\components\\ui\\StatusBadge.tsx",
-      "source_location": "L17",
+      "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_components_ui_statusbadge_tsx",
-      "target": "ui_statusbadge_statusbadge"
+      "target": "ui_statusbadge_statusbadge",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2243,9 +2544,9 @@
       "source_file": "src\\lib\\auth.tsx",
       "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_auth_tsx",
-      "target": "lib_auth_authprovider"
+      "target": "lib_auth_authprovider",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2253,9 +2554,9 @@
       "source_file": "src\\lib\\auth.tsx",
       "source_location": "L80",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_auth_tsx",
-      "target": "lib_auth_useauth"
+      "target": "lib_auth_useauth",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2264,9 +2565,9 @@
       "source_file": "src\\lib\\availability.ts",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_availability_ts",
-      "target": "lib_format_overlaps"
+      "target": "lib_format_overlaps",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2274,9 +2575,9 @@
       "source_file": "src\\lib\\availability.ts",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_availability_ts",
-      "target": "lib_availability_buildslots"
+      "target": "lib_availability_buildslots",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2284,9 +2585,9 @@
       "source_file": "src\\lib\\availability.ts",
       "source_location": "L46",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_availability_ts",
-      "target": "lib_availability_hasconflict"
+      "target": "lib_availability_hasconflict",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2294,9 +2595,9 @@
       "source_file": "src\\lib\\cn.ts",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_cn_ts",
-      "target": "lib_cn_cn"
+      "target": "lib_cn_cn",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2304,9 +2605,9 @@
       "source_file": "src\\lib\\data.ts",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_data_ts",
-      "target": "lib_data_img"
+      "target": "lib_data_img",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2314,9 +2615,9 @@
       "source_file": "src\\lib\\data.ts",
       "source_location": "L83",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_data_ts",
-      "target": "lib_data_d"
+      "target": "lib_data_d",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2325,9 +2626,9 @@
       "source_file": "src\\lib\\format.test.ts",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_format_test_ts",
-      "target": "lib_format_durationhours"
+      "target": "lib_format_durationhours",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2336,9 +2637,9 @@
       "source_file": "src\\lib\\format.test.ts",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_format_test_ts",
-      "target": "lib_format_overlaps"
+      "target": "lib_format_overlaps",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2347,9 +2648,9 @@
       "source_file": "src\\lib\\format.test.ts",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_format_test_ts",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2357,9 +2658,9 @@
       "source_file": "src\\lib\\format.test.ts",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_format_test_ts",
-      "target": "lib_format_test_assert"
+      "target": "lib_format_test_assert",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2367,9 +2668,9 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_format_ts",
-      "target": "lib_format_formatidr"
+      "target": "lib_format_formatidr",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2377,9 +2678,9 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_format_ts",
-      "target": "lib_format_formatdate"
+      "target": "lib_format_formatdate",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2387,9 +2688,9 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L23",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_format_ts",
-      "target": "lib_format_formatdatetime"
+      "target": "lib_format_formatdatetime",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2397,9 +2698,9 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L34",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_format_ts",
-      "target": "lib_format_durationhours"
+      "target": "lib_format_durationhours",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2407,9 +2708,9 @@
       "source_file": "src\\lib\\format.ts",
       "source_location": "L41",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_format_ts",
-      "target": "lib_format_overlaps"
+      "target": "lib_format_overlaps",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2417,9 +2718,9 @@
       "source_file": "src\\lib\\reports.ts",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_reports_ts",
-      "target": "lib_reports_revenue"
+      "target": "lib_reports_revenue",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2427,9 +2728,9 @@
       "source_file": "src\\lib\\reports.ts",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_reports_ts",
-      "target": "lib_reports_countbystatus"
+      "target": "lib_reports_countbystatus",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2437,9 +2738,9 @@
       "source_file": "src\\lib\\reports.ts",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_reports_ts",
-      "target": "lib_reports_courtusage"
+      "target": "lib_reports_courtusage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2447,9 +2748,9 @@
       "source_file": "src\\lib\\reports.ts",
       "source_location": "L31",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_lib_reports_ts",
-      "target": "lib_reports_bydate"
+      "target": "lib_reports_bydate",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": []

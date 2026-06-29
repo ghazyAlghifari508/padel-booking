@@ -23,7 +23,7 @@ export function Guard({
   if (!ready || !user || (admin && user.role !== "admin")) {
     return (
       <div className="court-lines flex min-h-[60vh] items-center justify-center">
-        <Loader2 className="h-6 w-6 animate-spin text-primary-hover" />
+        <Loader2 className="h-6 w-6 animate-spin text-foreground" />
       </div>
     );
   }
