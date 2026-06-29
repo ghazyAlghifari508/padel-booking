@@ -9,12 +9,13 @@
   --color-paper-white: #ffffff;
   --color-concrete: #e6e6e6;
 
-  --background: var(--color-paper-white);
+  --background: var(--color-concrete);
   --surface: var(--color-paper-white);
   --foreground: var(--color-obsidian);
   --muted: var(--color-graphite);
   --muted-surface: var(--color-concrete);
   --border: var(--color-obsidian);
+  --border-width: 0.5px;
 
   --primary: var(--color-voltage-lime);
   --primary-hover: #d5ed00;
@@ -74,10 +75,8 @@
 
   --font-sans: var(--font-jakarta);
   --radius-card: 1rem;
-}
-
-* {
-  border-color: var(--border);
+  --border-half: 0.5px solid var(--color-obsidian);
+  --border-full: 1px solid var(--color-obsidian);
 }
 
 html,
@@ -89,52 +88,4 @@ body {
   color: var(--foreground);
   font-family: var(--font-jakarta), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 3px;
-  box-shadow: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-up {
-  animation: fade-up 0.3s ease-out both;
-}
-
-.court-lines {
-  background-image:
-    linear-gradient(var(--color-concrete) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-concrete) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-
-.twotwo-card {
-  border: 1px solid var(--color-obsidian);
-  background: var(--color-paper-white);
-  box-shadow: none;
-}
-
-.slot-available {
-  border-color: var(--color-obsidian);
-  background: linear-gradient(90deg, var(--color-voltage-lime) 0 8px, var(--color-paper-white) 8px);
-}
-
-.slot-selected {
-  border-color: var(--color-obsidian);
-  background: var(--color-voltage-lime);
-  color: var(--color-obsidian);
 }

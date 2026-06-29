@@ -13,8 +13,8 @@ import { blockedTimes, bookings, courts } from "@/lib/data";
 import { durationHours, formatDate, formatIDR } from "@/lib/format";
 
 const providers = [
-  ["manual", "Bank transfer", "Admin verifies receipt"],
-  ["midtrans", "Gateway", "Sandbox card payment"],
+  ["manual", "Transfer Bank", "Admin verifikasi bukti bayar"],
+  ["midtrans", "Gateway", "Pembayaran kartu sandbox"],
 ] as const;
 
 function ConfirmInner() {
@@ -45,34 +45,34 @@ function ConfirmInner() {
 
   return (
     <div>
-      <Link href={`/courts/${courtId}`} className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.08em] underline"><ArrowLeft className="h-4 w-4" /> Back to court</Link>
+      <Link href={`/courts/${courtId}`} className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.08em] underline"><ArrowLeft className="h-4 w-4" /> Kembali</Link>
       <section className="mt-8 grid gap-8 lg:grid-cols-[1fr_420px]">
-        <div className="border-y border-border py-8">
-          <p className="text-[13px] uppercase tracking-[0.16em] text-muted">Reservation check</p>
-          <h1 className="mt-4 max-w-3xl text-[56px] font-normal leading-[1.05] tracking-[-0.04em] md:text-[72px]">Lock the slot before it returns to the grid.</h1>
+        <div className="py-8">
+          <p className="text-[13px] uppercase tracking-[0.16em] text-muted">Cek Reservasi</p>
+          <h1 className="mt-4 max-w-3xl text-[56px] font-normal leading-[1.05] tracking-[-0.04em] md:text-[72px]">Kunci slot sebelum kembali ke grid.</h1>
           <div className="mt-8 grid gap-3 md:grid-cols-3">
-            <Spec label="Court" value={court.name} />
-            <Spec label="Date" value={formatDate(date)} />
-            <Spec label="Time" value={`${start}–${end}`} />
+            <Spec label="Lapangan" value={court.name} />
+            <Spec label="Tanggal" value={formatDate(date)} />
+            <Spec label="Waktu" value={`${start}–${end}`} />
           </div>
-          {conflict && <p className="mt-5 rounded-2xl border border-border bg-foreground px-5 py-4 text-sm text-white" role="alert">Slot collision detected. Pick another time.</p>}
+          {conflict && <p className="mt-5 rounded-2xl bg-foreground px-5 py-4 text-sm text-white" role="alert">Slot sudah tidak tersedia. Pilih waktu lain.</p>}
         </div>
 
-        <aside className="rounded-2xl border border-border bg-surface p-5 lg:sticky lg:top-8 lg:self-start">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-muted-surface">
+        <aside className="rounded-2xl bg-surface p-5 lg:sticky lg:top-8 lg:self-start">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted-surface">
             <Image src={court.imageUrl} alt={court.name} fill sizes="420px" className="object-cover grayscale" />
           </div>
-          <div className="mt-5 border-b border-border pb-5">
-            <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Booked by</p>
+          <div className="mt-5 pb-5">
+            <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Dipesan oleh</p>
             <p className="mt-2 text-lg">{user?.name}</p>
             <p className="text-sm text-muted">{user?.email}</p>
           </div>
 
           <div className="mt-5">
-            <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Payment route</p>
+            <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Metode Pembayaran</p>
             <div className="mt-3 grid gap-2">
               {providers.map(([id, name, desc]) => (
-                <button key={id} type="button" onClick={() => setProvider(id)} aria-pressed={provider === id} className={`rounded-full border border-border px-5 py-4 text-left ${provider === id ? "bg-primary" : "bg-surface hover:bg-muted-surface"}`}>
+                <button key={id} type="button" onClick={() => setProvider(id)} aria-pressed={provider === id} className={`rounded-full px-5 py-4 text-left ${provider === id ? "bg-primary" : "bg-surface hover:bg-muted-surface"}`}>
                   <span className="block text-[13px] uppercase tracking-[0.08em]">{name}</span>
                   <span className="block text-sm text-muted">{desc}</span>
                 </button>
@@ -80,12 +80,12 @@ function ConfirmInner() {
             </div>
           </div>
 
-          <div className="mt-5 border-y border-border py-5">
-            <Line label={`${hours} hour${hours > 1 ? "s" : ""}`} value={formatIDR(court.pricePerHour)} />
+          <div className="mt-5 py-5 border-t border-b border-border-half">
+            <Line label={`${hours} jam`} value={formatIDR(court.pricePerHour)} />
             <Line label="Total" value={formatIDR(total)} strong />
           </div>
           <Button onClick={confirm} disabled={loading || conflict} size="lg" className="mt-5 w-full">
-            {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Creating</> : "Confirm booking"}
+            {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Membuat</> : "Konfirmasi Booking"}
           </Button>
         </aside>
       </section>
@@ -94,11 +94,11 @@ function ConfirmInner() {
 }
 
 function EmptyBooking() {
-  return <div className="mx-auto max-w-lg rounded-2xl border border-border p-8 text-center"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Invalid request</p><h1 className="mt-3 text-[38px] leading-tight tracking-[-0.03em]">No slot selected.</h1><Link href="/courts" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em]">Browse courts</Link></div>;
+  return <div className="mx-auto max-w-lg rounded-2xl bg-surface p-8 text-center"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Permintaan tidak valid</p><h1 className="mt-3 text-[38px] leading-tight tracking-[-0.03em]">Belum pilih slot.</h1><Link href="/courts" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em]">Cari Lapangan</Link></div>;
 }
 
 function Spec({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl border border-border p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">{label}</p><p className="mt-3 text-[26px] leading-tight tracking-[-0.03em]">{value}</p></div>;
+  return <div className="rounded-2xl bg-surface p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">{label}</p><p className="mt-3 text-[26px] leading-tight tracking-[-0.03em]">{value}</p></div>;
 }
 
 function Line({ label, value, strong }: { label: string; value: ReactNode; strong?: boolean }) {

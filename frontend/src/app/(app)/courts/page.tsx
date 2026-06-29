@@ -13,14 +13,14 @@ export default function CourtsPage() {
 
   return (
     <div>
-      <section className="border-b border-border pb-10">
-        <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Court index</p>
+      <section className="pb-10">
+        <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Daftar Lapangan</p>
         <div className="mt-5 grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end">
-          <h1 className="max-w-3xl text-[44px] font-normal leading-[1.05] tracking-[-0.04em] md:text-[72px]">Select your court from a product-style grid.</h1>
-          <div className="relative"><Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2" /><Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search court or city" className="pl-14" aria-label="Search court or city" /></div>
+          <h1 className="max-w-3xl text-[44px] font-normal leading-[1.05] tracking-[-0.04em] md:text-[72px]">Pilih lapangan favorit Anda.</h1>
+          <div className="relative"><Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2" /><Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Cari lapangan atau kota" className="pl-14" aria-label="Cari lapangan atau kota" /></div>
         </div>
       </section>
-      {filtered.length === 0 ? <EmptyState className="mt-8" icon={Search} title="No courts found" description="Try another court name or location." /> : <section className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{filtered.map((court) => <CourtCard key={court.id} court={court} />)}</section>}
+      {filtered.length === 0 ? <EmptyState className="mt-8" icon={Search} title="Lapangan tidak ditemukan" description="Coba nama atau lokasi lain." /> : <section className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{filtered.map((court) => <CourtCard key={court.id} court={court} />)}</section>}
     </div>
   );
 }

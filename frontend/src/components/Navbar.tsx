@@ -8,8 +8,8 @@ import { Logo } from "./ui/misc";
 import { cn } from "@/lib/cn";
 
 const links = [
-  { href: "/courts", label: "Courts" },
-  { href: "/my-bookings", label: "Bookings" },
+  { href: "/courts", label: "Lapangan" },
+  { href: "/my-bookings", label: "Pemesanan" },
 ];
 
 export function Navbar() {
@@ -29,11 +29,11 @@ export function Navbar() {
           {user?.role === "admin" && <Link href="/admin" className="text-[13px] uppercase tracking-[0.08em] text-foreground">Admin</Link>}
         </nav>
         <div className="hidden items-center gap-3 md:flex">
-          {user ? <><span className="text-[13px] uppercase tracking-[0.08em] text-muted">{user.name}</span><button onClick={logoutNow} aria-label="Logout" className="grid h-10 w-10 place-items-center rounded-full border border-border hover:bg-primary"><LogOut className="h-5 w-5" /></button></> : <Link href="/login" className="rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em] text-foreground">Login</Link>}
+          {user ? <><span className="text-[13px] uppercase tracking-[0.08em] text-muted">{user.name}</span><button onClick={logoutNow} aria-label="Keluar" className="grid h-10 w-10 place-items-center rounded-full border border-border hover:bg-primary"><LogOut className="h-5 w-5" /></button></> : <Link href="/login" className="rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em] text-foreground">Masuk</Link>}
         </div>
         <button className="grid h-10 w-10 place-items-center rounded-full border border-border md:hidden" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" aria-expanded={open}>{open ? <X /> : <Menu />}</button>
       </div>
-      {open && <div className="border-y border-border bg-surface px-4 py-4 md:hidden"><div className="flex flex-col gap-3">{links.map((l) => <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-full border border-border px-5 py-3 text-[13px] uppercase tracking-[0.08em]">{l.label}</Link>)}{user?.role === "admin" && <Link href="/admin" onClick={() => setOpen(false)} className="rounded-full border border-border px-5 py-3 text-[13px] uppercase tracking-[0.08em]">Admin</Link>}{user ? <button onClick={logoutNow} className="rounded-full bg-foreground px-5 py-3 text-[13px] uppercase tracking-[0.08em] text-white">Logout</button> : <Link href="/login" className="rounded-full bg-primary px-5 py-3 text-[13px] uppercase tracking-[0.08em]">Login</Link>}</div></div>}
+      {open && <div className="border-y bg-surface px-4 py-4 md:hidden"><div className="flex flex-col gap-3">{links.map((l) => <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-full px-5 py-3 text-[13px] uppercase tracking-[0.08em]">{l.label}</Link>)}{user?.role === "admin" && <Link href="/admin" onClick={() => setOpen(false)} className="rounded-full px-5 py-3 text-[13px] uppercase tracking-[0.08em]">Admin</Link>}{user ? <button onClick={logoutNow} className="rounded-full bg-foreground px-5 py-3 text-[13px] uppercase tracking-[0.08em] text-white">Keluar</button> : <Link href="/login" className="rounded-full bg-primary px-5 py-3 text-[13px] uppercase tracking-[0.08em]">Masuk</Link>}</div></div>}
     </header>
   );
 }

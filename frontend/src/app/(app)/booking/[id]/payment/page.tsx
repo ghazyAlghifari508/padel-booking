@@ -35,17 +35,17 @@ function PaymentInner({ bookingId }: { bookingId: string }) {
   };
 
   if (!court || !date || !start || !end) {
-    return <div className="mx-auto max-w-lg rounded-2xl border border-border p-8 text-center"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Payment unavailable</p><h1 className="mt-3 text-[38px] leading-tight tracking-[-0.03em]">Booking data missing.</h1><Link href="/courts" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em]">Start again</Link></div>;
+    return <div className="mx-auto max-w-lg rounded-2xl bg-surface p-8 text-center"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Pembayaran tidak tersedia</p><h1 className="mt-3 text-[38px] leading-tight tracking-[-0.03em]">Data booking tidak lengkap.</h1><Link href="/courts" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em]">Mulai Lagi</Link></div>;
   }
 
   if (state === "done") {
     return (
-      <section className="mx-auto max-w-3xl rounded-2xl border border-border p-8 text-center">
-        <div className="mx-auto grid h-20 w-20 place-items-center rounded-full border border-border bg-primary"><Check className="h-9 w-9" /></div>
-        <p className="mt-8 text-[13px] uppercase tracking-[0.16em] text-muted">Booking #{bookingId}</p>
-        <h1 className="mt-3 text-[56px] font-normal leading-[1.05] tracking-[-0.04em]">{provider === "midtrans" ? "Paid. Court locked." : "Receipt queued for admin."}</h1>
-        <p className="mx-auto mt-5 max-w-md text-base text-muted">{provider === "midtrans" ? "Your reservation is confirmed." : "Manual transfer stays pending until staff verification."}</p>
-        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row"><Button onClick={() => router.push("/my-bookings")}>View bookings</Button><Button variant="outline" onClick={() => router.push("/courts")}>Book another</Button></div>
+      <section className="mx-auto max-w-3xl rounded-2xl bg-surface p-8 text-center">
+        <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-primary"><Check className="h-9 w-9" /></div>
+        <p className="mt-8 text-[13px] uppercase tracking-[0.16em] text-muted">Pesanan #{bookingId}</p>
+        <h1 className="mt-3 text-[56px] font-normal leading-[1.05] tracking-[-0.04em]">{provider === "midtrans" ? "Lunas. Lapangan terkunci." : "Bukti bayar terkirim ke admin."}</h1>
+        <p className="mx-auto mt-5 max-w-md text-base text-muted">{provider === "midtrans" ? "Reservasi Anda sudah dikonfirmasi." : "Transfer manual menunggu verifikasi admin."}</p>
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row"><Button onClick={() => router.push("/my-bookings")}>Lihat Pesanan</Button><Button variant="outline" onClick={() => router.push("/courts")}>Pesan Lagi</Button></div>
       </section>
     );
   }
@@ -53,38 +53,38 @@ function PaymentInner({ bookingId }: { bookingId: string }) {
   return (
     <div>
       <section className="grid gap-8 lg:grid-cols-[1fr_420px]">
-        <div className="border-y border-border py-8">
-          <p className="text-[13px] uppercase tracking-[0.16em] text-muted">Payment console</p>
-          <h1 className="mt-4 max-w-3xl text-[56px] font-normal leading-[1.05] tracking-[-0.04em] md:text-[72px]">One receipt. One slot. Sixty minutes.</h1>
+        <div className="py-8">
+          <p className="text-[13px] uppercase tracking-[0.16em] text-muted">Konsol Pembayaran</p>
+          <h1 className="mt-4 max-w-3xl text-[56px] font-normal leading-[1.05] tracking-[-0.04em] md:text-[72px]">Satu bukti bayar. Satu slot. Enam puluh menit.</h1>
           <div className="mt-8 grid gap-3 md:grid-cols-3">
             <Tile label="Booking" value={`#${bookingId}`} />
-            <Tile label="Court" value={court.name} />
-            <Tile label="Schedule" value={`${formatDate(date)} · ${start}–${end}`} />
+            <Tile label="Lapangan" value={court.name} />
+            <Tile label="Jadwal" value={`${formatDate(date)} · ${start}–${end}`} />
           </div>
         </div>
 
-        <aside className="rounded-2xl border border-border p-5 lg:sticky lg:top-8 lg:self-start">
-          <div className="rounded-2xl border border-border bg-primary p-5">
-            <p className="text-[13px] uppercase tracking-[0.12em]">Amount due</p>
+        <aside className="rounded-2xl bg-surface p-5 lg:sticky lg:top-8 lg:self-start">
+          <div className="rounded-2xl bg-primary p-5">
+            <p className="text-[13px] uppercase tracking-[0.12em]">Jumlah Dibayar</p>
             <p className="mt-3 text-[38px] leading-none tracking-[-0.04em]">{formatIDR(total)}</p>
-            <p className="mt-3 text-sm">Expires in 60 minutes.</p>
+            <p className="mt-3 text-sm">Kadaluarsa dalam 60 menit.</p>
           </div>
 
           {provider === "manual" ? (
-            <div className="mt-5 rounded-2xl border border-border p-5">
-              <p className="text-[13px] uppercase tracking-[0.12em] text-muted">BCA transfer</p>
-              <div className="mt-4 flex items-center justify-between gap-3 border-y border-border py-4">
+            <div className="mt-5 rounded-2xl bg-muted-surface p-5">
+              <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Transfer BCA</p>
+              <div className="mt-4 flex items-center justify-between gap-3 py-4">
                 <span className="font-mono text-xl tracking-[-0.02em]">8801234567890</span>
-                <button type="button" onClick={copy} className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-[13px] uppercase tracking-[0.08em] hover:bg-muted-surface">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}{copied ? "Copied" : "Copy"}</button>
+                <button type="button" onClick={copy} className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[13px] uppercase tracking-[0.08em] hover:bg-muted-surface">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}{copied ? "Tersalin" : "Salin"}</button>
               </div>
-              <p className="mt-3 text-sm text-muted">a/n CourtFlow Indonesia. Demo flow: submit after transfer.</p>
+              <p className="mt-3 text-sm text-muted">a/n CourtFlow Indonesia. Demo: klik submit setelah transfer.</p>
             </div>
           ) : (
-            <div className="mt-5 rounded-2xl border border-border p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Gateway</p><p className="mt-3 text-base">Midtrans sandbox redirect simulated in-app.</p></div>
+            <div className="mt-5 rounded-2xl bg-muted-surface p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Gateway</p><p className="mt-3 text-base">Redirect Midtrans sandbox disimulasikan.</p></div>
           )}
 
           <Button onClick={pay} disabled={state === "processing"} size="lg" className="mt-5 w-full">
-            {state === "processing" ? <><Loader2 className="h-4 w-4 animate-spin" /> Processing</> : provider === "midtrans" ? "Pay with gateway" : "Submit receipt"}
+            {state === "processing" ? <><Loader2 className="h-4 w-4 animate-spin" /> Memproses</> : provider === "midtrans" ? "Bayar via Gateway" : "Kirim Bukti Bayar"}
           </Button>
         </aside>
       </section>
@@ -93,7 +93,7 @@ function PaymentInner({ bookingId }: { bookingId: string }) {
 }
 
 function Tile({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl border border-border p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">{label}</p><p className="mt-3 text-[22px] leading-tight tracking-[-0.03em]">{value}</p></div>;
+  return <div className="rounded-2xl bg-surface p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">{label}</p><p className="mt-3 text-[22px] leading-tight tracking-[-0.03em]">{value}</p></div>;
 }
 
 export default function PaymentPage({ params }: { params: Promise<{ id: string }> }) {
