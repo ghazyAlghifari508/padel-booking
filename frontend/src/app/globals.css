@@ -89,3 +89,58 @@ body {
   font-family: var(--font-jakarta), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+/* ── Reveal animations ── */
+.reveal-hidden {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+}
+.reveal-fade-in {
+  opacity: 0;
+}
+.reveal-fade-left {
+  opacity: 0;
+  transform: translateX(-32px);
+}
+.reveal-fade-right {
+  opacity: 0;
+  transform: translateX(32px);
+}
+.reveal-scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ── Hero entrance ── */
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-image-zoom {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+.hero-animate-subtitle {
+  animation: hero-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+.hero-animate-title {
+  animation: hero-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+.hero-animate-cta {
+  animation: hero-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+}
+.hero-animate-image {
+  animation: hero-image-zoom 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

@@ -19,20 +19,20 @@ export default function AdminLogsPage() {
   return (
     <div>
       <PageHeader title="Automation Logs" subtitle="n8n workflow execution results." />
-      <div className="twotwo-card mb-5 flex flex-col gap-3 rounded-2xl p-3 sm:flex-row">
+      <div className="mb-5 flex flex-col gap-3 rounded-xl bg-white p-3 shadow-sm ring-1 ring-foreground/5 sm:flex-row">
         <Select value={status} onChange={(e) => setStatus(e.target.value)} className="sm:w-48"><option value="all">All statuses</option><option value="success">Success</option><option value="failed">Failed</option></Select>
         <Select value={event} onChange={(e) => setEvent(e.target.value)} className="sm:w-56"><option value="all">All events</option><option value="booking_created">booking_created</option><option value="booking_confirmed">booking_confirmed</option><option value="booking_cancelled">booking_cancelled</option></Select>
       </div>
       {filtered.length === 0 ? <EmptyState icon={Workflow} title="No logs found" description="No automation logs match the selected filters." /> : (
         <div className="space-y-3">
           {filtered.map((l) => (
-            <div key={l.id} className={`rounded-2xl border bg-surface p-4 ${l.status === "failed" ? "border-status-cancelled/30" : "border-border"}`}>
+            <div key={l.id} className={`rounded-xl bg-white p-4 shadow-sm ring-1 ${l.status === "failed" ? "ring-red-200" : "ring-foreground/5"}`}>
               <div className="flex items-start gap-3">
-                <span className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${l.status === "failed" ? "bg-status-cancelled-soft text-status-cancelled" : "bg-status-confirmed text-white"}`}>{l.status === "failed" ? <AlertTriangle className="h-5 w-5" /> : <CheckCircle2 className="h-5 w-5" />}</span>
+                <span className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${l.status === "failed" ? "bg-red-50 text-red-600" : "bg-emerald-50 text-emerald-600"}`}>{l.status === "failed" ? <AlertTriangle className="h-5 w-5" /> : <CheckCircle2 className="h-5 w-5" />}</span>
                 <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2"><h3 className="font-normal text-foreground">{l.workflowName}</h3><span className="rounded-full bg-primary px-2 py-0.5 font-mono text-xs font-normal text-foreground">{l.eventType}</span><span className={`rounded-full px-2 py-0.5 text-xs font-normal ${l.status === "failed" ? "bg-status-cancelled-soft text-status-cancelled" : "bg-status-confirmed-soft text-status-confirmed"}`}>{l.status}</span></div>
-                  <p className={`mt-1 text-sm ${l.status === "failed" ? "font-normal text-status-cancelled" : "font-medium text-muted"}`}>{l.message}</p>
-                  <p className="mt-1.5 text-xs font-medium text-muted">{l.bookingId && <>Booking #{l.bookingId} · </>}{formatDateTime(l.executedAt)}</p>
+                  <div className="flex flex-wrap items-center gap-2"><h3 className="font-semibold text-foreground">{l.workflowName}</h3><span className="rounded-md bg-foreground/5 px-2 py-0.5 font-mono text-xs text-muted">{l.eventType}</span><span className={`rounded-md px-2 py-0.5 text-xs font-medium ${l.status === "failed" ? "bg-red-50 text-red-600" : "bg-emerald-50 text-emerald-600"}`}>{l.status}</span></div>
+                  <p className={`mt-1 text-sm ${l.status === "failed" ? "text-red-600" : "text-muted"}`}>{l.message}</p>
+                  <p className="mt-1.5 text-xs text-muted">{l.bookingId && <>Booking #{l.bookingId} · </>}{formatDateTime(l.executedAt)}</p>
                 </div>
               </div>
             </div>

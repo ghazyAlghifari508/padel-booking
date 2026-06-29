@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense, useState, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2, CheckCircle2, AlertTriangle } from "lucide-react";
 import { Guard } from "@/components/Guard";
 import { Button } from "@/components/ui/Button";
 import { hasConflict } from "@/lib/availability";
@@ -13,8 +13,8 @@ import { blockedTimes, bookings, courts } from "@/lib/data";
 import { durationHours, formatDate, formatIDR } from "@/lib/format";
 
 const providers = [
-  ["manual", "Transfer Bank", "Admin verifikasi bukti bayar"],
-  ["midtrans", "Gateway", "Pembayaran kartu sandbox"],
+  { id: "manual", name: "Transfer Bank", desc: "Admin verifikasi bukti bayar", icon: "🏦" },
+  { id: "midtrans", name: "Kartu / Gateway", desc: "Pembayaran sandbox Midtrans", icon: "💳" },
 ] as const;
 
 function ConfirmInner() {
@@ -26,12 +26,10 @@ function ConfirmInner() {
   const start = sp.get("start") ?? "";
   const end = sp.get("end") ?? "";
   const court = courts.find((c) => c.id === courtId);
-  const [provider, setProvider] = useState<(typeof providers)[number][0]>("manual");
+  const [provider, setProvider] = useState<"manual" | "midtrans">("manual");
   const [loading, setLoading] = useState(false);
 
-  if (!court || !date || !start || !end) {
-    return <EmptyBooking />;
-  }
+  if (!court || !date || !start || !end) return <EmptyBooking />;
 
   const hours = durationHours(start, end);
   const total = hours * court.pricePerHour;
@@ -39,72 +37,168 @@ function ConfirmInner() {
 
   const confirm = () => {
     setLoading(true);
-    const newId = 9001;
-    setTimeout(() => router.push(`/booking/${newId}/payment?${new URLSearchParams({ court: String(courtId), date, start, end, provider })}`), 650);
+    setTimeout(
+      () => router.push(`/booking/9001/payment?${new URLSearchParams({ court: String(courtId), date, start, end, provider })}`),
+      650,
+    );
   };
 
   return (
     <div>
-      <Link href={`/courts/${courtId}`} className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.08em] underline"><ArrowLeft className="h-4 w-4" /> Kembali</Link>
-      <section className="mt-8 grid gap-8 lg:grid-cols-[1fr_420px]">
-        <div className="py-8">
-          <p className="text-[13px] uppercase tracking-[0.16em] text-muted">Cek Reservasi</p>
-          <h1 className="mt-4 max-w-3xl text-[56px] font-normal leading-[1.05] tracking-[-0.04em] md:text-[72px]">Kunci slot sebelum kembali ke grid.</h1>
-          <div className="mt-8 grid gap-3 md:grid-cols-3">
-            <Spec label="Lapangan" value={court.name} />
-            <Spec label="Tanggal" value={formatDate(date)} />
-            <Spec label="Waktu" value={`${start}–${end}`} />
-          </div>
-          {conflict && <p className="mt-5 rounded-2xl bg-foreground px-5 py-4 text-sm text-white" role="alert">Slot sudah tidak tersedia. Pilih waktu lain.</p>}
+      <Link
+        href={`/courts/${courtId}`}
+        className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground"
+      >
+        <ArrowLeft className="h-4 w-4" /> Kembali
+      </Link>
+
+      {/* Step indicator */}
+      <div className="mt-4 mb-6 flex items-center gap-2 text-xs text-muted">
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-foreground text-white text-[10px] font-bold">1</span>
+        <span className="text-foreground font-medium">Pilih Lapangan</span>
+        <span className="h-px flex-1 bg-black/10" />
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-on-primary text-[10px] font-bold">2</span>
+        <span className="font-semibold text-foreground">Konfirmasi</span>
+        <span className="h-px flex-1 bg-black/10" />
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-muted-surface text-[10px] font-bold">3</span>
+        <span>Pembayaran</span>
+      </div>
+
+      {conflict && (
+        <div className="mb-4 flex items-center gap-2 rounded-lg border border-black/10 bg-surface p-3 text-sm text-foreground">
+          <AlertTriangle className="h-4 w-4 shrink-0 text-red-500" />
+          Slot sudah tidak tersedia. Pilih waktu lain.
         </div>
+      )}
 
-        <aside className="rounded-2xl bg-surface p-5 lg:sticky lg:top-8 lg:self-start">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted-surface">
-            <Image src={court.imageUrl} alt={court.name} fill sizes="420px" className="object-cover grayscale" />
-          </div>
-          <div className="mt-5 pb-5">
-            <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Dipesan oleh</p>
-            <p className="mt-2 text-lg">{user?.name}</p>
-            <p className="text-sm text-muted">{user?.email}</p>
+      <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
+        {/* Left: booking detail */}
+        <div className="flex flex-col gap-4">
+          <div className="rounded-xl border border-black/10 bg-surface">
+            <div className="border-b border-black/10 px-5 py-3">
+              <p className="text-sm font-bold text-foreground">Detail Reservasi</p>
+            </div>
+            <div className="grid gap-0 divide-y divide-black/5">
+              <Row label="Lapangan" value={court.name} />
+              <Row label="Tanggal" value={formatDate(date)} />
+              <Row label="Waktu" value={`${start} – ${end}`} />
+              <Row label="Durasi" value={`${hours} jam`} />
+              <Row label="Dipesan oleh" value={user?.name ?? "—"} />
+              <Row label="Email" value={user?.email ?? "—"} />
+            </div>
           </div>
 
-          <div className="mt-5">
-            <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Metode Pembayaran</p>
-            <div className="mt-3 grid gap-2">
-              {providers.map(([id, name, desc]) => (
-                <button key={id} type="button" onClick={() => setProvider(id)} aria-pressed={provider === id} className={`rounded-full px-5 py-4 text-left ${provider === id ? "bg-primary" : "bg-surface hover:bg-muted-surface"}`}>
-                  <span className="block text-[13px] uppercase tracking-[0.08em]">{name}</span>
-                  <span className="block text-sm text-muted">{desc}</span>
+          {/* Payment method */}
+          <div className="rounded-xl border border-black/10 bg-surface">
+            <div className="border-b border-black/10 px-5 py-3">
+              <p className="text-sm font-bold text-foreground">Metode Pembayaran</p>
+            </div>
+            <div className="grid gap-3 p-4 sm:grid-cols-2">
+              {providers.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => setProvider(p.id)}
+                  aria-pressed={provider === p.id}
+                  className={`flex items-start gap-3 rounded-lg border p-3 text-left transition-colors ${
+                    provider === p.id
+                      ? "border-foreground bg-foreground text-white"
+                      : "border-black/10 hover:bg-muted-surface"
+                  }`}
+                >
+                  <span className="text-lg">{p.icon}</span>
+                  <div>
+                    <p className="text-sm font-semibold">{p.name}</p>
+                    <p className={`text-xs ${provider === p.id ? "text-white/70" : "text-muted"}`}>{p.desc}</p>
+                  </div>
+                  {provider === p.id && (
+                    <CheckCircle2 className="ml-auto h-4 w-4 shrink-0 text-primary" />
+                  )}
                 </button>
               ))}
             </div>
           </div>
+        </div>
 
-          <div className="mt-5 py-5 border-t border-b border-border-half">
-            <Line label={`${hours} jam`} value={formatIDR(court.pricePerHour)} />
-            <Line label="Total" value={formatIDR(total)} strong />
+        {/* Right: summary + CTA */}
+        <aside className="lg:sticky lg:top-24 lg:self-start">
+          <div className="rounded-xl border border-black/10 bg-surface">
+            <div className="relative aspect-video overflow-hidden rounded-t-xl">
+              <Image src={court.imageUrl} alt={court.name} fill sizes="360px" className="object-cover" />
+            </div>
+            <div className="p-5">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted">Ringkasan</p>
+              <div className="mt-4 flex flex-col gap-2 text-sm">
+                <div className="flex justify-between text-muted">
+                  <span>{formatIDR(court.pricePerHour)} × {hours} jam</span>
+                  <span>{formatIDR(total)}</span>
+                </div>
+              </div>
+              <div className="mt-4 flex justify-between border-t border-black/10 pt-4 text-base font-bold text-foreground">
+                <span>Total</span>
+                <span>{formatIDR(total)}</span>
+              </div>
+              <Button
+                onClick={confirm}
+                disabled={loading || conflict}
+                size="lg"
+                className="mt-5 w-full"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" /> Membuat Pesanan…
+                  </>
+                ) : (
+                  "Konfirmasi & Lanjut Bayar"
+                )}
+              </Button>
+              <p className="mt-3 text-center text-xs text-muted">
+                Pesanan dikunci selama 60 menit setelah konfirmasi.
+              </p>
+            </div>
           </div>
-          <Button onClick={confirm} disabled={loading || conflict} size="lg" className="mt-5 w-full">
-            {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Membuat</> : "Konfirmasi Booking"}
-          </Button>
         </aside>
-      </section>
+      </div>
+    </div>
+  );
+}
+
+function Row({ label, value }: { label: string; value: ReactNode }) {
+  return (
+    <div className="flex items-center justify-between gap-4 px-5 py-3">
+      <span className="text-sm text-muted">{label}</span>
+      <span className="text-sm font-medium text-foreground">{value}</span>
     </div>
   );
 }
 
 function EmptyBooking() {
-  return <div className="mx-auto max-w-lg rounded-2xl bg-surface p-8 text-center"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Permintaan tidak valid</p><h1 className="mt-3 text-[38px] leading-tight tracking-[-0.03em]">Belum pilih slot.</h1><Link href="/courts" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em]">Cari Lapangan</Link></div>;
-}
-
-function Spec({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl bg-surface p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">{label}</p><p className="mt-3 text-[26px] leading-tight tracking-[-0.03em]">{value}</p></div>;
-}
-
-function Line({ label, value, strong }: { label: string; value: ReactNode; strong?: boolean }) {
-  return <div className={`flex justify-between ${strong ? "mt-3 text-[26px]" : "text-base text-muted"}`}><span>{label}</span><span className="text-foreground">{value}</span></div>;
+  return (
+    <div className="mx-auto max-w-sm rounded-xl border border-black/10 bg-surface p-8 text-center">
+      <AlertTriangle className="mx-auto h-10 w-10 text-muted" />
+      <h1 className="mt-3 text-lg font-bold text-foreground">Belum pilih slot</h1>
+      <p className="mt-2 text-sm text-muted">Pilih lapangan dan slot waktu terlebih dahulu.</p>
+      <Link
+        href="/courts"
+        className="mt-5 inline-block rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-on-primary"
+      >
+        Cari Lapangan
+      </Link>
+    </div>
+  );
 }
 
 export default function ConfirmPage() {
-  return <Guard><Suspense fallback={<div className="grid py-20 place-items-center"><Loader2 className="h-6 w-6 animate-spin" /></div>}><ConfirmInner /></Suspense></Guard>;
+  return (
+    <Guard>
+      <Suspense
+        fallback={
+          <div className="grid py-20 place-items-center">
+            <Loader2 className="h-6 w-6 animate-spin" />
+          </div>
+        }
+      >
+        <ConfirmInner />
+      </Suspense>
+    </Guard>
+  );
 }

@@ -33,32 +33,32 @@ export default function AdminBookingsPage() {
   return (
     <div>
       <PageHeader title="Bookings" subtitle={`${filtered.length} of ${list.length} bookings`} />
-      <div className="twotwo-card mb-5 flex flex-col gap-3 rounded-2xl p-3 sm:flex-row">
+      <div className="mb-5 flex flex-col gap-3 rounded-xl bg-white p-3 shadow-sm ring-1 ring-foreground/5 sm:flex-row">
         <div className="relative flex-1"><Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" /><Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search user, court, or #id" className="pl-9" /></div>
         <Select value={status} onChange={(e) => setStatus(e.target.value)} className="sm:w-48"><option value="all">All statuses</option><option value="pending_payment">Pending Payment</option><option value="confirmed">Confirmed</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option><option value="expired">Expired</option></Select>
         <Select value={court} onChange={(e) => setCourt(e.target.value)} className="sm:w-48"><option value="all">All courts</option>{courts.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</Select>
       </div>
 
-      <div className="twotwo-card overflow-hidden rounded-2xl">
+      <div className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-foreground/5">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="court-lines bg-muted-surface text-left text-xs font-normal uppercase tracking-[0.08em] text-muted"><tr><th className="px-4 py-3">#</th><th className="px-4 py-3">User</th><th className="px-4 py-3">Court</th><th className="px-4 py-3">Date / Time</th><th className="px-4 py-3">Total</th><th className="px-4 py-3">Status</th><th className="px-4 py-3">Payment</th><th className="px-4 py-3 text-right">Actions</th></tr></thead>
-            <tbody className="divide-y divide-border">
+            <thead className="bg-foreground/5 text-left text-xs font-semibold text-muted"><tr><th className="px-4 py-3">#</th><th className="px-4 py-3">User</th><th className="px-4 py-3">Court</th><th className="px-4 py-3">Date / Time</th><th className="px-4 py-3">Total</th><th className="px-4 py-3">Status</th><th className="px-4 py-3">Payment</th><th className="px-4 py-3 text-right">Actions</th></tr></thead>
+            <tbody className="divide-y divide-foreground/5">
               {filtered.map((b) => (
-                <tr key={b.id} className="hover:bg-muted-surface/50">
-                  <td className="px-4 py-3 font-mono text-xs font-normal text-muted">{b.id}</td>
-                  <td className="px-4 py-3"><p className="font-normal text-foreground">{b.userName}</p><p className="text-xs font-medium text-muted">{b.userEmail}</p></td>
-                  <td className="px-4 py-3 font-normal text-foreground">{b.courtName}</td>
-                  <td className="px-4 py-3 font-medium text-muted"><p>{formatDate(b.date)}</p><p className="text-xs">{b.startTime}–{b.endTime}</p></td>
-                  <td className="px-4 py-3 font-normal tabular-nums text-foreground">{formatIDR(b.totalPrice)}</td>
+                <tr key={b.id} className="hover:bg-foreground/[0.02]">
+                  <td className="px-4 py-3 font-mono text-xs text-muted">{b.id}</td>
+                  <td className="px-4 py-3"><p className="font-medium text-foreground">{b.userName}</p><p className="text-xs text-muted">{b.userEmail}</p></td>
+                  <td className="px-4 py-3 font-medium text-foreground">{b.courtName}</td>
+                  <td className="px-4 py-3 text-muted"><p>{formatDate(b.date)}</p><p className="text-xs">{b.startTime}–{b.endTime}</p></td>
+                  <td className="px-4 py-3 font-medium tabular-nums text-foreground">{formatIDR(b.totalPrice)}</td>
                   <td className="px-4 py-3"><StatusBadge status={b.status} /></td>
                   <td className="px-4 py-3"><StatusBadge status={b.paymentStatus} /></td>
-                  <td className="px-4 py-3"><div className="flex items-center justify-end gap-1">{b.status === "pending_payment" && <><button onClick={() => setStatusOf(b.id, "confirmed", "paid")} aria-label="Approve" title="Approve" className="cursor-pointer rounded-full p-2 text-status-confirmed hover:bg-status-confirmed-soft"><Check className="h-4 w-4" /></button><button onClick={() => setConfirm({ id: b.id, action: "reject" })} aria-label="Reject" title="Reject" className="cursor-pointer rounded-full p-2 text-status-cancelled hover:bg-status-cancelled-soft"><X className="h-4 w-4" /></button></>}{b.status === "confirmed" && <button onClick={() => setConfirm({ id: b.id, action: "cancel" })} aria-label="Cancel" title="Cancel" className="cursor-pointer rounded-full p-2 text-muted hover:bg-status-cancelled-soft hover:text-status-cancelled"><Ban className="h-4 w-4" /></button>}{["completed", "cancelled", "expired"].includes(b.status) && <span className="text-xs text-muted">—</span>}</div></td>
+                  <td className="px-4 py-3"><div className="flex items-center justify-end gap-1">{b.status === "pending_payment" && <><button onClick={() => setStatusOf(b.id, "confirmed", "paid")} aria-label="Approve" title="Approve" className="cursor-pointer rounded-lg p-2 text-emerald-600 hover:bg-emerald-50"><Check className="h-4 w-4" /></button><button onClick={() => setConfirm({ id: b.id, action: "reject" })} aria-label="Reject" title="Reject" className="cursor-pointer rounded-lg p-2 text-red-600 hover:bg-red-50"><X className="h-4 w-4" /></button></>}{b.status === "confirmed" && <button onClick={() => setConfirm({ id: b.id, action: "cancel" })} aria-label="Cancel" title="Cancel" className="cursor-pointer rounded-lg p-2 text-muted hover:bg-red-50 hover:text-red-600"><Ban className="h-4 w-4" /></button>}{["completed", "cancelled", "expired"].includes(b.status) && <span className="text-xs text-muted">—</span>}</div></td>
                 </tr>
               ))}
             </tbody>
           </table>
-          {filtered.length === 0 && <p className="px-4 py-12 text-center text-sm font-medium text-muted">No bookings match your filters.</p>}
+          {filtered.length === 0 && <p className="px-4 py-12 text-center text-sm text-muted">No bookings match your filters.</p>}
         </div>
       </div>
 

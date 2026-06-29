@@ -1,26 +1,45 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import type { Court } from "@/lib/types";
 import { formatIDR } from "@/lib/format";
 
 export function CourtCard({ court }: { court: Court }) {
   return (
-    <Link href={`/courts/${court.id}`} className="group block rounded-2xl bg-surface">
-      <div className="relative aspect-3/4 overflow-hidden rounded-t-2xl bg-muted-surface">
-        <Image src={court.imageUrl} alt={court.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover grayscale transition-all duration-300 group-hover:grayscale-0" />
-        <span className="absolute left-4 top-4 h-3 w-3 bg-primary" aria-hidden />
+    <Link
+      href={`/courts/${court.id}`}
+      className="group flex gap-0 overflow-hidden rounded-xl border border-black/10 bg-surface transition-shadow hover:shadow-md"
+    >
+      <div className="relative w-32 shrink-0 sm:w-44">
+        <Image
+          src={court.imageUrl}
+          alt={court.name}
+          fill
+          sizes="(min-width:640px) 176px, 128px"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+        />
       </div>
-      <div className="p-5">
-        <div className="flex items-start justify-between gap-4 pb-4">
-          <div>
-            <h3 className="text-[22px] font-normal leading-tight tracking-[-0.02em] text-foreground">{court.name}</h3>
-            <p className="mt-2 flex items-center gap-1 text-[13px] text-muted"><MapPin className="h-4 w-4" /> {court.location}</p>
+      <div className="flex min-w-0 flex-1 flex-col justify-between p-4">
+        <div>
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="text-base font-semibold leading-tight text-foreground">{court.name}</h3>
+            <span className="shrink-0 rounded-md bg-primary px-2 py-0.5 text-xs font-bold text-on-primary">
+              {formatIDR(court.pricePerHour)}<span className="font-normal text-on-primary/70">/jam</span>
+            </span>
           </div>
-          <p className="text-right text-[13px] uppercase tracking-[0.08em] text-foreground">{formatIDR(court.pricePerHour)}/jam</p>
+          <p className="mt-1 flex items-center gap-1 text-xs text-muted">
+            <MapPin className="h-3 w-3" /> {court.location}
+          </p>
+          <p className="mt-2 line-clamp-2 text-sm text-muted">{court.description}</p>
         </div>
-        <p className="mt-4 min-h-12 text-[13px] leading-relaxed text-muted">{court.description}</p>
-        <span className="mt-5 block rounded-full bg-primary px-5 py-3 text-center text-[13px] uppercase tracking-[0.08em] text-foreground">Lihat Jadwal</span>
+        <div className="mt-3 flex items-center justify-between">
+          <span className="flex items-center gap-1 text-xs text-muted">
+            <Clock className="h-3 w-3" /> Lihat jadwal tersedia
+          </span>
+          <span className="text-xs font-semibold text-foreground underline underline-offset-2 group-hover:text-primary">
+            Pilih →
+          </span>
+        </div>
       </div>
     </Link>
   );

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Suspense, use, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Check, Copy, Loader2 } from "lucide-react";
+import { Check, Copy, Loader2, CheckCircle2, ArrowRight } from "lucide-react";
 import { Guard } from "@/components/Guard";
 import { Button } from "@/components/ui/Button";
 import { courts } from "@/lib/data";
@@ -35,68 +35,203 @@ function PaymentInner({ bookingId }: { bookingId: string }) {
   };
 
   if (!court || !date || !start || !end) {
-    return <div className="mx-auto max-w-lg rounded-2xl bg-surface p-8 text-center"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Pembayaran tidak tersedia</p><h1 className="mt-3 text-[38px] leading-tight tracking-[-0.03em]">Data booking tidak lengkap.</h1><Link href="/courts" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em]">Mulai Lagi</Link></div>;
+    return (
+      <div className="mx-auto max-w-sm rounded-xl border border-black/10 bg-surface p-8 text-center">
+        <h1 className="text-lg font-bold">Data tidak lengkap</h1>
+        <Link href="/courts" className="mt-4 inline-block text-sm underline">Mulai lagi</Link>
+      </div>
+    );
   }
 
   if (state === "done") {
     return (
-      <section className="mx-auto max-w-3xl rounded-2xl bg-surface p-8 text-center">
-        <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-primary"><Check className="h-9 w-9" /></div>
-        <p className="mt-8 text-[13px] uppercase tracking-[0.16em] text-muted">Pesanan #{bookingId}</p>
-        <h1 className="mt-3 text-[56px] font-normal leading-[1.05] tracking-[-0.04em]">{provider === "midtrans" ? "Lunas. Lapangan terkunci." : "Bukti bayar terkirim ke admin."}</h1>
-        <p className="mx-auto mt-5 max-w-md text-base text-muted">{provider === "midtrans" ? "Reservasi Anda sudah dikonfirmasi." : "Transfer manual menunggu verifikasi admin."}</p>
-        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row"><Button onClick={() => router.push("/my-bookings")}>Lihat Pesanan</Button><Button variant="outline" onClick={() => router.push("/courts")}>Pesan Lagi</Button></div>
-      </section>
+      <div className="mx-auto max-w-md">
+        <div className="rounded-xl border border-black/10 bg-surface p-8 text-center">
+          <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-primary">
+            <CheckCircle2 className="h-8 w-8 text-on-primary" />
+          </div>
+          <h1 className="mt-5 text-xl font-bold text-foreground">
+            {provider === "midtrans" ? "Pembayaran Berhasil!" : "Bukti Dikirim!"}
+          </h1>
+          <p className="mt-2 text-sm text-muted">
+            {provider === "midtrans"
+              ? "Reservasi dikonfirmasi. Sampai di lapangan!"
+              : "Admin akan verifikasi dalam 1×24 jam."}
+          </p>
+
+          <div className="mt-6 rounded-lg bg-muted-surface p-4 text-left text-sm">
+            <div className="flex justify-between py-1 text-muted">
+              <span>No. Pesanan</span>
+              <span className="font-medium text-foreground">#{bookingId}</span>
+            </div>
+            <div className="flex justify-between py-1 text-muted">
+              <span>Lapangan</span>
+              <span className="font-medium text-foreground">{court.name}</span>
+            </div>
+            <div className="flex justify-between py-1 text-muted">
+              <span>Jadwal</span>
+              <span className="font-medium text-foreground">{formatDate(date)} · {start}–{end}</span>
+            </div>
+            <div className="flex justify-between border-t border-black/10 py-1 pt-3 font-bold text-foreground">
+              <span>Total</span>
+              <span>{formatIDR(total)}</span>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2">
+            <Button onClick={() => router.push("/my-bookings")} className="w-full">
+              Lihat Pesanan Saya
+            </Button>
+            <Button variant="outline" onClick={() => router.push("/courts")} className="w-full">
+              Pesan Lagi
+            </Button>
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
     <div>
-      <section className="grid gap-8 lg:grid-cols-[1fr_420px]">
-        <div className="py-8">
-          <p className="text-[13px] uppercase tracking-[0.16em] text-muted">Konsol Pembayaran</p>
-          <h1 className="mt-4 max-w-3xl text-[56px] font-normal leading-[1.05] tracking-[-0.04em] md:text-[72px]">Satu bukti bayar. Satu slot. Enam puluh menit.</h1>
-          <div className="mt-8 grid gap-3 md:grid-cols-3">
-            <Tile label="Booking" value={`#${bookingId}`} />
-            <Tile label="Lapangan" value={court.name} />
-            <Tile label="Jadwal" value={`${formatDate(date)} · ${start}–${end}`} />
-          </div>
-        </div>
+      {/* Step indicator */}
+      <div className="mb-6 flex items-center gap-2 text-xs text-muted">
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-foreground text-white text-[10px] font-bold">1</span>
+        <span className="text-foreground font-medium">Pilih Lapangan</span>
+        <span className="h-px flex-1 bg-black/10" />
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-foreground text-white text-[10px] font-bold">2</span>
+        <span className="text-foreground font-medium">Konfirmasi</span>
+        <span className="h-px flex-1 bg-black/10" />
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-on-primary text-[10px] font-bold">3</span>
+        <span className="font-semibold text-foreground">Pembayaran</span>
+      </div>
 
-        <aside className="rounded-2xl bg-surface p-5 lg:sticky lg:top-8 lg:self-start">
-          <div className="rounded-2xl bg-primary p-5">
-            <p className="text-[13px] uppercase tracking-[0.12em]">Jumlah Dibayar</p>
-            <p className="mt-3 text-[38px] leading-none tracking-[-0.04em]">{formatIDR(total)}</p>
-            <p className="mt-3 text-sm">Kadaluarsa dalam 60 menit.</p>
+      <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
+        {/* Left: booking info */}
+        <div className="flex flex-col gap-4">
+          <div className="rounded-xl border border-black/10 bg-surface">
+            <div className="border-b border-black/10 px-5 py-3">
+              <p className="text-sm font-bold text-foreground">Detail Pesanan <span className="font-normal text-muted">#{bookingId}</span></p>
+            </div>
+            <div className="divide-y divide-black/5">
+              <Info label="Lapangan" value={court.name} />
+              <Info label="Tanggal" value={formatDate(date)} />
+              <Info label="Waktu" value={`${start} – ${end}`} />
+              <Info label="Durasi" value={`${durationHours(start, end)} jam`} />
+            </div>
           </div>
 
+          {/* Transfer instructions */}
           {provider === "manual" ? (
-            <div className="mt-5 rounded-2xl bg-muted-surface p-5">
-              <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Transfer BCA</p>
-              <div className="mt-4 flex items-center justify-between gap-3 py-4">
-                <span className="font-mono text-xl tracking-[-0.02em]">8801234567890</span>
-                <button type="button" onClick={copy} className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[13px] uppercase tracking-[0.08em] hover:bg-muted-surface">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}{copied ? "Tersalin" : "Salin"}</button>
+            <div className="rounded-xl border border-black/10 bg-surface">
+              <div className="border-b border-black/10 px-5 py-3">
+                <p className="text-sm font-bold text-foreground">Instruksi Transfer</p>
               </div>
-              <p className="mt-3 text-sm text-muted">a/n CourtFlow Indonesia. Demo: klik submit setelah transfer.</p>
+              <div className="p-5">
+                <p className="text-xs text-muted">Transfer tepat ke rekening berikut:</p>
+                <div className="mt-3 flex items-center justify-between rounded-lg bg-muted-surface p-4">
+                  <div>
+                    <p className="text-xs text-muted">BCA • a/n CourtFlow Indonesia</p>
+                    <p className="mt-1 font-mono text-xl font-bold tracking-wide text-foreground">8801234567890</p>
+                  </div>
+                  <button
+                    onClick={copy}
+                    className="flex items-center gap-1.5 rounded-lg border border-black/10 bg-surface px-3 py-2 text-xs font-semibold hover:bg-muted-surface"
+                  >
+                    {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+                    {copied ? "Tersalin" : "Salin"}
+                  </button>
+                </div>
+                <div className="mt-4 flex flex-col gap-1.5 text-xs text-muted">
+                  <p>✦ Nominal harus tepat sesuai total tagihan</p>
+                  <p>✦ Upload bukti transfer setelah menekan tombol kirim</p>
+                  <p>✦ Verifikasi maksimal 1×24 jam hari kerja</p>
+                </div>
+              </div>
             </div>
           ) : (
-            <div className="mt-5 rounded-2xl bg-muted-surface p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Gateway</p><p className="mt-3 text-base">Redirect Midtrans sandbox disimulasikan.</p></div>
+            <div className="rounded-xl border border-black/10 bg-surface p-5">
+              <p className="text-sm font-bold text-foreground">Pembayaran via Gateway</p>
+              <p className="mt-2 text-sm text-muted">
+                Anda akan diarahkan ke halaman Midtrans sandbox untuk menyelesaikan pembayaran.
+              </p>
+            </div>
           )}
+        </div>
 
-          <Button onClick={pay} disabled={state === "processing"} size="lg" className="mt-5 w-full">
-            {state === "processing" ? <><Loader2 className="h-4 w-4 animate-spin" /> Memproses</> : provider === "midtrans" ? "Bayar via Gateway" : "Kirim Bukti Bayar"}
-          </Button>
+        {/* Right: payment CTA */}
+        <aside className="lg:sticky lg:top-24 lg:self-start">
+          <div className="rounded-xl border border-black/10 bg-surface">
+            {/* Total highlight */}
+            <div className="rounded-t-xl bg-primary px-5 py-5">
+              <p className="text-xs font-semibold uppercase tracking-widest text-on-primary/70">Total Pembayaran</p>
+              <p className="mt-1 text-3xl font-bold text-on-primary">{formatIDR(total)}</p>
+              <p className="mt-1 text-xs text-on-primary/70">Berlaku 60 menit</p>
+            </div>
+
+            <div className="p-5">
+              <div className="mb-5 flex flex-col gap-2 text-sm">
+                <div className="flex justify-between text-muted">
+                  <span>Metode</span>
+                  <span className="font-medium text-foreground">
+                    {provider === "manual" ? "Transfer Bank" : "Gateway Midtrans"}
+                  </span>
+                </div>
+                <div className="flex justify-between text-muted">
+                  <span>Status</span>
+                  <span className="font-medium text-yellow-600">Menunggu Pembayaran</span>
+                </div>
+              </div>
+
+              <Button
+                onClick={pay}
+                disabled={state === "processing"}
+                size="lg"
+                className="w-full"
+              >
+                {state === "processing" ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" /> Memproses…
+                  </>
+                ) : (
+                  <>
+                    {provider === "manual" ? "Kirim Bukti Bayar" : "Bayar via Gateway"}
+                    <ArrowRight className="h-4 w-4" />
+                  </>
+                )}
+              </Button>
+              <p className="mt-3 text-center text-xs text-muted">
+                Pesanan otomatis batal jika tidak dibayar dalam 60 menit.
+              </p>
+            </div>
+          </div>
         </aside>
-      </section>
+      </div>
     </div>
   );
 }
 
-function Tile({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl bg-surface p-5"><p className="text-[13px] uppercase tracking-[0.12em] text-muted">{label}</p><p className="mt-3 text-[22px] leading-tight tracking-[-0.03em]">{value}</p></div>;
+function Info({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between gap-4 px-5 py-3">
+      <span className="text-sm text-muted">{label}</span>
+      <span className="text-sm font-medium text-foreground">{value}</span>
+    </div>
+  );
 }
 
 export default function PaymentPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  return <Guard><Suspense fallback={<div className="grid py-20 place-items-center"><Loader2 className="h-6 w-6 animate-spin" /></div>}><PaymentInner bookingId={id} /></Suspense></Guard>;
+  return (
+    <Guard>
+      <Suspense
+        fallback={
+          <div className="grid py-20 place-items-center">
+            <Loader2 className="h-6 w-6 animate-spin" />
+          </div>
+        }
+      >
+        <PaymentInner bookingId={id} />
+      </Suspense>
+    </Guard>
+  );
 }

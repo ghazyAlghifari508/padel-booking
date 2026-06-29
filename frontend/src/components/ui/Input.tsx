@@ -14,7 +14,7 @@ export function Field({ label, htmlFor, required, error, hint, children }: { lab
 }
 
 export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input className={cn("h-12 w-full rounded-full border border-border bg-surface px-5 text-base font-normal text-foreground placeholder:text-muted focus:border-2 focus:outline-none", className)} {...props} />;
+  return <input className={cn("h-12 w-full rounded-full border border-foreground/20 bg-surface px-5 text-base font-normal text-foreground placeholder:text-muted focus:border-foreground focus:outline-none", className)} {...props} />;
 }
 
 export function Select({ className, ...props }: React.SelectHTMLAttributes<HTMLSelectElement>) {

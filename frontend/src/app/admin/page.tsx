@@ -15,38 +15,38 @@ export default function AdminDashboard() {
 
   return (
     <div>
-      <PageHeader title="Dashboard" subtitle="Bright operational overview · Asia/Jakarta (WIB)" />
+      <PageHeader title="Dashboard" subtitle="Operational overview · Asia/Jakarta (WIB)" />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Bookings Today" value={`${today.length}`} icon={<ClipboardList className="h-5 w-5" />} />
-        <Stat label="Pending Payment" value={`${counts.pending_payment ?? 0}`} icon={<Clock4 className="h-5 w-5" />} accent="bg-status-pending-soft text-foreground" />
-        <Stat label="Confirmed" value={`${counts.confirmed ?? 0}`} icon={<CheckCircle2 className="h-5 w-5" />} accent="bg-status-confirmed-soft text-status-confirmed" />
-        <Stat label="Revenue (paid)" value={formatIDR(revenue(bookings))} icon={<CircleDollarSign className="h-5 w-5" />} accent="bg-primary text-foreground" />
+        <Stat label="Bookings today" value={`${today.length}`} icon={<ClipboardList className="h-4 w-4" />} />
+        <Stat label="Pending payment" value={`${counts.pending_payment ?? 0}`} icon={<Clock4 className="h-4 w-4" />} accent="bg-amber-50 text-amber-600" />
+        <Stat label="Confirmed" value={`${counts.confirmed ?? 0}`} icon={<CheckCircle2 className="h-4 w-4" />} accent="bg-emerald-50 text-emerald-600" />
+        <Stat label="Revenue (paid)" value={formatIDR(revenue(bookings))} icon={<CircleDollarSign className="h-4 w-4" />} accent="bg-blue-50 text-blue-600" />
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
-        <div className="twotwo-card overflow-hidden rounded-2xl lg:col-span-2">
-          <div className="court-lines flex items-center justify-between border-b border-border bg-muted-surface px-5 py-4">
-            <h2 className="font-normal text-foreground">Latest bookings</h2>
-            <Link href="/admin/bookings" className="text-sm font-normal text-foreground hover:underline">View all</Link>
+        <div className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-foreground/5 lg:col-span-2">
+          <div className="flex items-center justify-between border-b border-foreground/5 px-5 py-4">
+            <h2 className="text-sm font-semibold text-foreground">Latest bookings</h2>
+            <Link href="/admin/bookings" className="text-sm text-muted hover:text-foreground hover:underline">View all</Link>
           </div>
-          <div className="divide-y divide-border">
+          <div className="divide-y divide-foreground/5">
             {latest.map((b) => (
-              <div key={b.id} className="flex items-center justify-between gap-3 px-5 py-3.5 hover:bg-muted-surface/50">
+              <div key={b.id} className="flex items-center justify-between gap-3 px-5 py-3.5 hover:bg-foreground/[0.02]">
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-normal text-foreground">{b.userName}</p>
-                  <p className="truncate text-xs font-medium text-muted">{b.courtName} · {formatDate(b.date)} · {b.startTime}–{b.endTime}</p>
+                  <p className="truncate text-sm font-medium text-foreground">{b.userName}</p>
+                  <p className="truncate text-xs text-muted">{b.courtName} · {formatDate(b.date)} · {b.startTime}–{b.endTime}</p>
                 </div>
-                <div className="flex items-center gap-2"><span className="hidden text-sm font-normal tabular-nums text-foreground sm:block">{formatIDR(b.totalPrice)}</span><StatusBadge status={b.status} /></div>
+                <div className="flex items-center gap-3"><span className="hidden text-sm tabular-nums text-muted sm:block">{formatIDR(b.totalPrice)}</span><StatusBadge status={b.status} /></div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="twotwo-card rounded-2xl p-5">
-          <h2 className="font-normal text-foreground">Status breakdown</h2>
-          <div className="mt-4 space-y-3">
-            {[{ k: "confirmed", label: "Confirmed", icon: CheckCircle2, color: "text-status-confirmed" }, { k: "pending_payment", label: "Pending", icon: Clock4, color: "text-status-pending" }, { k: "completed", label: "Completed", icon: CalendarCheck, color: "text-status-completed" }, { k: "cancelled", label: "Cancelled", icon: XCircle, color: "text-status-cancelled" }, { k: "expired", label: "Expired", icon: XCircle, color: "text-status-expired" }].map((s) => (
-              <div key={s.k} className="flex items-center justify-between rounded-full bg-muted-surface px-3 py-2"><span className="flex items-center gap-2 text-sm font-normal text-muted"><s.icon className={`h-4 w-4 ${s.color}`} /> {s.label}</span><span className="text-sm font-normal tabular-nums text-foreground">{counts[s.k] ?? 0}</span></div>
+        <div className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-foreground/5">
+          <h2 className="text-sm font-semibold text-foreground">Status breakdown</h2>
+          <div className="mt-4 space-y-2">
+            {[{ k: "confirmed", label: "Confirmed", icon: CheckCircle2, color: "text-emerald-500" }, { k: "pending_payment", label: "Pending", icon: Clock4, color: "text-amber-500" }, { k: "completed", label: "Completed", icon: CalendarCheck, color: "text-blue-500" }, { k: "cancelled", label: "Cancelled", icon: XCircle, color: "text-red-400" }, { k: "expired", label: "Expired", icon: XCircle, color: "text-foreground/30" }].map((s) => (
+              <div key={s.k} className="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-foreground/[0.02]"><span className="flex items-center gap-2 text-sm text-muted"><s.icon className={`h-4 w-4 ${s.color}`} /> {s.label}</span><span className="text-sm font-medium tabular-nums text-foreground">{counts[s.k] ?? 0}</span></div>
             ))}
           </div>
         </div>

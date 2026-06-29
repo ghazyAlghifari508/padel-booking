@@ -3,13 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { use, useMemo, useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, MapPin, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useAuth } from "@/lib/auth";
 import { buildSlots } from "@/lib/availability";
 import { blockedTimes, bookings, courts, operatingHours, TODAY } from "@/lib/data";
 import { durationHours, formatIDR } from "@/lib/format";
 import { cn } from "@/lib/cn";
+
+function addDays(dateStr: string, n: number) {
+  const d = new Date(dateStr);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
+function shortDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString("id-ID", { weekday: "short", day: "numeric", month: "short" });
+}
 
 export default function CourtDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -18,9 +28,21 @@ export default function CourtDetailPage({ params }: { params: Promise<{ id: stri
   const court = courts.find((c) => c.id === Number(id));
   const [date, setDate] = useState(TODAY);
   const [picked, setPicked] = useState<{ start: string; end: string } | null>(null);
-  const slots = useMemo(() => (court ? buildSlots(court.id, date, operatingHours, blockedTimes, bookings) : []), [court, date]);
 
-  if (!court) return <div className="py-20 text-center"><p className="text-muted">Lapangan tidak ditemukan.</p><Link href="/courts" className="mt-3 inline-block underline">Kembali</Link></div>;
+  const slots = useMemo(
+    () => (court ? buildSlots(court.id, date, operatingHours, blockedTimes, bookings) : []),
+    [court, date],
+  );
+
+  if (!court)
+    return (
+      <div className="py-20 text-center">
+        <p className="text-muted">Lapangan tidak ditemukan.</p>
+        <Link href="/courts" className="mt-3 inline-block text-sm underline">
+          Kembali
+        </Link>
+      </div>
+    );
 
   const toggleSlot = (start: string, end: string) => {
     if (!picked) return setPicked({ start, end });
@@ -29,38 +51,161 @@ export default function CourtDetailPage({ params }: { params: Promise<{ id: stri
     if (end === picked.start) return setPicked({ ...picked, start });
     setPicked({ start, end });
   };
+
   const hours = picked ? durationHours(picked.start, picked.end) : 0;
   const total = hours * court.pricePerHour;
+
   const proceed = () => {
     if (!picked) return;
     if (!user) return router.push("/login");
-    router.push(`/booking/confirm?${new URLSearchParams({ court: String(court.id), date, start: picked.start, end: picked.end })}`);
+    router.push(
+      `/booking/confirm?${new URLSearchParams({ court: String(court.id), date, start: picked.start, end: picked.end })}`,
+    );
   };
 
   return (
     <div>
-      <Link href="/courts" className="inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.08em] underline"><ArrowLeft className="h-4 w-4" /> Kembali</Link>
-      <section className="mt-8 grid gap-8 lg:grid-cols-[1fr_420px]">
+      <Link
+        href="/courts"
+        className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground"
+      >
+        <ArrowLeft className="h-4 w-4" /> Kembali ke Lapangan
+      </Link>
+
+      <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_360px]">
+        {/* Left: info */}
         <div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted-surface"><Image src={court.imageUrl} alt={court.name} fill sizes="(min-width:1024px) 60vw, 100vw" className="object-cover grayscale" priority /></div>
-          <div className="mt-6 grid gap-6 pb-8 md:grid-cols-[1fr_220px]">
-            <div><p className="text-[13px] uppercase tracking-[0.12em] text-muted">Detail Lapangan</p><h1 className="mt-3 text-[56px] font-normal leading-[1.05] tracking-[-0.04em]">{court.name}</h1><p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">{court.description}</p></div>
-            <div className="rounded-2xl bg-surface p-5"><p className="text-[13px] uppercase tracking-[0.08em] text-muted">Harga</p><p className="mt-4 text-[32px] tracking-[-0.02em]">{formatIDR(court.pricePerHour)}</p><p className="mt-2 text-[13px] text-muted">per jam</p></div>
+          <div className="relative aspect-video overflow-hidden rounded-xl bg-muted-surface">
+            <Image
+              src={court.imageUrl}
+              alt={court.name}
+              fill
+              sizes="(min-width:1024px) 60vw, 100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+
+          <div className="mt-5">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <h1 className="text-2xl font-bold text-foreground">{court.name}</h1>
+                <p className="mt-1 flex items-center gap-1 text-sm text-muted">
+                  <MapPin className="h-4 w-4" /> {court.location}
+                </p>
+              </div>
+              <div className="rounded-xl border border-black/10 bg-surface px-4 py-2 text-right">
+                <p className="text-xs text-muted">Harga sewa</p>
+                <p className="text-xl font-bold text-foreground">{formatIDR(court.pricePerHour)}</p>
+                <p className="text-xs text-muted">per jam</p>
+              </div>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-muted">{court.description}</p>
+          </div>
+
+          {/* Amenities placeholder */}
+          <div className="mt-6 flex flex-wrap gap-2">
+            {["Parkir Gratis", "Toilet", "Mushola", "Kantin"].map((a) => (
+              <span key={a} className="rounded-full border border-black/10 px-3 py-1 text-xs text-muted">
+                {a}
+              </span>
+            ))}
           </div>
         </div>
-        <aside className="rounded-2xl bg-surface p-5 lg:sticky lg:top-8 lg:self-start">
-          <p className="text-[13px] uppercase tracking-[0.12em] text-muted">Pilih Slot</p>
-          <input aria-label="Tanggal booking" type="date" value={date} min={TODAY} onChange={(e) => { setDate(e.target.value); setPicked(null); }} className="mt-5 h-12 w-full rounded-full border px-5 focus:border-2 focus:outline-none" />
-          <div className="mt-5 grid grid-cols-3 gap-2">
-            {slots.map((s) => {
-              const isPicked = picked && s.startTime >= picked.start && s.endTime <= picked.end;
-              return <button key={s.startTime} disabled={!s.available} aria-pressed={!!isPicked} onClick={() => toggleSlot(s.startTime, s.endTime)} className={cn("min-h-12 rounded-full border px-2 text-[13px]", s.available && !isPicked && "slot-available", isPicked && "slot-selected", !s.available && "cursor-not-allowed bg-muted-surface text-muted")}>{s.startTime}{!s.available && <span className="block text-[10px]">{s.reason === "blocked" ? "TERBLOKIR" : "TERPESAN"}</span>}</button>;
-            })}
+
+        {/* Right: booking panel */}
+        <aside className="rounded-xl border border-black/10 bg-surface lg:sticky lg:top-24 lg:self-start">
+          <div className="border-b border-black/10 px-5 py-4">
+            <p className="text-sm font-bold text-foreground">Pilih Tanggal & Slot</p>
           </div>
-          <div className="mt-6 py-5"><div className="flex justify-between text-base"><span className="text-muted">Dipilih</span><span>{picked ? `${picked.start}–${picked.end}` : "—"}</span></div><div className="mt-3 flex justify-between text-[26px]"><span>Total</span><span>{formatIDR(total)}</span></div></div>
-          <Button onClick={proceed} disabled={!picked} size="lg" className="mt-5 w-full">{user ? "Lanjutkan" : "Masuk untuk booking"}</Button>
+
+          {/* Date nav */}
+          <div className="flex items-center justify-between gap-2 border-b border-black/10 px-4 py-3">
+            <button
+              onClick={() => { setDate((d) => addDays(d, -1)); setPicked(null); }}
+              disabled={date <= TODAY}
+              className="grid h-8 w-8 place-items-center rounded-lg border border-black/10 text-muted disabled:opacity-30 hover:bg-muted-surface"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <div className="flex flex-1 flex-col items-center">
+              <p className="text-sm font-semibold text-foreground">{shortDate(date)}</p>
+              <input
+                type="date"
+                value={date}
+                min={TODAY}
+                onChange={(e) => { setDate(e.target.value); setPicked(null); }}
+                aria-label="Tanggal booking"
+                className="mt-0.5 cursor-pointer text-center text-xs text-primary underline underline-offset-2 focus:outline-none"
+              />
+            </div>
+            <button
+              onClick={() => { setDate((d) => addDays(d, 1)); setPicked(null); }}
+              className="grid h-8 w-8 place-items-center rounded-lg border border-black/10 text-muted hover:bg-muted-surface"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Slots */}
+          <div className="px-4 py-3">
+            <p className="mb-2 flex items-center gap-1.5 text-xs text-muted">
+              <Clock className="h-3.5 w-3.5" /> Klik slot untuk memilih rentang waktu
+            </p>
+            <div className="grid grid-cols-3 gap-1.5">
+              {slots.map((s) => {
+                const isPicked = picked && s.startTime >= picked.start && s.endTime <= picked.end;
+                return (
+                  <button
+                    key={s.startTime}
+                    disabled={!s.available}
+                    aria-pressed={!!isPicked}
+                    onClick={() => toggleSlot(s.startTime, s.endTime)}
+                    className={cn(
+                      "rounded-lg border px-1.5 py-2 text-xs font-medium transition-colors",
+                      s.available && !isPicked && "border-black/10 text-foreground hover:bg-muted-surface",
+                      isPicked && "border-primary bg-primary text-on-primary",
+                      !s.available && "cursor-not-allowed border-transparent bg-muted-surface text-muted/50 line-through",
+                    )}
+                  >
+                    {s.startTime}
+                    {!s.available && (
+                      <span className="block text-[10px] no-underline leading-tight">
+                        {s.reason === "blocked" ? "blokir" : "terpesan"}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Summary */}
+          <div className="border-t border-black/10 px-5 py-4">
+            {picked ? (
+              <div className="mb-4 rounded-lg bg-muted-surface px-4 py-3 text-sm">
+                <div className="flex justify-between text-muted">
+                  <span>Slot dipilih</span>
+                  <span className="font-medium text-foreground">{picked.start}–{picked.end}</span>
+                </div>
+                <div className="mt-1 flex justify-between text-muted">
+                  <span>Durasi</span>
+                  <span className="font-medium text-foreground">{hours} jam</span>
+                </div>
+                <div className="mt-2 flex justify-between border-t border-black/10 pt-2 text-sm font-bold text-foreground">
+                  <span>Total</span>
+                  <span>{formatIDR(total)}</span>
+                </div>
+              </div>
+            ) : (
+              <p className="mb-4 text-center text-sm text-muted">Belum ada slot dipilih</p>
+            )}
+            <Button onClick={proceed} disabled={!picked} size="lg" className="w-full">
+              {user ? "Lanjut Konfirmasi" : "Masuk untuk Booking"}
+            </Button>
+          </div>
         </aside>
-      </section>
+      </div>
     </div>
   );
 }

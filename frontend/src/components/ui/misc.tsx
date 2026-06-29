@@ -20,13 +20,13 @@ export function Logo({ className }: { className?: string }) {
 
 export function Stat({ label, value, hint, icon, accent }: { label: string; value: string; hint?: string; icon?: React.ReactNode; accent?: string }) {
   return (
-    <div className="rounded-2xl border border-border bg-surface p-5">
-      <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
-        <span className="text-[13px] uppercase tracking-[0.08em] text-muted">{label}</span>
-        {icon && <span className={cn("grid h-10 w-10 place-items-center rounded-full border border-border", accent ?? "bg-primary text-foreground")}>{icon}</span>}
+    <div className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-foreground/5">
+      <div className="flex items-center justify-between">
+        <span className="text-sm text-muted">{label}</span>
+        {icon && <span className={cn("grid h-8 w-8 place-items-center rounded-lg", accent ?? "bg-foreground/5 text-muted")}>{icon}</span>}
       </div>
-      <p className="mt-4 text-[32px] font-normal leading-none tracking-[-0.02em] text-foreground">{value}</p>
-      {hint && <p className="mt-2 text-[13px] leading-relaxed text-muted">{hint}</p>}
+      <p className="mt-3 text-2xl font-semibold tracking-tight text-foreground">{value}</p>
+      {hint && <p className="mt-1 text-xs text-muted">{hint}</p>}
     </div>
   );
 }
