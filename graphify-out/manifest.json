@@ -1,0 +1,226 @@
+{
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\eslint.config.mjs": {
+    "mtime": 1781431199.1118789,
+    "hash": "dfa1f5f6a7037bf39dc510f30b180002"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\next-env.d.ts": {
+    "mtime": 1782746528.2590804,
+    "hash": "2a74d3909800ca5467fa83b0ab4a4890"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\next.config.ts": {
+    "mtime": 1782745600.832017,
+    "hash": "6623f9b4ca91e52889471f774c0307e1"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\postcss.config.mjs": {
+    "mtime": 1781431199.1602776,
+    "hash": "239f3ebf717465dc636818a1a619398d"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\layout.tsx": {
+    "mtime": 1782746313.943566,
+    "hash": "2e19cc6636cafa82b04f350d05119452"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\page.tsx": {
+    "mtime": 1782746465.9251976,
+    "hash": "0ad5c3b40b2451d4dd81f7e77c7b7d3f"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\layout.tsx": {
+    "mtime": 1782745737.92817,
+    "hash": "b975def17b04a9dac459e00b3f675fec"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\booking\\confirm\\page.tsx": {
+    "mtime": 1782745996.502035,
+    "hash": "005947df31d2588f28b235faa8744228"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\booking\\[id]\\payment\\page.tsx": {
+    "mtime": 1782746103.83999,
+    "hash": "c9dcb7a1a2afa65c5f2bc478549046e4"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\courts\\page.tsx": {
+    "mtime": 1782745911.7568035,
+    "hash": "d4f840cf1b9479f32fc7bbbdc97e80cf"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\courts\\[id]\\page.tsx": {
+    "mtime": 1782746455.038299,
+    "hash": "799d5bc41cf425b3a8ead50f43f8b573"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\(app)\\my-bookings\\page.tsx": {
+    "mtime": 1782746105.3470855,
+    "hash": "16a9ca946f61bfc1095204d419eda073"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\admin\\layout.tsx": {
+    "mtime": 1782745739.421661,
+    "hash": "71182f0f10da7854ba1e3271fb8dbaf0"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\admin\\page.tsx": {
+    "mtime": 1782746106.810845,
+    "hash": "2ee38b4800d566f8f6820a74ea913fff"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\admin\\bookings\\page.tsx": {
+    "mtime": 1782746310.924378,
+    "hash": "5c11836816dc799708468697212fc979"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\admin\\courts\\page.tsx": {
+    "mtime": 1782746240.7481174,
+    "hash": "803f8aaeda9f679d22c32ed01b1a2495"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\admin\\logs\\page.tsx": {
+    "mtime": 1782746312.424229,
+    "hash": "ee7c4b29cc6653c40495c30b58eadc12"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\admin\\payments\\page.tsx": {
+    "mtime": 1782746169.2980797,
+    "hash": "df3d4b403983c697e681cee00be80094"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\admin\\reports\\page.tsx": {
+    "mtime": 1782746108.2579467,
+    "hash": "baee69fba0ca57b82c1d15f035cf1867"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\admin\\schedule\\page.tsx": {
+    "mtime": 1782746242.2984526,
+    "hash": "612647b04630c0bb240d1b1d5530d46f"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\login\\page.tsx": {
+    "mtime": 1782745908.7412927,
+    "hash": "76329d7b2d1cb7b851698776dfacf381"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\app\\register\\page.tsx": {
+    "mtime": 1782745910.2036464,
+    "hash": "bca67493be47d265dbe899fc53d5cca0"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\AdminSidebar.tsx": {
+    "mtime": 1782747759.4424887,
+    "hash": "c701d53ededb470079efcb210c25a375"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\BookingCard.tsx": {
+    "mtime": 1782745815.3093562,
+    "hash": "eab1d9ece34ee2eba85e8eba89b245da"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\CourtCard.tsx": {
+    "mtime": 1782745813.796523,
+    "hash": "544e4c227f1b4f2730db88ca8a20a0ae"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\Guard.tsx": {
+    "mtime": 1782745654.552269,
+    "hash": "1178c0d87f5bd075c5725975bfddc959"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\Navbar.tsx": {
+    "mtime": 1782747752.650528,
+    "hash": "81f30da20eb854976bdc95ad0acdaf49"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\RoleSwitcher.tsx": {
+    "mtime": 1782745736.4552379,
+    "hash": "48412ba178254070096587747e461214"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\admin\\PageHeader.tsx": {
+    "mtime": 1782745656.0488942,
+    "hash": "2290a6ba13b5538fbeb09c419fcc46a0"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\Button.tsx": {
+    "mtime": 1782745593.7976723,
+    "hash": "1f04860bfba182711d5cfcc3899b5f80"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\Card.tsx": {
+    "mtime": 1782745595.4134607,
+    "hash": "7a49a335ccd8ea28a71e9f631989d609"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\EmptyState.tsx": {
+    "mtime": 1782745651.5666447,
+    "hash": "c5e154ce86fdb6e89fec73b22569001b"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\Input.tsx": {
+    "mtime": 1782745597.1988032,
+    "hash": "6daece9cf9f40df69199efe0228280b7"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\misc.tsx": {
+    "mtime": 1782745653.0719287,
+    "hash": "f4dc11233fddc83b9ea923f838e9a6db"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\Modal.tsx": {
+    "mtime": 1782745650.0818462,
+    "hash": "1bbab9abbc1061c86048495788e64ee8"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\components\\ui\\StatusBadge.tsx": {
+    "mtime": 1782745598.9450445,
+    "hash": "9f45120ca21a15e19dc920431f951db3"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\auth.tsx": {
+    "mtime": 1782742203.3633864,
+    "hash": "115291dbafaaa908ce36b3e9426d2e90"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\availability.ts": {
+    "mtime": 1782741162.221581,
+    "hash": "13765a7b360aab35fb7fc13e09856bc9"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\cn.ts": {
+    "mtime": 1782741301.455518,
+    "hash": "0a55c1aa4a52e712875df062c0c4b30e"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\data.ts": {
+    "mtime": 1782741146.3667045,
+    "hash": "71df524eac1fd117c8988ea341a1f6d7"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\format.test.ts": {
+    "mtime": 1782741104.0593953,
+    "hash": "88befd4ffe61d888cb568a0a43b11835"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\format.ts": {
+    "mtime": 1782741092.1463296,
+    "hash": "fb8f126beb803c275ce1ff3b8346b18a"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\reports.ts": {
+    "mtime": 1782741761.591626,
+    "hash": "6c0dde30b279c2a6d5a85e08c2815d4a"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\src\\lib\\types.ts": {
+    "mtime": 1782741079.8536599,
+    "hash": "c9565fa827c27921c709d2828bab8e7d"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\acceptance-criteria.md": {
+    "mtime": 1782737609.5735717,
+    "hash": "8e92617e4eb765c2f9944ed8aa29f07b"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\AGENTS.md": {
+    "mtime": 1782739608.2713857,
+    "hash": "c7e51c97c70c1277ff2b43518cf77118"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\DESIGN.md": {
+    "mtime": 1782743855.7625024,
+    "hash": "c95ca41a80124dac9de84ff859bdb441"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\prd.md": {
+    "mtime": 1782737561.9121766,
+    "hash": "580eedc4e371c9f21e059f6cd0d50331"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\AGENTS.md": {
+    "mtime": 1782740649.1736863,
+    "hash": "9e09241799026ac05be315a2f0b50055"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\CLAUDE.md": {
+    "mtime": 1782740649.1736863,
+    "hash": "5c27369b226fcf2be8a6cfe52224e767"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\README.md": {
+    "mtime": 1781431199.0775785,
+    "hash": "f15aaa42d5d299d091b1171097ea56ad"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\public\\file.svg": {
+    "mtime": 1781431199.1745296,
+    "hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\public\\globe.svg": {
+    "mtime": 1781431199.196347,
+    "hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\public\\next.svg": {
+    "mtime": 1781431199.216078,
+    "hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\public\\vercel.svg": {
+    "mtime": 1781431199.2334993,
+    "hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "C:\\Coding\\Web Development\\Next\\padel-booking\\frontend\\public\\window.svg": {
+    "mtime": 1781431199.2495048,
+    "hash": "a2760511c65806022ad20adf74370ff3"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "env": {
+    "ECC_GATEGUARD": "off"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(where go *)",
+      "Bash(npx --version)",
+      "Bash(npx create-next-app@latest frontend --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --turbopack --no-git --yes)",
+      "Bash(export ECC_GATEGUARD=off)",
+      "Bash(cd \"c:/Coding/Web Development/Next/padel-booking\" && echo \"===project settings===\" && cat .claude/settings.json 2>/dev/null; cat .claude/settings.local.json 2>/dev/null; echo \"===user settings===\" && cat \"C:/Users/alghi/.claude/settings.json\" 2>/dev/null | grep -iE \"gateguard|hook|ECC_DISABLED|env\" | head; echo \"---\"; grep -rl \"gateguard\" \"C:/Users/alghi/.claude/\" 2>/dev/null | head)",
+      "Read(//c/Users/alghi/.claude/**)",
+      "Bash(node -e \"const fs=require\\('fs'\\);const s=JSON.parse\\(fs.readFileSync\\('C:/Users/alghi/.claude/settings.json','utf8'\\)\\);console.log\\('env keys:',Object.keys\\(s.env||{}\\)\\);console.log\\('ECC_DISABLED_HOOKS:',s.env&&s.env.ECC_DISABLED_HOOKS\\);console.log\\('ECC_GATEGUARD:',s.env&&s.env.ECC_GATEGUARD\\);console.log\\('hooks keys:',Object.keys\\(s.hooks||{}\\)\\);\")",
+      "Bash(npx tsx *)"
+    ]
+  }
+}
