@@ -18,6 +18,9 @@ graphify-out/
 .vercel/
 .claude/settings.local.json
 
+.claude/
+.cf-shots/
+
 # Repo docs (internal use, not app code)
 CLAUDE.md
 AGENTS.md

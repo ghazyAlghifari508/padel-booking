@@ -1,6 +1,0 @@
-menambahkan fitur pembelian raket padel dan bola
-menambah fitur coach / les padel
-menambah halaman 
-tambah halaman kontak menggunakan mapcn
-animasi
-aksesoris
