@@ -59,6 +59,7 @@ export interface Payment {
   status: PaymentStatus;
   paymentUrl?: string;
   reference?: string;
+  proofUrl?: string;
   createdAt: string;
 }
 

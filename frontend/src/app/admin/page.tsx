@@ -4,23 +4,32 @@ import { CalendarCheck, CheckCircle2, CircleDollarSign, Clock4, ClipboardList, X
 import { PageHeader } from "@/components/admin/PageHeader";
 import { Stat } from "@/components/ui/misc";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import { bookings, TODAY } from "@/lib/data";
+import { api } from "@/lib/api";
+import { useApi } from "@/lib/useApi";
 import { formatDate, formatIDR } from "@/lib/format";
-import { countByStatus, revenue } from "@/lib/reports";
 
 export default function AdminDashboard() {
-  const counts = countByStatus(bookings);
-  const today = bookings.filter((b) => b.date === TODAY);
-  const latest = [...bookings].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 5);
+  const { data, loading, error } = useApi(() => api.admin.dashboard(), []);
+  if (loading) return <p className="py-20 text-center text-sm text-muted">Loading dashboard…</p>;
+  if (error) return <p className="py-20 text-center text-sm text-red-600">{error}</p>;
+  const d = data!;
+  const latest = d.latestBookings.slice(0, 5);
+  const counts: Record<string, number> = {
+    pending_payment: d.pendingBookings,
+    confirmed: d.confirmedBookings,
+    completed: d.completedBookings,
+    cancelled: d.cancelledBookings,
+    expired: d.expiredBookings,
+  };
 
   return (
     <div>
       <PageHeader title="Dashboard" subtitle="Operational overview · Asia/Jakarta (WIB)" />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Bookings today" value={`${today.length}`} icon={<ClipboardList className="h-4 w-4" />} />
-        <Stat label="Pending payment" value={`${counts.pending_payment ?? 0}`} icon={<Clock4 className="h-4 w-4" />} accent="bg-amber-50 text-amber-600" />
-        <Stat label="Confirmed" value={`${counts.confirmed ?? 0}`} icon={<CheckCircle2 className="h-4 w-4" />} accent="bg-emerald-50 text-emerald-600" />
-        <Stat label="Revenue (paid)" value={formatIDR(revenue(bookings))} icon={<CircleDollarSign className="h-4 w-4" />} accent="bg-blue-50 text-blue-600" />
+        <Stat label="Total bookings" value={`${d.totalBookings}`} icon={<ClipboardList className="h-4 w-4" />} />
+        <Stat label="Pending payment" value={`${d.pendingBookings}`} icon={<Clock4 className="h-4 w-4" />} accent="bg-amber-50 text-amber-600" />
+        <Stat label="Confirmed" value={`${d.confirmedBookings}`} icon={<CheckCircle2 className="h-4 w-4" />} accent="bg-emerald-50 text-emerald-600" />
+        <Stat label="Revenue (paid)" value={formatIDR(d.totalRevenue)} icon={<CircleDollarSign className="h-4 w-4" />} accent="bg-blue-50 text-blue-600" />
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

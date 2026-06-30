@@ -7,9 +7,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, Loader2, CheckCircle2, AlertTriangle } from "lucide-react";
 import { Guard } from "@/components/Guard";
 import { Button } from "@/components/ui/Button";
-import { hasConflict } from "@/lib/availability";
 import { useAuth } from "@/lib/auth";
-import { blockedTimes, bookings, courts } from "@/lib/data";
+import { api } from "@/lib/api";
+import { useApi } from "@/lib/useApi";
 import { durationHours, formatDate, formatIDR } from "@/lib/format";
 
 const providers = [
@@ -25,22 +25,28 @@ function ConfirmInner() {
   const date = sp.get("date") ?? "";
   const start = sp.get("start") ?? "";
   const end = sp.get("end") ?? "";
-  const court = courts.find((c) => c.id === courtId);
+  const { data: court, loading: courtLoading } = useApi(() => api.court(courtId), [courtId]);
   const [provider, setProvider] = useState<"manual" | "midtrans">("manual");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
+  if (courtLoading) return <p className="py-20 text-center text-sm text-muted">Memuat detail…</p>;
   if (!court || !date || !start || !end) return <EmptyBooking />;
 
   const hours = durationHours(start, end);
   const total = hours * court.pricePerHour;
-  const conflict = hasConflict(courtId, date, start, end, blockedTimes, bookings);
 
-  const confirm = () => {
+  const confirm = async () => {
     setLoading(true);
-    setTimeout(
-      () => router.push(`/booking/9001/payment?${new URLSearchParams({ court: String(courtId), date, start, end, provider })}`),
-      650,
-    );
+    setError("");
+    try {
+      const booking = await api.createBooking({ courtId, date, startTime: start, endTime: end });
+      await api.initPayment(booking.id, provider);
+      router.push(`/booking/${booking.id}/payment?${new URLSearchParams({ court: String(courtId), date, start, end, provider })}`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Gagal membuat pesanan.");
+      setLoading(false);
+    }
   };
 
   return (
@@ -64,10 +70,10 @@ function ConfirmInner() {
         <span>Pembayaran</span>
       </div>
 
-      {conflict && (
+      {error && (
         <div className="mb-4 flex items-center gap-2 rounded-lg border border-black/10 bg-surface p-3 text-sm text-foreground">
           <AlertTriangle className="h-4 w-4 shrink-0 text-red-500" />
-          Slot sudah tidak tersedia. Pilih waktu lain.
+          {error}
         </div>
       )}
 
@@ -139,7 +145,7 @@ function ConfirmInner() {
               </div>
               <Button
                 onClick={confirm}
-                disabled={loading || conflict}
+                disabled={loading}
                 size="lg"
                 className="mt-5 w-full"
               >

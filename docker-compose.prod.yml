@@ -1,0 +1,17 @@
+services:
+  postgres:
+    ports: []
+
+  backend:
+    environment:
+      APP_ENV: production
+    ports:
+      - "8080:8080"
+
+  frontend:
+    ports:
+      - "3000:3000"
+
+  n8n:
+    ports:
+      - "5678:5678"

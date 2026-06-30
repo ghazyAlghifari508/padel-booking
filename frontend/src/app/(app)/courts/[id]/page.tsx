@@ -2,14 +2,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { use, useMemo, useState } from "react";
+import { use, useState } from "react";
 import { ArrowLeft, MapPin, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useAuth } from "@/lib/auth";
-import { buildSlots } from "@/lib/availability";
-import { blockedTimes, bookings, courts, operatingHours, TODAY } from "@/lib/data";
+import { api } from "@/lib/api";
+import { useApi } from "@/lib/useApi";
 import { durationHours, formatIDR } from "@/lib/format";
 import { cn } from "@/lib/cn";
+
+const TODAY = new Date().toISOString().slice(0, 10);
 
 function addDays(dateStr: string, n: number) {
   const d = new Date(dateStr);
@@ -25,16 +27,14 @@ export default function CourtDetailPage({ params }: { params: Promise<{ id: stri
   const { id } = use(params);
   const router = useRouter();
   const { user } = useAuth();
-  const court = courts.find((c) => c.id === Number(id));
   const [date, setDate] = useState(TODAY);
   const [picked, setPicked] = useState<{ start: string; end: string } | null>(null);
+  const { data: court, loading: courtLoading, error: courtError } = useApi(() => api.court(id), [id]);
+  const { data: availability, loading: slotLoading } = useApi(() => api.availability(id, date), [id, date]);
+  const slots = availability?.slots ?? [];
 
-  const slots = useMemo(
-    () => (court ? buildSlots(court.id, date, operatingHours, blockedTimes, bookings) : []),
-    [court, date],
-  );
-
-  if (!court)
+  if (courtLoading) return <p className="py-20 text-center text-sm text-muted">Memuat lapangan…</p>;
+  if (courtError || !court)
     return (
       <div className="py-20 text-center">
         <p className="text-muted">Lapangan tidak ditemukan.</p>

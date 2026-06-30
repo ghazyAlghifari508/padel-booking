@@ -1,0 +1,87 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: courtflow_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-courtflow}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secret}
+      POSTGRES_DB: ${DB_NAME:-courtflow}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-courtflow}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: courtflow_api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-courtflow}
+      DB_PASSWORD: ${DB_PASSWORD:-secret}
+      DB_NAME: ${DB_NAME:-courtflow}
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production-at-least-32-chars}
+      PORT: 8080
+      APP_ENV: ${APP_ENV:-development}
+      MIDTRANS_SERVER_KEY: ${MIDTRANS_SERVER_KEY:-SB-Mid-server-PLACEHOLDER}
+      MIDTRANS_CLIENT_KEY: ${MIDTRANS_CLIENT_KEY:-SB-Mid-client-PLACEHOLDER}
+      MIDTRANS_ENV: ${MIDTRANS_ENV:-sandbox}
+      N8N_WEBHOOK_URL: ${N8N_WEBHOOK_URL:-http://n8n:5678/webhook}
+      N8N_WEBHOOK_SECRET: ${N8N_WEBHOOK_SECRET:-change-me-n8n-secret}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    volumes:
+      - uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8080/api}
+    container_name: courtflow_frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8080/api}
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: courtflow_n8n
+    restart: unless-stopped
+    ports:
+      - "${N8N_PORT:-5678}:5678"
+    environment:
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: ${N8N_USER:-admin}
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_PASSWORD:-secret}
+      WEBHOOK_URL: ${N8N_PUBLIC_URL:-http://localhost:5678}
+    volumes:
+      - n8ndata:/home/node/.n8n
+
+volumes:
+  pgdata:
+  n8ndata:
+  uploads:

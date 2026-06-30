@@ -12,18 +12,40 @@ import { useAuth } from "@/lib/auth";
 const HERO_IMG = "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=1200&q=80";
 
 export default function LoginPage() {
-  const { login, loginAs } = useAuth();
+  const { login } = useAuth();
   const router = useRouter();
   const [email, setEmail] = useState("andi@mail.com");
   const [password, setPassword] = useState("password");
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) return setError("Email dan kata sandi wajib diisi.");
-    login(email);
-    router.push("/courts");
+    setError("");
+    setLoading(true);
+    try {
+      await login(email, password);
+      router.push(email === "admin@courtflow.id" ? "/admin" : "/courts");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Login gagal.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const demo = async (kind: "user" | "admin") => {
+    setError("");
+    setLoading(true);
+    try {
+      await login(kind === "admin" ? "admin@courtflow.id" : "andi@mail.com", "password");
+      router.push(kind === "admin" ? "/admin" : "/courts");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Login gagal.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -115,8 +137,8 @@ export default function LoginPage() {
               <p className="text-sm text-red-600" role="alert">{error}</p>
             )}
 
-            <Button type="submit" size="lg" className="mt-2 w-full">
-              Masuk
+            <Button type="submit" size="lg" className="mt-2 w-full" disabled={loading}>
+              {loading ? "Memproses…" : "Masuk"}
             </Button>
           </form>
 
@@ -128,16 +150,10 @@ export default function LoginPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <Button
-              variant="outline"
-              onClick={() => { loginAs("user"); router.push("/courts"); }}
-            >
+            <Button variant="outline" disabled={loading} onClick={() => demo("user")}>
               Demo Pengguna
             </Button>
-            <Button
-              variant="outline"
-              onClick={() => { loginAs("admin"); router.push("/admin"); }}
-            >
+            <Button variant="outline" disabled={loading} onClick={() => demo("admin")}>
               Demo Admin
             </Button>
           </div>

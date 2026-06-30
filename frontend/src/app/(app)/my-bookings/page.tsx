@@ -7,9 +7,8 @@ import { Guard } from "@/components/Guard";
 import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Modal } from "@/components/ui/Modal";
-import { useAuth } from "@/lib/auth";
-import { bookings as allBookings } from "@/lib/data";
-import type { Booking } from "@/lib/types";
+import { api } from "@/lib/api";
+import { useApi } from "@/lib/useApi";
 
 const FILTERS = [
   { key: "all", label: "Semua" },
@@ -18,10 +17,8 @@ const FILTERS = [
 ] as const;
 
 function MyBookingsInner() {
-  const { user } = useAuth();
-  const [list, setList] = useState<Booking[]>(() =>
-    allBookings.filter((b) => b.userId === user?.id),
-  );
+  const { data, loading, error, reload } = useApi(() => api.myBookings(), []);
+  const list = data ?? [];
   const [filter, setFilter] = useState<"all" | "active" | "past">("all");
   const [cancelId, setCancelId] = useState<number | null>(null);
 
@@ -41,16 +38,15 @@ function MyBookingsInner() {
     [filter, list],
   );
 
-  const doCancel = () => {
-    setList((prev) =>
-      prev.map((b) =>
-        b.id === cancelId
-          ? { ...b, status: "cancelled", paymentStatus: "failed", cancelledAt: new Date().toISOString() }
-          : b,
-      ),
-    );
+  const doCancel = async () => {
+    if (!cancelId) return;
+    await api.cancelBooking(cancelId);
     setCancelId(null);
+    reload();
   };
+
+  if (loading) return <p className="py-20 text-center text-sm text-muted">Memuat pesanan…</p>;
+  if (error) return <p className="py-20 text-center text-sm text-red-600">{error}</p>;
 
   return (
     <div>

@@ -1,19 +1,17 @@
 "use client";
-// Mock auth — no backend. Session in localStorage. Role switcher for demo.
+// Real auth backed by the Go API. JWT in localStorage, user hydrated from /auth/me.
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import type { User } from "./types";
-import { users } from "./data";
+import { api, setToken, getToken, ApiError } from "./api";
 
 interface AuthState {
   user: User | null;
   ready: boolean;
-  login: (email: string) => boolean; // any password accepted; matches by email
-  loginAs: (role: "user" | "admin") => void; // demo role switcher
-  register: (data: { name: string; email: string; phone: string }) => boolean;
+  login: (email: string, password: string) => Promise<void>;
+  register: (data: { name: string; email: string; phone: string; password: string }) => Promise<void>;
   logout: () => void;
 }
 
-const KEY = "courtflow_user";
 const AuthContext = createContext<AuthState | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -21,57 +19,41 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // one-time hydration from localStorage (client-only); intentional setState in effect
+    // Restore session from stored token by re-fetching the user.
     /* eslint-disable react-hooks/set-state-in-effect */
-    try {
-      const raw = localStorage.getItem(KEY);
-      if (raw) setUser(JSON.parse(raw));
-    } catch {
-      // ignore corrupt storage
+    if (!getToken()) {
+      setReady(true);
+      return;
     }
-    setReady(true);
+    api.me()
+      .then(setUser)
+      .catch(() => setToken(null))
+      .finally(() => setReady(true));
     /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
-  const persist = useCallback((u: User | null) => {
-    setUser(u);
-    if (u) localStorage.setItem(KEY, JSON.stringify(u));
-    else localStorage.removeItem(KEY);
+  const login = useCallback(async (email: string, password: string) => {
+    const { token, user } = await api.login({ email, password });
+    setToken(token);
+    setUser(user);
   }, []);
 
-  const login = useCallback(
-    (email: string) => {
-      const found = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
-      // ponytail: demo only — unknown email logs in as a generic user, no password check
-      const u = found ?? { ...users[0], email };
-      persist(u);
-      return true;
-    },
-    [persist],
-  );
-
-  const loginAs = useCallback(
-    (role: "user" | "admin") => {
-      const u = users.find((x) => x.role === role) ?? users[0];
-      persist(u);
-    },
-    [persist],
-  );
-
   const register = useCallback(
-    (data: { name: string; email: string; phone: string }) => {
-      // AC-1.4: reject duplicate email (client-side mock)
-      if (users.some((u) => u.email.toLowerCase() === data.email.toLowerCase())) return false;
-      persist({ id: Date.now(), ...data, role: "user" });
-      return true;
+    async (data: { name: string; email: string; phone: string; password: string }) => {
+      const { token, user } = await api.register(data);
+      setToken(token);
+      setUser(user);
     },
-    [persist],
+    [],
   );
 
-  const logout = useCallback(() => persist(null), [persist]);
+  const logout = useCallback(() => {
+    setToken(null);
+    setUser(null);
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ user, ready, login, loginAs, register, logout }}>
+    <AuthContext.Provider value={{ user, ready, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
@@ -82,3 +64,5 @@ export function useAuth() {
   if (!ctx) throw new Error("useAuth must be used within AuthProvider");
   return ctx;
 }
+
+export { ApiError };

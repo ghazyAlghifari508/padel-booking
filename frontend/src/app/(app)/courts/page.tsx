@@ -1,18 +1,22 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { CourtCard } from "@/components/CourtCard";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { courts } from "@/lib/data";
-
-const LOCATIONS = ["Semua", ...Array.from(new Set(courts.map((c) => c.location)))];
+import { api } from "@/lib/api";
+import { useApi } from "@/lib/useApi";
 
 export default function CourtsPage() {
   const [q, setQ] = useState("");
   const [loc, setLoc] = useState("Semua");
+  const { data: active, loading, error } = useApi(() => api.courts(), []);
 
-  const active = useMemo(() => courts.filter((c) => c.status === "active"), []);
-  const filtered = active.filter((c) => {
+  if (loading) return <p className="py-20 text-center text-sm text-muted">Memuat lapangan…</p>;
+  if (error) return <p className="py-20 text-center text-sm text-red-600">{error}</p>;
+
+  const courts = active ?? [];
+  const LOCATIONS = ["Semua", ...Array.from(new Set(courts.map((c) => c.location)))];
+  const filtered = courts.filter((c) => {
     const matchQ = `${c.name} ${c.location}`.toLowerCase().includes(q.toLowerCase());
     const matchLoc = loc === "Semua" || c.location === loc;
     return matchQ && matchLoc;

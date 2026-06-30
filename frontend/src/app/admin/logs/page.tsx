@@ -4,17 +4,22 @@ import { AlertTriangle, CheckCircle2, Workflow } from "lucide-react";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Select } from "@/components/ui/Input";
-import { automationLogs } from "@/lib/data";
+import { api } from "@/lib/api";
+import { useApi } from "@/lib/useApi";
 import { formatDateTime } from "@/lib/format";
 
 export default function AdminLogsPage() {
   const [status, setStatus] = useState("all");
   const [event, setEvent] = useState("all");
-  const filtered = useMemo(() => automationLogs.filter((l) => {
+  const { data, loading, error } = useApi(() => api.admin.logs(), []);
+  const filtered = useMemo(() => (data ?? []).filter((l) => {
     if (status !== "all" && l.status !== status) return false;
     if (event !== "all" && l.eventType !== event) return false;
     return true;
-  }), [status, event]);
+  }), [data, status, event]);
+
+  if (loading) return <p className="py-20 text-center text-sm text-muted">Loading logs…</p>;
+  if (error) return <p className="py-20 text-center text-sm text-red-600">{error}</p>;
 
   return (
     <div>

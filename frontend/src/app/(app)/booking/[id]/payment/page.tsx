@@ -2,30 +2,45 @@
 
 import Link from "next/link";
 import { Suspense, use, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Check, Copy, Loader2, CheckCircle2, ArrowRight } from "lucide-react";
 import { Guard } from "@/components/Guard";
 import { Button } from "@/components/ui/Button";
-import { courts } from "@/lib/data";
+import { api } from "@/lib/api";
+import { useApi } from "@/lib/useApi";
 import { durationHours, formatDate, formatIDR } from "@/lib/format";
 
 type PayState = "idle" | "processing" | "done";
 
 function PaymentInner({ bookingId }: { bookingId: string }) {
-  const sp = useSearchParams();
   const router = useRouter();
-  const court = courts.find((c) => c.id === Number(sp.get("court")));
-  const date = sp.get("date") ?? "";
-  const start = sp.get("start") ?? "";
-  const end = sp.get("end") ?? "";
-  const provider = sp.get("provider") === "midtrans" ? "midtrans" : "manual";
-  const total = court && start && end ? durationHours(start, end) * court.pricePerHour : 0;
+  const { data: booking, loading: bookingLoading, error: bookingError } = useApi(() => api.booking(bookingId), [bookingId]);
+  const { data: payment } = useApi(() => api.payment(bookingId), [bookingId]);
+  const provider = payment?.provider === "midtrans" ? "midtrans" : "manual";
+  const total = booking?.totalPrice ?? 0;
+  const date = booking?.date ?? "";
+  const start = booking?.startTime ?? "";
+  const end = booking?.endTime ?? "";
   const [state, setState] = useState<PayState>("idle");
   const [copied, setCopied] = useState(false);
+  const [proof, setProof] = useState<File | null>(null);
+  const [error, setError] = useState("");
 
-  const pay = () => {
+  const pay = async () => {
+    if (provider === "midtrans" && payment?.paymentUrl) {
+      window.location.href = payment.paymentUrl;
+      return;
+    }
+    if (!proof) return setError("Upload bukti transfer dulu.");
     setState("processing");
-    setTimeout(() => setState("done"), 900);
+    setError("");
+    try {
+      await api.uploadPaymentProof(bookingId, proof);
+      setState("done");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload bukti gagal.");
+      setState("idle");
+    }
   };
 
   const copy = async () => {
@@ -34,7 +49,9 @@ function PaymentInner({ bookingId }: { bookingId: string }) {
     setTimeout(() => setCopied(false), 1200);
   };
 
-  if (!court || !date || !start || !end) {
+  if (bookingLoading) return <p className="py-20 text-center text-sm text-muted">Memuat pembayaran…</p>;
+
+  if (bookingError || !booking || !date || !start || !end) {
     return (
       <div className="mx-auto max-w-sm rounded-xl border border-black/10 bg-surface p-8 text-center">
         <h1 className="text-lg font-bold">Data tidak lengkap</h1>
@@ -66,7 +83,7 @@ function PaymentInner({ bookingId }: { bookingId: string }) {
             </div>
             <div className="flex justify-between py-1 text-muted">
               <span>Lapangan</span>
-              <span className="font-medium text-foreground">{court.name}</span>
+              <span className="font-medium text-foreground">{booking.courtName}</span>
             </div>
             <div className="flex justify-between py-1 text-muted">
               <span>Jadwal</span>
@@ -113,7 +130,7 @@ function PaymentInner({ bookingId }: { bookingId: string }) {
               <p className="text-sm font-bold text-foreground">Detail Pesanan <span className="font-normal text-muted">#{bookingId}</span></p>
             </div>
             <div className="divide-y divide-black/5">
-              <Info label="Lapangan" value={court.name} />
+              <Info label="Lapangan" value={booking.courtName} />
               <Info label="Tanggal" value={formatDate(date)} />
               <Info label="Waktu" value={`${start} – ${end}`} />
               <Info label="Durasi" value={`${durationHours(start, end)} jam`} />
@@ -143,9 +160,19 @@ function PaymentInner({ bookingId }: { bookingId: string }) {
                 </div>
                 <div className="mt-4 flex flex-col gap-1.5 text-xs text-muted">
                   <p>✦ Nominal harus tepat sesuai total tagihan</p>
-                  <p>✦ Upload bukti transfer setelah menekan tombol kirim</p>
+                  <p>✦ Upload bukti transfer JPG/PNG/PDF maksimal 5MB</p>
                   <p>✦ Verifikasi maksimal 1×24 jam hari kerja</p>
                 </div>
+                <label className="mt-4 block rounded-lg border border-dashed border-black/20 bg-muted-surface p-4 text-sm">
+                  <span className="font-semibold text-foreground">Bukti transfer</span>
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,application/pdf"
+                    onChange={(e) => setProof(e.target.files?.[0] ?? null)}
+                    className="mt-2 block w-full text-xs text-muted"
+                  />
+                  {proof && <span className="mt-2 block text-xs text-foreground">{proof.name}</span>}
+                </label>
               </div>
             </div>
           ) : (
@@ -182,6 +209,7 @@ function PaymentInner({ bookingId }: { bookingId: string }) {
                 </div>
               </div>
 
+              {error && <p className="mb-3 text-center text-sm text-red-600">{error}</p>}
               <Button
                 onClick={pay}
                 disabled={state === "processing"}

@@ -18,7 +18,9 @@ export default function RegisterPage() {
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  const submit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs: Record<string, string> = {};
     if (!form.name) errs.name = "Nama wajib diisi.";
@@ -28,9 +30,16 @@ export default function RegisterPage() {
     if (form.password.length < 6) errs.password = "Minimal 6 karakter.";
     setErrors(errs);
     if (Object.keys(errs).length) return;
-    if (!register({ name: form.name, email: form.email, phone: form.phone }))
-      return setErrors({ email: "Email sudah terdaftar." });
-    router.push("/courts");
+    setLoading(true);
+    try {
+      await register(form);
+      router.push("/courts");
+    } catch (err) {
+      const e = err as { fields?: Record<string, string>; message?: string };
+      setErrors(e.fields ?? { email: e.message ?? "Pendaftaran gagal." });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -132,8 +141,8 @@ export default function RegisterPage() {
               />
             </Field>
 
-            <Button type="submit" size="lg" className="mt-2 w-full">
-              Buat Akun
+            <Button type="submit" size="lg" className="mt-2 w-full" disabled={loading}>
+              {loading ? "Memproses…" : "Buat Akun"}
             </Button>
           </form>
 

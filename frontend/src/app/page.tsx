@@ -4,12 +4,14 @@ import { ArrowRight, CalendarDays, Check, Clock, MapPin, ShieldCheck, Smartphone
 import { CourtCardVertical } from "@/components/CourtCardVertical";
 import { Logo } from "@/components/ui/misc";
 import { Reveal } from "@/components/ui/Reveal";
-import { courts } from "@/lib/data";
+import { api } from "@/lib/api";
 
 const nav = ["Lapangan", "Pemesanan", "Jadwal", "Best Slots", "Kontak"];
 
-export default function LandingPage() {
-  const active = courts.filter((c) => c.status === "active");
+export const dynamic = "force-dynamic";
+
+export default async function LandingPage() {
+  const active = await api.courts();
   const heroCourt = active[0];
 
   return (

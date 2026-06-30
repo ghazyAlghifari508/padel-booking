@@ -6,21 +6,23 @@ import { PageHeader } from "@/components/admin/PageHeader";
 import { Button } from "@/components/ui/Button";
 import { Field, Input, Select } from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
-import { courts as seed } from "@/lib/data";
+import { api } from "@/lib/api";
+import { useApi } from "@/lib/useApi";
 import { formatIDR } from "@/lib/format";
 import type { Court } from "@/lib/types";
 
 type Draft = Partial<Court>;
 
 export default function AdminCourtsPage() {
-  const [courts, setCourts] = useState<Court[]>(seed);
+  const { data, loading, error, reload } = useApi(() => api.admin.courts(), []);
+  const courts = data ?? [];
   const [editing, setEditing] = useState<Draft | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const openNew = () => { setErrors({}); setEditing({ status: "active", pricePerHour: 0 }); };
   const openEdit = (c: Court) => { setErrors({}); setEditing(c); };
 
-  const save = () => {
+  const save = async () => {
     const e: Record<string, string> = {};
     if (!editing?.name) e.name = "Name is required.";
     if (editing?.pricePerHour == null || editing.pricePerHour < 0) e.price = "Price must be ≥ 0.";
@@ -28,14 +30,20 @@ export default function AdminCourtsPage() {
     setErrors(e);
     if (Object.keys(e).length) return;
 
-    setCourts((prev) => {
-      if (editing!.id) return prev.map((c) => (c.id === editing!.id ? { ...c, ...editing } as Court : c));
-      return [...prev, { id: Math.max(...prev.map((c) => c.id)) + 1, name: editing!.name!, description: editing!.description ?? "", location: editing!.location ?? "", pricePerHour: editing!.pricePerHour!, imageUrl: editing!.imageUrl || "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=800&q=70", status: editing!.status as Court["status"] }];
-    });
+    const draft = editing!;
+    if (draft.id) await api.admin.updateCourt(draft.id, draft);
+    else await api.admin.createCourt({ ...draft, imageUrl: draft.imageUrl || "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=800&q=70" });
     setEditing(null);
+    reload();
   };
 
-  const toggleStatus = (id: number) => setCourts((prev) => prev.map((c) => (c.id === id ? { ...c, status: c.status === "active" ? "inactive" : "active" } : c)));
+  const toggleStatus = async (id: number) => {
+    await api.admin.deactivateCourt(id);
+    reload();
+  };
+
+  if (loading) return <p className="py-20 text-center text-sm text-muted">Loading courts…</p>;
+  if (error) return <p className="py-20 text-center text-sm text-red-600">{error}</p>;
 
   return (
     <div>
