@@ -1,0 +1,503 @@
+{
+  "name": "CourtFlow Webhooks Telegram",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "booking_created",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-booking-created",
+      "name": "Webhook booking_created",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -760,
+        -300
+      ],
+      "webhookId": "courtflow-booking-created"
+    },
+    {
+      "parameters": {
+        "jsCode": "const b = $json.body || {};\nconst esc = (v = '-') => String(v ?? '-').replace(/[&<>\\\"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\\\"': '&quot;', \"'\": '&#39;' }[m]));\nconst money = (n) => `Rp${Number(n || 0).toLocaleString('id-ID')}`;\nconst dateLabel = b.date ? new Intl.DateTimeFormat('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${b.date}T00:00:00+07:00`)) : '-';\nconst text = `🟡 <b>CourtFlow — Booking Baru</b>\n━━━━━━━━━━━━━━━━\n<b>ID Booking:</b> #${esc(b.bookingId)}\n<b>Pelanggan:</b> ${esc(b.userName)}\n<b>Email:</b> ${esc(b.userEmail)}\n<b>Lapangan:</b> ${esc(b.courtName)}\n<b>Jadwal:</b> ${esc(dateLabel)}\n<b>Jam:</b> ${esc(b.startTime)}–${esc(b.endTime)} WIB\n<b>Total:</b> ${money(b.totalPrice)}\n<b>Status:</b> Menunggu pembayaran\n━━━━━━━━━━━━━━━━\nSilakan cek dashboard admin untuk follow-up pembayaran.`;\nreturn [{ json: {\n  timestamp: new Date().toISOString(),\n  event: 'booking_created',\n  booking_id: b.bookingId || '',\n  user_name: b.userName || '',\n  user_email: b.userEmail || '',\n  court_name: b.courtName || '',\n  date: b.date || '',\n  start_time: b.startTime || '',\n  end_time: b.endTime || '',\n  status: b.status || 'Menunggu pembayaran',\n  total_price: Number(b.totalPrice || 0),\n  chat_id: $env.TELEGRAM_CHAT_ID || '',\n  telegram_url: 'https://api.telegram.org/bot' + ($env.TELEGRAM_BOT_TOKEN || '') + '/sendMessage',\n  text,\n  data: b,\n} }];"
+      },
+      "id": "code-booking-created",
+      "name": "Handle booking_created",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.telegram_url }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $json.chat_id }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.text }}"
+            },
+            {
+              "name": "parse_mode",
+              "value": "HTML"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "telegram-booking-created",
+      "name": "Telegram booking_created",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -240,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "booking_confirmed",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-booking-confirmed",
+      "name": "Webhook booking_confirmed",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -760,
+        -100
+      ],
+      "webhookId": "courtflow-booking-confirmed"
+    },
+    {
+      "parameters": {
+        "jsCode": "const b = $json.body || {};\nconst esc = (v = '-') => String(v ?? '-').replace(/[&<>\\\"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\\\"': '&quot;', \"'\": '&#39;' }[m]));\nconst money = (n) => `Rp${Number(n || 0).toLocaleString('id-ID')}`;\nconst dateLabel = b.date ? new Intl.DateTimeFormat('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${b.date}T00:00:00+07:00`)) : '-';\nconst text = `✅ <b>CourtFlow — Booking Terkonfirmasi</b>\n━━━━━━━━━━━━━━━━\n<b>ID Booking:</b> #${esc(b.bookingId)}\n<b>Pelanggan:</b> ${esc(b.userName)}\n<b>Email:</b> ${esc(b.userEmail)}\n<b>Lapangan:</b> ${esc(b.courtName)}\n<b>Jadwal:</b> ${esc(dateLabel)}\n<b>Jam:</b> ${esc(b.startTime)}–${esc(b.endTime)} WIB\n<b>Total:</b> ${money(b.totalPrice)}\n<b>Status:</b> Paid / Confirmed\n━━━━━━━━━━━━━━━━\nBooking siap dimainkan. Pastikan operasional lapangan sudah siap.`;\nreturn [{ json: {\n  timestamp: new Date().toISOString(),\n  event: 'booking_confirmed',\n  booking_id: b.bookingId || '',\n  user_name: b.userName || '',\n  user_email: b.userEmail || '',\n  court_name: b.courtName || '',\n  date: b.date || '',\n  start_time: b.startTime || '',\n  end_time: b.endTime || '',\n  status: b.status || 'Paid / Confirmed',\n  total_price: Number(b.totalPrice || 0),\n  chat_id: $env.TELEGRAM_CHAT_ID || '',\n  telegram_url: 'https://api.telegram.org/bot' + ($env.TELEGRAM_BOT_TOKEN || '') + '/sendMessage',\n  text,\n  data: b,\n} }];"
+      },
+      "id": "code-booking-confirmed",
+      "name": "Handle booking_confirmed",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.telegram_url }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $json.chat_id }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.text }}"
+            },
+            {
+              "name": "parse_mode",
+              "value": "HTML"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "telegram-booking-confirmed",
+      "name": "Telegram booking_confirmed",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -240,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "booking_cancelled",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-booking-cancelled",
+      "name": "Webhook booking_cancelled",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -760,
+        100
+      ],
+      "webhookId": "courtflow-booking-cancelled"
+    },
+    {
+      "parameters": {
+        "jsCode": "const b = $json.body || {};\nconst esc = (v = '-') => String(v ?? '-').replace(/[&<>\\\"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\\\"': '&quot;', \"'\": '&#39;' }[m]));\nconst money = (n) => `Rp${Number(n || 0).toLocaleString('id-ID')}`;\nconst dateLabel = b.date ? new Intl.DateTimeFormat('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${b.date}T00:00:00+07:00`)) : '-';\nconst text = `❌ <b>CourtFlow — Booking Dibatalkan</b>\n━━━━━━━━━━━━━━━━\n<b>ID Booking:</b> #${esc(b.bookingId)}\n<b>Pelanggan:</b> ${esc(b.userName)}\n<b>Email:</b> ${esc(b.userEmail)}\n<b>Lapangan:</b> ${esc(b.courtName)}\n<b>Jadwal:</b> ${esc(dateLabel)}\n<b>Jam:</b> ${esc(b.startTime)}–${esc(b.endTime)} WIB\n<b>Status:</b> Cancelled\n━━━━━━━━━━━━━━━━\nSlot kembali tersedia untuk booking baru.`;\nreturn [{ json: {\n  timestamp: new Date().toISOString(),\n  event: 'booking_cancelled',\n  booking_id: b.bookingId || '',\n  user_name: b.userName || '',\n  user_email: b.userEmail || '',\n  court_name: b.courtName || '',\n  date: b.date || '',\n  start_time: b.startTime || '',\n  end_time: b.endTime || '',\n  status: b.status || 'Cancelled',\n  total_price: Number(b.totalPrice || 0),\n  chat_id: $env.TELEGRAM_CHAT_ID || '',\n  telegram_url: 'https://api.telegram.org/bot' + ($env.TELEGRAM_BOT_TOKEN || '') + '/sendMessage',\n  text,\n  data: b,\n} }];"
+      },
+      "id": "code-booking-cancelled",
+      "name": "Handle booking_cancelled",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.telegram_url }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $json.chat_id }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.text }}"
+            },
+            {
+              "name": "parse_mode",
+              "value": "HTML"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "telegram-booking-cancelled",
+      "name": "Telegram booking_cancelled",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -240,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "booking_expired",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-booking-expired",
+      "name": "Webhook booking_expired",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -760,
+        300
+      ],
+      "webhookId": "courtflow-booking-expired"
+    },
+    {
+      "parameters": {
+        "jsCode": "const b = $json.body || {};\nconst esc = (v = '-') => String(v ?? '-').replace(/[&<>\\\"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\\\"': '&quot;', \"'\": '&#39;' }[m]));\nconst money = (n) => `Rp${Number(n || 0).toLocaleString('id-ID')}`;\nconst dateLabel = b.date ? new Intl.DateTimeFormat('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${b.date}T00:00:00+07:00`)) : '-';\nconst text = `⌛ <b>CourtFlow — Booking Expired</b>\n━━━━━━━━━━━━━━━━\n<b>ID Booking:</b> #${esc(b.bookingId)}\n<b>Pelanggan:</b> ${esc(b.userName)}\n<b>Email:</b> ${esc(b.userEmail)}\n<b>Lapangan:</b> ${esc(b.courtName)}\n<b>Jadwal:</b> ${esc(dateLabel)}\n<b>Jam:</b> ${esc(b.startTime)}–${esc(b.endTime)} WIB\n<b>Status:</b> Expired\n━━━━━━━━━━━━━━━━\nSlot otomatis kembali tersedia.`;\nreturn [{ json: {\n  timestamp: new Date().toISOString(),\n  event: 'booking_expired',\n  booking_id: b.bookingId || '',\n  user_name: b.userName || '',\n  user_email: b.userEmail || '',\n  court_name: b.courtName || '',\n  date: b.date || '',\n  start_time: b.startTime || '',\n  end_time: b.endTime || '',\n  status: b.status || 'Expired',\n  total_price: Number(b.totalPrice || 0),\n  chat_id: $env.TELEGRAM_CHAT_ID || '',\n  telegram_url: 'https://api.telegram.org/bot' + ($env.TELEGRAM_BOT_TOKEN || '') + '/sendMessage',\n  text,\n  data: b,\n} }];"
+      },
+      "id": "code-booking-expired",
+      "name": "Handle booking_expired",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.telegram_url }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $json.chat_id }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.text }}"
+            },
+            {
+              "name": "parse_mode",
+              "value": "HTML"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "telegram-booking-expired",
+      "name": "Telegram booking_expired",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "sheet",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "117Bx1eCiXmrusH4P44DIzBeCV-5rodr8pwtRIUmCzfY"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "booking_logs"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": null,
+          "schema": []
+        },
+        "options": {
+          "locationDefine": {
+            "values": {
+              "headerRow": 1
+            }
+          }
+        }
+      },
+      "id": "google-sheets-booking-logs",
+      "name": "Google Sheets booking_logs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        80,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const labels = {\n  booking_created: 'Booking Baru',\n  booking_confirmed: 'Booking Terkonfirmasi',\n  booking_cancelled: 'Booking Dibatalkan',\n  booking_expired: 'Booking Expired',\n};\nreturn $input.all().map((item) => {\n  const j = item.json;\n  return { json: {\n    timestamp: new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta', hour12: false }),\n    event: labels[j.event] || j.event,\n    booking_id: j.booking_id,\n    user_name: j.user_name,\n    user_email: j.user_email,\n    court_name: j.court_name,\n    date: j.date,\n    start_time: j.start_time,\n    end_time: j.end_time,\n    status: j.status,\n    total_price: j.total_price,\n  } };\n});"
+      },
+      "id": "prepare-booking-logs-row",
+      "name": "Prepare booking_logs row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $json.user_email }}",
+        "subject": "={{ \"Booking #\" + $json.booking_id + \" terkonfirmasi\" }}",
+        "message": "={{ ['Halo ' + ($json.user_name || 'Member CourtFlow'), '', 'Booking #' + $json.booking_id + ' terkonfirmasi.', '', 'Lapangan: ' + ($json.court_name || '-'), 'Tanggal: ' + ($json.date || '-'), 'Jam: ' + ($json.start_time || '-') + '–' + ($json.end_time || '-') + ' WIB', 'Total: Rp' + Number($json.total_price || 0).toLocaleString('id-ID'), '', 'Terima kasih,', 'CourtFlow'].join('<br>') }}",
+        "options": {},
+        "authentication": "oAuth2"
+      },
+      "id": "8d195c5b-2ff5-4d16-9564-60244b7bb0bb",
+      "name": "Email user booking_confirmed",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $json.user_email }}",
+        "subject": "={{ \"Booking #\" + $json.booking_id + \" dibatalkan\" }}",
+        "message": "={{ ['Halo ' + ($json.user_name || 'Member CourtFlow'), '', 'Booking #' + $json.booking_id + ' dibatalkan.', '', 'Lapangan: ' + ($json.court_name || '-'), 'Tanggal: ' + ($json.date || '-'), 'Jam: ' + ($json.start_time || '-') + '–' + ($json.end_time || '-') + ' WIB', 'Total: Rp' + Number($json.total_price || 0).toLocaleString('id-ID'), '', 'Terima kasih,', 'CourtFlow'].join('<br>') }}",
+        "options": {},
+        "authentication": "oAuth2"
+      },
+      "id": "96b3a61d-9be9-4b25-bd50-331354c5fe71",
+      "name": "Email user booking_cancelled",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $json.user_email }}",
+        "subject": "={{ \"Booking #\" + $json.booking_id + \" expired\" }}",
+        "message": "={{ ['Halo ' + ($json.user_name || 'Member CourtFlow'), '', 'Booking #' + $json.booking_id + ' expired.', '', 'Lapangan: ' + ($json.court_name || '-'), 'Tanggal: ' + ($json.date || '-'), 'Jam: ' + ($json.start_time || '-') + '–' + ($json.end_time || '-') + ' WIB', 'Total: Rp' + Number($json.total_price || 0).toLocaleString('id-ID'), '', 'Terima kasih,', 'CourtFlow'].join('<br>') }}",
+        "options": {},
+        "authentication": "oAuth2"
+      },
+      "id": "6bcda468-a914-4c93-9652-4595df6b3969",
+      "name": "Email user booking_expired",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        360
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook booking_created": {
+      "main": [
+        [
+          {
+            "node": "Handle booking_created",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle booking_created": {
+      "main": [
+        [
+          {
+            "node": "Telegram booking_created",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Prepare booking_logs row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook booking_confirmed": {
+      "main": [
+        [
+          {
+            "node": "Handle booking_confirmed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle booking_confirmed": {
+      "main": [
+        [
+          {
+            "node": "Telegram booking_confirmed",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Prepare booking_logs row",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email user booking_confirmed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook booking_cancelled": {
+      "main": [
+        [
+          {
+            "node": "Handle booking_cancelled",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle booking_cancelled": {
+      "main": [
+        [
+          {
+            "node": "Telegram booking_cancelled",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Prepare booking_logs row",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email user booking_cancelled",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook booking_expired": {
+      "main": [
+        [
+          {
+            "node": "Handle booking_expired",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle booking_expired": {
+      "main": [
+        [
+          {
+            "node": "Telegram booking_expired",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Prepare booking_logs row",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email user booking_expired",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare booking_logs row": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets booking_logs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveDataSuccessExecution": "all",
+    "saveDataErrorExecution": "all"
+  },
+  "active": false
+}

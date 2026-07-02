@@ -1,4 +1,4 @@
-// Domain types — mirror PRD entities. Frontend-only, dummy data.
+// Domain types mirrored from the Go API responses.
 
 export type Role = "user" | "admin";
 

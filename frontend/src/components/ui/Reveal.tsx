@@ -52,16 +52,3 @@ export function Reveal({
     </div>
   );
 }
-
-/** Stagger wrapper — adds incremental delay to each Reveal child */
-export function Stagger({
-  children,
-  interval = 120,
-  className,
-}: {
-  children: ReactNode;
-  interval?: number;
-  className?: string;
-}) {
-  return <div className={className}>{children}</div>;
-}

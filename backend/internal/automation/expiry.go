@@ -41,6 +41,6 @@ func expirePending(db *gorm.DB, auto *Client, ttl time.Duration) {
 			log.Printf("expiry job booking %d: %v", b.ID, err)
 			continue
 		}
-		go auto.Fire("booking_cancelled", b.ID, map[string]any{"bookingId": b.ID, "status": models.BookingExpired})
+		go auto.Fire("booking_expired", b.ID, map[string]any{"bookingId": b.ID, "status": models.BookingExpired})
 	}
 }

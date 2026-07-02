@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, Check, Clock, MapPin, ShieldCheck, Smartphone } from "lucide-react";
+import { ArrowRight, CalendarDays, MapPin, ShieldCheck, Smartphone } from "lucide-react";
 import { CourtCardVertical } from "@/components/CourtCardVertical";
 import { Logo } from "@/components/ui/misc";
 import { Reveal } from "@/components/ui/Reveal";
@@ -11,7 +11,7 @@ const nav = ["Lapangan", "Pemesanan", "Jadwal", "Best Slots", "Kontak"];
 export const dynamic = "force-dynamic";
 
 export default async function LandingPage() {
-  const active = await api.courts();
+  const active = await api.courts().catch(() => [] as Awaited<ReturnType<typeof api.courts>>);
   const heroCourt = active[0];
 
   return (
@@ -23,7 +23,7 @@ export default async function LandingPage() {
           {nav.map((n) => <span key={n} className="text-[13px] uppercase tracking-[0.08em]">{n}</span>)}
         </nav>
         <div className="flex items-center gap-3">
-          <Link href="/login" className="grid h-10 w-10 place-items-center" aria-label="Cari"><Smartphone className="h-5 w-5" /></Link>
+          <Link href="/login" className="grid h-10 w-10 place-items-center" aria-label="Masuk"><Smartphone className="h-5 w-5" /></Link>
           <Link href="/courts" className="rounded-full bg-primary px-6 py-3 text-[13px] uppercase tracking-[0.08em]">Pesan Sekarang</Link>
         </div>
       </header>
@@ -82,9 +82,9 @@ export default async function LandingPage() {
           </div>
         </Reveal>
         <div className="grid gap-0 md:grid-cols-3 border-t">
-          {[{ name: "Andi Pratama", role: "Pengguna Aktif", text: "\"Gampang banget booking lapangan. Slot jelas, harga transparan. Nggak perlu ribet.\"" },
-            { name: "Bunga Lestari", role: "Komunitas Padel", text: "\"Aplikasi keren buat komunitas padel. Admin fast response, pembayaran aman.\"" },
-            { name: "Citra Dewi", role: "Pemain Reguler", text: "\"Desainnya simple dan premium. Suka banget sama fitur jadwal real-time.\"" }].map((t, i) => (
+          {[{ name: "Member Komunitas", role: "Pemain Aktif", text: "\"Gampang banget booking lapangan. Slot jelas, harga transparan. Nggak perlu ribet.\"" },
+            { name: "Koordinator Klub", role: "Komunitas Padel", text: "\"Aplikasi keren buat komunitas padel. Admin fast response, pembayaran aman.\"" },
+            { name: "Pemain Reguler", role: "Member CourtFlow", text: "\"Desainnya simple dan premium. Suka banget sama fitur jadwal real-time.\"" }].map((t, i) => (
             <Reveal key={t.name} animation="fade-up" delay={i * 150}>
               <div className={`p-10 ${i < 2 ? "border-b md:border-b-0 md:border-r" : ""}`}>
                 <p className="text-base leading-relaxed text-foreground">{t.text}</p>

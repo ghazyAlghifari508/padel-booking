@@ -1,6 +1,7 @@
 package availability
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 
@@ -54,16 +55,23 @@ type Slot struct {
 func Compute(db *gorm.DB, courtID uint, date string, weekday int) ([]Slot, error) {
 	var oh models.OperatingHour
 	err := db.Where("court_id = ? AND day_of_week = ?", courtID, weekday).First(&oh).Error
-	if err != nil || oh.Closed {
-		return []Slot{}, nil // closed day -> no slots (AC-4.3)
+	if errors.Is(err, gorm.ErrRecordNotFound) || (err == nil && oh.Closed) {
+		return []Slot{}, nil // closed/unscheduled day -> no slots (AC-4.3)
+	}
+	if err != nil {
+		return nil, err // real DB error: do not pretend slots are available
 	}
 
 	var blocked []models.BlockedTime
-	db.Where("court_id = ? AND date = ?", courtID, date).Find(&blocked)
+	if err := db.Where("court_id = ? AND date = ?", courtID, date).Find(&blocked).Error; err != nil {
+		return nil, err
+	}
 
 	var active []models.Booking
-	db.Where("court_id = ? AND date = ? AND status IN ?", courtID, date,
-		[]string{models.BookingPendingPayment, models.BookingConfirmed}).Find(&active)
+	if err := db.Where("court_id = ? AND date = ? AND status IN ?", courtID, date,
+		[]string{models.BookingPendingPayment, models.BookingConfirmed}).Find(&active).Error; err != nil {
+		return nil, err
+	}
 
 	open, close := toMinutes(oh.OpenTime), toMinutes(oh.CloseTime)
 	slots := []Slot{}

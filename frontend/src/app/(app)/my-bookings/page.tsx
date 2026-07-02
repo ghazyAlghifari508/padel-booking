@@ -18,7 +18,7 @@ const FILTERS = [
 
 function MyBookingsInner() {
   const { data, loading, error, reload } = useApi(() => api.myBookings(), []);
-  const list = data ?? [];
+  const list = useMemo(() => data ?? [], [data]);
   const [filter, setFilter] = useState<"all" | "active" | "past">("all");
   const [cancelId, setCancelId] = useState<number | null>(null);
 

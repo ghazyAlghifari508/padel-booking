@@ -235,7 +235,10 @@ func (h *Handler) MidtransWebhook(c *gin.Context) {
 		return
 	}
 	var b models.Booking
-	h.db.First(&b, p.BookingID)
+	if err := h.db.First(&b, p.BookingID).Error; err != nil {
+		response.Error(c, 404, "not_found", "Booking not found")
+		return
+	}
 
 	switch body.TransactionStatus {
 	case "settlement":
@@ -285,5 +288,23 @@ func (h *Handler) markPaid(p *models.Payment, b *models.Booking) {
 	p.Status = models.PayPaid
 	b.PaymentStatus = models.PayPaid
 	b.Status = models.BookingConfirmed // AC-7.11
-	go h.auto.Fire("booking_confirmed", b.ID, gin.H{"bookingId": b.ID, "status": b.Status, "totalPrice": b.TotalPrice})
+	go h.auto.Fire("booking_confirmed", b.ID, h.eventPayload(*b))
+}
+
+func (h *Handler) eventPayload(b models.Booking) gin.H {
+	var u models.User
+	var ct models.Court
+	_ = h.db.Select("name", "email").First(&u, b.UserID).Error
+	_ = h.db.Select("name").First(&ct, b.CourtID).Error
+	return gin.H{
+		"bookingId":  b.ID,
+		"userName":   u.Name,
+		"userEmail":  u.Email,
+		"courtName":  ct.Name,
+		"date":       b.Date,
+		"startTime":  b.StartTime,
+		"endTime":    b.EndTime,
+		"status":     b.Status,
+		"totalPrice": b.TotalPrice,
+	}
 }

@@ -28,6 +28,7 @@ var workflowName = map[string]string{
 	"booking_created":   "Booking Created Notification",
 	"booking_confirmed": "Booking Confirmed Automation",
 	"booking_cancelled": "Booking Cancelled Automation",
+	"booking_expired":   "Booking Expired Automation",
 }
 
 // Fire sends event async and logs the result. Safe to call in a goroutine.

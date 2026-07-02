@@ -25,10 +25,8 @@ Go + Gin + PostgreSQL API for the padel court booking system. Implements the PRD
 
 Health check: `GET http://localhost:8080/health`
 
-## Seed accounts
-All seeded users share password `password`.
-- `andi@mail.com` / `bunga@mail.com` / `citra@mail.com` — role user
-- `admin@courtflow.id` — role admin
+## Seed account
+Bootstrap admin: `admin@courtflow.id` / `password`.
 
 ## API
 

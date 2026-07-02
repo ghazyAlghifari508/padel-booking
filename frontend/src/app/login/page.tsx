@@ -14,8 +14,8 @@ const HERO_IMG = "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto
 export default function LoginPage() {
   const { login } = useAuth();
   const router = useRouter();
-  const [email, setEmail] = useState("andi@mail.com");
-  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -26,21 +26,8 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
     try {
-      await login(email, password);
-      router.push(email === "admin@courtflow.id" ? "/admin" : "/courts");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Login gagal.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const demo = async (kind: "user" | "admin") => {
-    setError("");
-    setLoading(true);
-    try {
-      await login(kind === "admin" ? "admin@courtflow.id" : "andi@mail.com", "password");
-      router.push(kind === "admin" ? "/admin" : "/courts");
+      const u = await login(email, password);
+      router.push(u.role === "admin" ? "/admin" : "/courts");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login gagal.");
     } finally {
@@ -100,7 +87,7 @@ export default function LoginPage() {
           </p>
 
           <form onSubmit={submit} className="mt-8 flex flex-col gap-4">
-            <Field label="Email" htmlFor="email" required error={error && !email ? error : undefined}>
+            <Field label="Email" htmlFor="email" required>
               <Input
                 id="email"
                 type="email"
@@ -133,7 +120,7 @@ export default function LoginPage() {
               </div>
             </Field>
 
-            {error && email && (
+            {error && (
               <p className="text-sm text-red-600" role="alert">{error}</p>
             )}
 
@@ -141,22 +128,6 @@ export default function LoginPage() {
               {loading ? "Memproses…" : "Masuk"}
             </Button>
           </form>
-
-          {/* Divider */}
-          <div className="my-6 flex items-center gap-3">
-            <div className="h-px flex-1 bg-black/10" />
-            <span className="text-xs text-muted">atau coba demo</span>
-            <div className="h-px flex-1 bg-black/10" />
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <Button variant="outline" disabled={loading} onClick={() => demo("user")}>
-              Demo Pengguna
-            </Button>
-            <Button variant="outline" disabled={loading} onClick={() => demo("admin")}>
-              Demo Admin
-            </Button>
-          </div>
         </div>
       </div>
     </main>

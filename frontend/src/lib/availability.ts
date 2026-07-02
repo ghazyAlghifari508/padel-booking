@@ -1,4 +1,4 @@
-// Slot/availability calculation (PRD §4-5). Pure functions over dummy data.
+// Slot/availability calculation (PRD §4-5). Pure helpers for UI-side checks.
 import type { Booking, BlockedTime, OperatingHour, Slot } from "./types";
 import { overlaps } from "./format";
 

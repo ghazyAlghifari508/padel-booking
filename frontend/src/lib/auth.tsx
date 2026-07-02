@@ -7,8 +7,8 @@ import { api, setToken, getToken, ApiError } from "./api";
 interface AuthState {
   user: User | null;
   ready: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  register: (data: { name: string; email: string; phone: string; password: string }) => Promise<void>;
+  login: (email: string, password: string) => Promise<User>;
+  register: (data: { name: string; email: string; phone: string; password: string }) => Promise<User>;
   logout: () => void;
 }
 
@@ -36,6 +36,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { token, user } = await api.login({ email, password });
     setToken(token);
     setUser(user);
+    return user;
   }, []);
 
   const register = useCallback(
@@ -43,6 +44,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const { token, user } = await api.register(data);
       setToken(token);
       setUser(user);
+      return user;
     },
     [],
   );

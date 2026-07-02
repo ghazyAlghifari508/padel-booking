@@ -68,7 +68,10 @@ func (h *Handler) UpdateBookingStatus(c *gin.Context) {
 		now := time.Now()
 		b.CancelledAt = &now
 	}
-	h.db.Save(&b) // updated_at auto-bumped by GORM
+	if err := h.db.Save(&b).Error; err != nil { // updated_at auto-bumped by GORM
+		response.Error(c, 500, "server_error", "Could not update booking status")
+		return
+	}
 
 	if req.Status == models.BookingConfirmed && prev != models.BookingConfirmed {
 		go h.auto.Fire("booking_confirmed", b.ID, gin.H{"bookingId": b.ID, "status": b.Status})
@@ -94,9 +97,16 @@ func (h *Handler) MarkPaid(c *gin.Context) {
 	p.Status = models.PayPaid
 	b.PaymentStatus = models.PayPaid
 	b.Status = models.BookingConfirmed
-	h.db.Save(&p)
-	h.db.Save(&b)
-	go h.auto.Fire("booking_confirmed", b.ID, gin.H{"bookingId": b.ID, "status": b.Status, "totalPrice": b.TotalPrice})
+	if err := h.db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Save(&p).Error; err != nil {
+			return err
+		}
+		return tx.Save(&b).Error
+	}); err != nil {
+		response.Error(c, 500, "server_error", "Could not mark payment as paid")
+		return
+	}
+	go h.auto.Fire("booking_confirmed", b.ID, h.eventPayload(b))
 	response.OK(c, h.enrich(b))
 }
 
@@ -203,4 +213,19 @@ func (h *Handler) enrichMany(bs []models.Booking) []models.Booking {
 		bs[i] = h.enrich(bs[i])
 	}
 	return bs
+}
+
+func (h *Handler) eventPayload(b models.Booking) gin.H {
+	e := h.enrich(b)
+	return gin.H{
+		"bookingId":  e.ID,
+		"userName":   e.UserName,
+		"userEmail":  e.UserEmail,
+		"courtName":  e.CourtName,
+		"date":       e.Date,
+		"startTime":  e.StartTime,
+		"endTime":    e.EndTime,
+		"status":     e.Status,
+		"totalPrice": e.TotalPrice,
+	}
 }

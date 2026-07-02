@@ -56,6 +56,8 @@ func (h *Handler) Create(c *gin.Context) {
 	bookingDate, dateErr := time.Parse("2006-01-02", req.Date)
 	if req.Date != "" && dateErr != nil {
 		fields["date"] = "Date must use YYYY-MM-DD"
+	} else if dateErr == nil && req.Date < time.Now().Format("2006-01-02") { // AC-5.x no past bookings (ISO sorts lexically)
+		fields["date"] = "Cannot book a past date"
 	}
 	if len(fields) > 0 {
 		response.ValidationError(c, fields)
@@ -188,7 +190,10 @@ func (h *Handler) Cancel(c *gin.Context) {
 	now := time.Now()
 	b.Status = models.BookingCancelled
 	b.CancelledAt = &now
-	h.db.Save(&b)
+	if err := h.db.Save(&b).Error; err != nil {
+		response.Error(c, 500, "server_error", "Could not cancel booking")
+		return
+	}
 	go h.auto.Fire("booking_cancelled", b.ID, h.eventPayload(b))
 	response.OK(c, h.enrich(b))
 }

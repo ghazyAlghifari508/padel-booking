@@ -11,7 +11,8 @@ import { useApi } from "@/lib/useApi";
 import { durationHours, formatIDR } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
-const TODAY = new Date().toISOString().slice(0, 10);
+// "today" in Asia/Jakarta (WIB), not the server/UTC day — avoids off-by-one near midnight.
+const todayWIB = () => new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Jakarta" });
 
 function addDays(dateStr: string, n: number) {
   const d = new Date(dateStr);
@@ -27,10 +28,11 @@ export default function CourtDetailPage({ params }: { params: Promise<{ id: stri
   const { id } = use(params);
   const router = useRouter();
   const { user } = useAuth();
+  const TODAY = todayWIB();
   const [date, setDate] = useState(TODAY);
   const [picked, setPicked] = useState<{ start: string; end: string } | null>(null);
   const { data: court, loading: courtLoading, error: courtError } = useApi(() => api.court(id), [id]);
-  const { data: availability, loading: slotLoading } = useApi(() => api.availability(id, date), [id, date]);
+  const { data: availability } = useApi(() => api.availability(id, date), [id, date]);
   const slots = availability?.slots ?? [];
 
   if (courtLoading) return <p className="py-20 text-center text-sm text-muted">Memuat lapangan…</p>;

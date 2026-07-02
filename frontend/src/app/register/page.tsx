@@ -97,7 +97,7 @@ export default function RegisterPage() {
                 id="name"
                 value={form.name}
                 onChange={set("name")}
-                placeholder="Andi Pratama"
+                placeholder="Nama Anda"
                 autoComplete="name"
               />
             </Field>

@@ -1,4 +1,4 @@
-// Typed fetch client for the CourtFlow Go API. Replaces all dummy data in @/lib/data.
+// Typed fetch client for the CourtFlow Go API.
 import type {
   User, Court, Booking, Payment, BlockedTime, OperatingHour, AutomationLog, Slot,
 } from "./types";
